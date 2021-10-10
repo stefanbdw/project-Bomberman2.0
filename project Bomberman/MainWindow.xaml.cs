@@ -61,7 +61,6 @@ namespace project_Bomberman
             // if the left key is pressed then do the following
             if (e.Key == Key.Left)
             {
-                
                 goleft = true; // change go left to true
                 goright = goup = godown = false;
                 nijntje.RenderTransform = new RotateTransform(0, nijntje.Width / 2, nijntje.Height / 2);
@@ -196,22 +195,22 @@ namespace project_Bomberman
                 // begin w toets
             }
             
-            if (goright)
+            if (goright1)
             {
                 // if go right boolean is true 
                 Canvas.SetLeft(nijtje2, Canvas.GetLeft(nijtje2) + speed1);
             }
-            if (goleft)
+            if (goleft1)
             {
                 // if go left boolean is true
                 Canvas.SetLeft(nijtje2, Canvas.GetLeft(nijtje2) - speed1);
             }
-            if (goup)
+            if (goup1)
             {
                 // if go up boolean is true 
                 Canvas.SetTop(nijtje2, Canvas.GetTop(nijtje2) - speed1);
             }
-            if (godown)
+            if (godown1)
             {
                 // if go down boolean is true
                 Canvas.SetTop(nijtje2, Canvas.GetTop(nijtje2) + speed1);
