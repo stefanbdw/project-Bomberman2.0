@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <RootNamespace>project_Bomberman</RootNamespace>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="images\simpels.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\simpels.png" />
+  </ItemGroup>
+
+</Project>
