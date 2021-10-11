@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:project_Bomberman"
         mc:Ignorable="d"
         Title="Bomberman" Height="600" Width="800">
-    <Canvas Name="MyCanvas" KeyDown="CanvasKeyDown" Focusable="True" Background="Black">
+    <Canvas Name="MyCanvas" KeyDown="CanvasKeyDown" KeyUp="Canvas_KeyUp"  Focusable="True" Background="Black">
 
         <Label FontSize="20" Name="txtScore" Foreground="White" Content="Score: 0"></Label>
 

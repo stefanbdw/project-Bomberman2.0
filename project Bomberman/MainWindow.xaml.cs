@@ -40,7 +40,7 @@ namespace project_Bomberman
 
         int speed = 10;
         int speed1 = 10;// this integer is for the speed of the player
-        int steps = 10; // how many steps animation/timer will have
+        
         
 
         Random rnd = new Random();
@@ -62,50 +62,47 @@ namespace project_Bomberman
             if (e.Key == Key.Left)
             {
                 goleft = true; // change go left to true
-                goright = goup = godown = false;
+                
                 nijntje.RenderTransform = new RotateTransform(0, nijntje.Width / 2, nijntje.Height / 2);
             }
 
             // end of left key selection
 
             // if the right key is pressed then do the following
-            if (e.Key == Key.Right)
+            else if (e.Key == Key.Right)
             {
 
                 goright = true;
-                goleft = goup = godown = false;
+               
                 nijntje.RenderTransform = new RotateTransform(0, nijntje.Width / 2, nijntje.Height / 2);
             }
             // end of right key selection
 
             // if the up key is pressed then do the following
-            if (e.Key == Key.Up)
+            else if (e.Key == Key.Up)
             {
                 
                 goup = true; // change go up to true
-                goright = goleft = godown = false;
+                
                 nijntje.RenderTransform = new RotateTransform(-90, nijntje.Width / 2, nijntje.Height / 2);
             }
-
-            // end of up key selection
-
             // if the down key is pressed then do the following
-            if (e.Key == Key.Down)
+            else if (e.Key == Key.Down)
             {
                 
                 godown = true; // change go down to true
-                goright = goup = goleft = false;
+                
                 nijntje.RenderTransform = new RotateTransform(90, nijntje.Width / 2, nijntje.Height / 2);
             }
             // end of the down key selection
-        
+          
 
 
             // if the left key is pressed then do the following
             if (e.Key == Key.A)
             {
                 goleft1 = true; // change go left to true
-                goright1 = goup1 = godown1 = false;
+                
                 nijtje2.RenderTransform = new RotateTransform(0, nijtje2.Width / 2, nijtje2.Height / 2);
             }
 
@@ -116,7 +113,7 @@ namespace project_Bomberman
             {
 
                 goright1 = true;
-                goleft1 = goup1 = godown1 = false;
+               
                 nijtje2.RenderTransform = new RotateTransform(0, nijtje2.Width / 2, nijtje2.Height / 2);
             }
             // end of right key selection
@@ -126,7 +123,7 @@ namespace project_Bomberman
             {
 
                 goup1 = true; // change go up to true
-                goright1 = goleft1 = godown1 = false;
+                
                 nijtje2.RenderTransform = new RotateTransform(-90, nijtje2.Width / 2, nijtje2.Height / 2);
             }
 
@@ -137,13 +134,49 @@ namespace project_Bomberman
             {
 
                 godown1 = true; // change go down to true
-                goright1 = goup1 = goleft1 = false;
+                
                 nijtje2.RenderTransform = new RotateTransform(90, nijtje2.Width / 2, nijtje2.Height / 2);
             }
             // end of the down key selection
         }
+        private void Canvas_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Down)
+            {
+                godown = false; // down is released go down will be false
+            }
+            if (e.Key == Key.Up)
+            {
+                goup = false; // up key is released go up will be false
+            }
+            if (e.Key == Key.Left)
+            {
+                goleft = false; // left key is released go left will be false
+            }
+            if (e.Key == Key.Right)
+            {
+                goright = false; // right key is released go right will be false
+            }
+            
+            if (e.Key == Key.S)
+            {
+                godown1 = false; // down is released go down will be false
+            }
+            if (e.Key == Key.W)
+            {
+                goup1 = false; // up key is released go up will be false
+            }
+            if (e.Key == Key.A)
+            {
+                goleft1 = false; // left key is released go left will be false
+            }
+            if (e.Key == Key.D)
+            {
+                goright1 = false; // right key is released go right will be false
+            }
+        }
 
-        private void GameSetUp()
+            private void GameSetUp()
         {
 
             MyCanvas.Focus(); // set my canvas as the main focus for the program
@@ -170,21 +203,21 @@ namespace project_Bomberman
 
         private void GameLoop(object sender, EventArgs e)
         {
-
-            if (goright)
+            
+                if (goright)
             {
                 // if go right boolean is true 
-                Canvas.SetLeft(nijntje,    Canvas.GetLeft(nijntje) + speed);
+                Canvas.SetLeft(nijntje, Canvas.GetLeft(nijntje) + speed);
             }
             if (goleft)
             {
                 // if go left boolean is true
-                Canvas.SetLeft(nijntje,  Canvas.GetLeft(nijntje) - speed);
+                Canvas.SetLeft(nijntje, Canvas.GetLeft(nijntje) - speed);
             }
             if (goup)
             {
                 // if go up boolean is true 
-                Canvas.SetTop(nijntje,  Canvas.GetTop(nijntje) - speed);
+                Canvas.SetTop(nijntje, Canvas.GetTop(nijntje) - speed);
             }
             if (godown)
             {
@@ -194,7 +227,7 @@ namespace project_Bomberman
 
                 // begin w toets
             }
-            
+
             if (goright1)
             {
                 // if go right boolean is true 
