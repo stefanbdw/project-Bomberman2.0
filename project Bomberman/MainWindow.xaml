@@ -6,14 +6,14 @@
         xmlns:local="clr-namespace:project_Bomberman"
         mc:Ignorable="d"
         Title="Bomberman" Height="600" Width="800">
-    <Canvas Name="MyCanvas" KeyDown="CanvasKeyDown" KeyUp="Canvas_KeyUp"  Focusable="True" Background="Black">
+    <Canvas Name="MyCanvas" KeyDown="CanvasKeyDown" KeyUp="Canvas_KeyUp"  Focusable="True" Background="White">
 
         <Label FontSize="20" Name="txtScore" Foreground="White" Content="Score: 0"></Label>
 
-        <Rectangle Name="nijntje" Width="30" Height="30" Fill="Yellow" Canvas.Left="313" Canvas.Top="169"></Rectangle>
-        <Rectangle Name="nijtje2" Width="30" Height="30" Fill="red" Canvas.Left="446" Canvas.Top="169"></Rectangle>
-        
+        <!--<Rectangle Name="nijntje" Width="50" Height="50" Fill="Yellow" Canvas.Left="313" Canvas.Top="169" StrokeThickness="2"></Rectangle>
+        <Rectangle Name="nijtje2" Width="50" Height="50" Fill="red" Canvas.Left="720" Canvas.Top="499" StrokeThickness="2" ></Rectangle>-->
 
         
     </Canvas>
+
 </Window>
