@@ -28,7 +28,7 @@ namespace project_Bomberman
         DispatcherTimer gameTimer = new DispatcherTimer();
 
         List<Rectangle> Moves = new List<Rectangle>();
-        bool goup; // this boolean will be used for the player to go up the screen
+        bool goup; // this boolean will be used for the player to go up the screen halloooo
         bool godown; // this boolean will be used for the player to go down the screen
         bool goleft; // this boolean will be used for the player to go left to the screen
         bool goright; // this boolean will be used for the player to right to the screen
