@@ -152,11 +152,12 @@ namespace project_Bomberman
 
 
                 // we need to indentify the rectangle created in this loop, so we will give each box a unique name
-                box.Name = "box" + i.ToString(); // name the boxes 
-                this.RegisterName(box.Name, box); // register the name inside of the WPF app
-
-                Moves.Add(box); // add the newly created box to the moves rectangles list
-
+                //box.Name = "box" + i.ToString(); // name the boxes 
+                tile.myRec.Name = "box" + i.ToString();
+                //this.RegisterName(box.Name, box); // register the name inside of the WPF app
+                this.RegisterName(tile.myRec.Name, tile.myRec.Name);
+                Moves.Add(tile.myRec); // add the newly created box to the moves rectangles list
+                //Moves.Add()
                 // below we are making the algorithm we need to lay the boxes 10 in a row
                 // we will make the boxes from left to right then move up and reverse that process
                 // remember "a" integer is controlling how we position the boxes down so we need to keep in mind on it can be controlled inside of this loop
@@ -183,9 +184,10 @@ namespace project_Bomberman
                     // if the value of a is greater than 20 then we can
                     // this if statement will help us position the boxes from right to left
                     a--; // reduce 1 from a each loop
-                    Canvas.SetLeft(box, leftPos); // set the box inside the canvas by the value of the left pos integer
-                    leftPos -= 60; // reduce 60 from the left pos each loop
+                    //Canvas.SetLeft(box, leftPos); // set the box inside the canvas by the value of the left pos integer
+                    Canvas.SetLeft(tile.myRec, leftPos);
                     tile.posX = leftPos;            //set the tile x pos to the left value
+                    leftPos -= 60; // reduce 60 from the left pos each loop
                 }
 
                 // if a is less than 10
@@ -194,16 +196,18 @@ namespace project_Bomberman
                     // this will happen when we want to position the boxes from left to right
                     //if the value of a is less than 10 
                     a++; // add 1 to a integer each loop
-                    Canvas.SetLeft(box, leftPos); // set the box left position to the value of left pos
+                    //Canvas.SetLeft(box, leftPos); // set the box left position to the value of left pos
                     leftPos += 60; // add 60 to the left pos integer 
-                    Canvas.SetLeft(box, leftPos); // set the box left position to the value of the left pos integer
+                    //Canvas.SetLeft(box, leftPos); // set the box left position to the value of the left pos integer
+                    Canvas.SetLeft(tile.myRec, leftPos);            //sets the tile
                     tile.posX = leftPos;            //set the tile x pos to the left value
                 }
                 //set the heightlocation of the y
                 tile.posY = topPos;
-                Canvas.SetTop(box, topPos); //set the box top position to the value of top pos integer each loop
-
-                MyCanvas.Children.Add(box); // finally add the box to the canvas display
+                //Canvas.SetTop(box, topPos); //set the box top position to the value of top pos integer each loop
+                Canvas.SetTop(tile.myRec, topPos);              //sets the box top position to the given value
+                MyCanvas.Children.Add(tile.myRec);              //add the new rec to my canvas
+                //MyCanvas.Children.Add(box); // finally add the box to the canvas display
                 tiles.Add(tile);                //add the tile to the list
 
                 // end the loop
@@ -227,7 +231,6 @@ namespace project_Bomberman
 
                 MovePiece(nijntje, "box" + 0);
                 MovePiece(nijtje2, "box" + 90);
-
 
 
             }

@@ -17,6 +17,8 @@ namespace project_Bomberman
         public float posX = 0.0f;                   //x positie van de tile middenpunt
         public float posY = 0.0f;                   //y positie van de tile middenpunt
 
+        public double DebugPosX = 0;
+
 
 
 
@@ -27,14 +29,7 @@ namespace project_Bomberman
 
         public void CreateRect(int height, int width, ImageBrush img, double strokethickness)
         {
-            Rectangle box = new Rectangle
-            {
-                Height = height,
-                Width = width,
-                Fill = img,
-                Stroke = Brushes.Black,
-                StrokeThickness = 1
-            };
+
             myRec.Height = height;
             myRec.Width = width;
             myRec.Fill = img;
