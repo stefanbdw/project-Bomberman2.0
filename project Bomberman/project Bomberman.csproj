@@ -215,8 +215,4 @@
     <Resource Include="images\simpels.png" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Logic\" />
-  </ItemGroup>
-
 </Project>
