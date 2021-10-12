@@ -5,15 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:project_Bomberman"
         mc:Ignorable="d"
-        Title="Bomberman" Height="600" Width="800">
+        Title="Bomberman" Height="1080" Width="1920">
+    
     <Canvas Name="MyCanvas" KeyDown="CanvasKeyDown" KeyUp="Canvas_KeyUp"  Focusable="True" Background="White">
 
         <Label FontSize="20" Name="txtScore" Foreground="White" Content="Score: 0"></Label>
 
         <!--<Rectangle Name="nijntje" Width="50" Height="50" Fill="Yellow" Canvas.Left="313" Canvas.Top="169" StrokeThickness="2"></Rectangle>
         <Rectangle Name="nijtje2" Width="50" Height="50" Fill="red" Canvas.Left="720" Canvas.Top="499" StrokeThickness="2" ></Rectangle>-->
-
         
+            
+
     </Canvas>
+    
+
 
 </Window>

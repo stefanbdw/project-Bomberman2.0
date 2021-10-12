@@ -24,7 +24,8 @@ namespace project_Bomberman
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        public besturing control = new besturing();
+        
         DispatcherTimer gameTimer = new DispatcherTimer();
 
         List<Rectangle> Moves = new List<Rectangle>();
@@ -45,6 +46,8 @@ namespace project_Bomberman
         int speed1 = 10;// this integer is for the speed of the player
         int i = -1;
         int j = -1;
+
+        
 
         Rectangle landingRec;
 
@@ -76,6 +79,8 @@ namespace project_Bomberman
         {
             InitializeComponent();
             GameSetUp();
+            
+           
 
         }
 
@@ -108,8 +113,8 @@ namespace project_Bomberman
             //this is the set up game function.In this function we will set up the game board, the player and the opponent
 
             // in order to create the board we will need to make 3 local variables below
-            int leftPos = 10; // left pos will help us position the boxes from right to left 
-            int topPos = 600; // top pos will help us position the boxes from bottom to top
+            int leftPos = 180; // left pos will help us position the boxes from right to left 
+            int topPos = 900; // top pos will help us position the boxes from bottom to top
             int a = 0; // a integer will help us to lay 10 boxes in a row
 
             // the two lines below are importing the images for the player and the opponent and attaching them to the image brush we created earlier
@@ -119,7 +124,7 @@ namespace project_Bomberman
             // this is the main for loop where we will make the game board
             // this loop will run a 100 times inside of this function
             // it will run like this because we need 100 tiles for this game to work
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 187; i++)
             {
                 // first we increment the images integer we created in the program before
                 images++;
@@ -127,14 +132,14 @@ namespace project_Bomberman
                 ImageBrush tileImages = new ImageBrush();
 
 
-                tileImages.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/" + images + ".jpg"));
+                //tileImages.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/" + images + ".jpg"));
 
                 // below we are creating a new rectangle called box
                 // this rectangle will have 60x60 height and width, fill is the tile images and a black border around it
                 Rectangle box = new Rectangle
                 {
-                    Height = 60,
-                    Width = 60,
+                    Height = 80,
+                    Width = 80,
                     Fill = tileImages,
                     Stroke = Brushes.Black,
                     StrokeThickness = 1
@@ -151,18 +156,18 @@ namespace project_Bomberman
                 // remember "a" integer is controlling how we position the boxes down so we need to keep in mind on it can be controlled inside of this loop
 
                 // if a is equals to 10
-                if (a == 10)
+                if (a == 17)
                 {
                     // this will happen when we have positioned 10 boxes from left to right
-                    topPos -= 60; // in that case reduce 60 from the top pos integer 
-                    a = 30; // change the value of a to 30, we are doing this to move the boxes from right to left now
+                    topPos -= 80; // in that case reduce 60 from the top pos integer 
+                    a = 37; // change the value of a to 30, we are doing this to move the boxes from right to left now
                 }
 
                 // if a is equals to 20
                 if (a == 20)
                 {
 
-                    topPos -= 60; // again reduce 60 from the top pos integer
+                    topPos -= 80; // again reduce 60 from the top pos integer
                     a = 0; // set a integer back to 0
                 }
 
@@ -173,17 +178,17 @@ namespace project_Bomberman
                     // this if statement will help us position the boxes from right to left
                     a--; // reduce 1 from a each loop
                     Canvas.SetLeft(box, leftPos); // set the box inside the canvas by the value of the left pos integer
-                    leftPos -= 60; // reduce 60 from the left pos each loop
+                    leftPos -= 80; // reduce 60 from the left pos each loop
                 }
 
                 // if a is less than 10
-                if (a < 10)
+                if (a < 17)
                 {
                     // this will happen when we want to position the boxes from left to right
                     //if the value of a is less than 10 
                     a++; // add 1 to a integer each loop
                     Canvas.SetLeft(box, leftPos); // set the box left position to the value of left pos
-                    leftPos += 60; // add 60 to the left pos integer 
+                    leftPos += 80; // add 60 to the left pos integer 
                     Canvas.SetLeft(box, leftPos); // set the box left position to the value of the left pos integer
                 }
 
@@ -191,31 +196,31 @@ namespace project_Bomberman
 
                 MyCanvas.Children.Add(box); // finally add the box to the canvas display
 
-                // end the loop
-                nijntje = new Rectangle
-                {
-                    Height = 30,
-                    Width = 30,
-                    Fill = nijntjeImage,
-                    StrokeThickness = 2
-                };
-                // set up the opponent rectangle the same way as the player
-                nijtje2 = new Rectangle
-                {
-                    Height = 30,
-                    Width = 30,
-                    Fill = nijntjeImage2,
-                    StrokeThickness = 2
-                };
-                MyCanvas.Children.Add(nijntje);
-                MyCanvas.Children.Add(nijtje2);
-
-                MovePiece(nijntje, "box" + 0);
-                MovePiece(nijtje2, "box" + 90);
-
-
-
+               
             }
+            // end the loop
+            nijntje = new Rectangle
+            {
+                Height = 30,
+                Width = 30,
+                Fill = nijntjeImage,
+                StrokeThickness = 2
+            };
+            // set up the opponent rectangle the same way as the player
+            nijtje2 = new Rectangle
+            {
+                Height = 30,
+                Width = 30,
+                Fill = nijntjeImage2,
+
+            };
+            MyCanvas.Children.Add(nijntje);
+            MyCanvas.Children.Add(nijtje2);
+
+            MovePiece(nijntje, "box" + 0);
+            MovePiece(nijtje2, "box" + 90);
+
+
         }
         private void CanvasKeyDown(object sender, KeyEventArgs e)
         {
