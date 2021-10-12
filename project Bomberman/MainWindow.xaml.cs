@@ -127,7 +127,7 @@ namespace project_Bomberman
                 ImageBrush tileImages = new ImageBrush();
 
 
-                //tileImages.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/" + images + ".jpg"));
+                tileImages.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/" + images + ".jpg"));
 
                 // below we are creating a new rectangle called box
                 // this rectangle will have 60x60 height and width, fill is the tile images and a black border around it
@@ -211,7 +211,7 @@ namespace project_Bomberman
                 MyCanvas.Children.Add(nijtje2);
 
                 MovePiece(nijntje, "box" + 0);
-                MovePiece(nijtje2, "box" + 0);
+                MovePiece(nijtje2, "box" + 90);
 
 
 
