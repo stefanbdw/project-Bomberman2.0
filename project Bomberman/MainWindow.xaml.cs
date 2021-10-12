@@ -205,8 +205,12 @@ namespace project_Bomberman
                 //set the heightlocation of the y
                 tile.posY = topPos;
                 //Canvas.SetTop(box, topPos); //set the box top position to the value of top pos integer each loop
+                tile.setVars();                 //calculate middlepoints
                 Canvas.SetTop(tile.myRec, topPos);              //sets the box top position to the given value
-                MyCanvas.Children.Add(tile.myRec);              //add the new rec to my canvas
+                MyCanvas.Children.Add(tile.myRec);              //add the new rec to my scanvas
+                Canvas.SetTop(tile.textBox, tile.DebugPosY);
+                Canvas.SetLeft(tile.textBox, tile.DebugPosX);
+                MyCanvas.Children.Add(tile.textBox);            //add a textbox
                 //MyCanvas.Children.Add(box); // finally add the box to the canvas display
                 tiles.Add(tile);                //add the tile to the list
 
@@ -226,6 +230,7 @@ namespace project_Bomberman
                     Fill = nijntjeImage2,
                     StrokeThickness = 2
                 };
+
                 MyCanvas.Children.Add(nijntje);
                 MyCanvas.Children.Add(nijtje2);
 
@@ -400,6 +405,8 @@ namespace project_Bomberman
             }
 
         }
+
+
         private void MovePiece(Rectangle nijntje, string posName)
         {
 
