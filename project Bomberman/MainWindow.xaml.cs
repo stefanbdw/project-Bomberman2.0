@@ -68,6 +68,8 @@ namespace project_Bomberman
         // this integer will show the current position of the player and the opponent to the GUI
         int tempPos;
 
+        //maak een list aan voor alle mogelijke tiles
+        List<Tile> tiles = new List<Tile>();
 
         Random rnd = new Random();
 
@@ -139,6 +141,15 @@ namespace project_Bomberman
                     Stroke = Brushes.Black,
                     StrokeThickness = 1
                 };
+                Tile tile = new Tile
+                {
+
+                };
+                //create a tile with the class
+                tile.CreateRect(60, 60, tileImages, 1);                   
+                tiles.Add(tile);
+
+
 
                 // we need to indentify the rectangle created in this loop, so we will give each box a unique name
                 box.Name = "box" + i.ToString(); // name the boxes 
@@ -174,6 +185,7 @@ namespace project_Bomberman
                     a--; // reduce 1 from a each loop
                     Canvas.SetLeft(box, leftPos); // set the box inside the canvas by the value of the left pos integer
                     leftPos -= 60; // reduce 60 from the left pos each loop
+                    tile.posX = leftPos;            //set the tile x pos to the left value
                 }
 
                 // if a is less than 10
@@ -185,11 +197,14 @@ namespace project_Bomberman
                     Canvas.SetLeft(box, leftPos); // set the box left position to the value of left pos
                     leftPos += 60; // add 60 to the left pos integer 
                     Canvas.SetLeft(box, leftPos); // set the box left position to the value of the left pos integer
+                    tile.posX = leftPos;            //set the tile x pos to the left value
                 }
-
+                //set the heightlocation of the y
+                tile.posY = topPos;
                 Canvas.SetTop(box, topPos); //set the box top position to the value of top pos integer each loop
 
                 MyCanvas.Children.Add(box); // finally add the box to the canvas display
+                tiles.Add(tile);                //add the tile to the list
 
                 // end the loop
                 nijntje = new Rectangle
