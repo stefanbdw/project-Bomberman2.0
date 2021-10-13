@@ -21,8 +21,7 @@ namespace project_Bomberman
         public double DebugPosX = 0;                //middenpunt van tile x
         public double DebugPosY = 0;                //middenpunt van tile y
 
-        public TextBlock text;
-        public TextBox textBox;
+        public TextBox textBox;                     //een textbox
 
         public float TileSize = 16;                 //hoe groot is de tile
 
