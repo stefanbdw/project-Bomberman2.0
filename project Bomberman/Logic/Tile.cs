@@ -15,12 +15,13 @@ namespace project_Bomberman
     //this class contains everything tile related
     class Tile
     {
-        public float posX = 0.0f;                   //x positie van de tile middenpunt
-        public float posY = 0.0f;                   //y positie van de tile middenpunt
+        public double posX = 0.0;                   //x positie van de tile middenpunt
+        public double posY = 0.0;                   //y positie van de tile middenpunt
 
         public double DebugPosX = 0;                //middenpunt van tile x
         public double DebugPosY = 0;                //middenpunt van tile y
 
+        public bool HasBomb = false;                //does the tile have a bomb
         public TextBox textBox;                     //een textbox
 
         public float TileSize = 16;                 //hoe groot is de tile
@@ -48,7 +49,7 @@ namespace project_Bomberman
             DebugPosY = posY + (myRec.Height / 2);
             //calculate the middle x point
             DebugPosX = posX + (myRec.Width / 2);
-            SetTextBlock();
+            //SetTextBlock();
         }
         //create a new textblock and enter the middle point in it
         public void SetTextBlock()

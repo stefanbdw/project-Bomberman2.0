@@ -38,6 +38,8 @@ namespace project_Bomberman
         bool goleft1; // this boolean will be used for the player to go left to the screen
         bool goright1; // this boolean will be used for the player to right to the screen
 
+        bool placedBomb = false;    //turn true when a bomb gets placed until cooldown resets it
+
         Rectangle nijntje; // player rectangle
         Rectangle nijtje2; // opponent rectangle
 
@@ -71,6 +73,8 @@ namespace project_Bomberman
         //maak een list aan voor alle mogelijke tiles
         List<Tile> tiles = new List<Tile>();
 
+        Bomb bom;
+
         Random rnd = new Random();
 
 
@@ -93,7 +97,7 @@ namespace project_Bomberman
             gameTimer.Tick += GameLoop;
             gameTimer.Interval = TimeSpan.FromMilliseconds(20); // set time to tick every 20 milliseconds
             gameTimer.Start(); // start the time
-
+            
 
             ImageBrush nijntjeImage = new ImageBrush();
 
@@ -208,9 +212,9 @@ namespace project_Bomberman
                 tile.setVars();                 //calculate middlepoints
                 Canvas.SetTop(tile.myRec, topPos);              //sets the box top position to the given value
                 MyCanvas.Children.Add(tile.myRec);              //add the new rec to my scanvas
-                Canvas.SetTop(tile.textBox, tile.DebugPosY);
-                Canvas.SetLeft(tile.textBox, tile.DebugPosX);
-                MyCanvas.Children.Add(tile.textBox);            //add a textbox
+                //Canvas.SetTop(tile.textBox, tile.DebugPosY);
+                //Canvas.SetLeft(tile.textBox, tile.DebugPosX);
+                //MyCanvas.Children.Add(tile.textBox);            //add a textbox
                 //MyCanvas.Children.Add(box); // finally add the box to the canvas display
                 tiles.Add(tile);                //add the tile to the list
 
@@ -275,7 +279,17 @@ namespace project_Bomberman
                 nijntje.RenderTransform = new RotateTransform(90, nijntje.Width / 2, nijntje.Height / 2);
             }
             // end of the down key selection
+            if(e.Key == Key.Space && !placedBomb)
+            {
+                //placedBomb = true;
+                Bomb bom = new Bomb();
+                if (bom.GetClosestTile(tiles, Canvas.GetLeft(nijntje), Canvas.GetTop(nijntje)))
+                {
+                    MyCanvas.Children.Add(bom.myRec);
+                }
 
+                //MyCanvas.Children.Add(bom.myRec);
+            }
 
 
             // if the left key is pressed then do the following
