@@ -1,0 +1,20 @@
+﻿<Window x:Class="project_Bomberman.GameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:project_Bomberman"
+        mc:Ignorable="d"
+        Title="GameWindow" Height="1080" Width="1920">
+    <Canvas Name="MyCanvas" KeyDown="CanvasKeyDown" KeyUp="Canvas_KeyUp"  Focusable="True" Background="White">
+
+        <Label FontSize="20" Name="txtScore" Foreground="White" Content="Score: 0"></Label>
+        <Button x:Name="HighScore" Click="HighScoreClick" ></Button>
+
+        <!--<Rectangle Name="nijntje" Width="50" Height="50" Fill="Yellow" Canvas.Left="313" Canvas.Top="169" StrokeThickness="2"></Rectangle>
+        <Rectangle Name="nijtje2" Width="50" Height="50" Fill="red" Canvas.Left="720" Canvas.Top="499" StrokeThickness="2" ></Rectangle>-->
+
+
+
+    </Canvas>
+</Window>

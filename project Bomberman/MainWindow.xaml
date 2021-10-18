@@ -5,19 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:project_Bomberman"
         mc:Ignorable="d"
-        Title="Bomberman" Height="1080" Width="1920">
-    
-    <Canvas Name="MyCanvas" KeyDown="CanvasKeyDown" KeyUp="Canvas_KeyUp"  Focusable="True" Background="White">
-
-        <Label FontSize="20" Name="txtScore" Foreground="White" Content="Score: 0"></Label>
-
-        <!--<Rectangle Name="nijntje" Width="50" Height="50" Fill="Yellow" Canvas.Left="313" Canvas.Top="169" StrokeThickness="2"></Rectangle>
-        <Rectangle Name="nijtje2" Width="50" Height="50" Fill="red" Canvas.Left="720" Canvas.Top="499" StrokeThickness="2" ></Rectangle>-->
-        
-            
-
-    </Canvas>
-    
-
-
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,0" FontSize="20">Nijntje op het strand</Label>
+        <Label Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,60,0,0" Width="250" Background="#FFC5C5C5" HorizontalContentAlignment="Center">Gamemodes</Label>
+        <Button Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,95,0,0" Width="250" Name="Start1v1" Click="Start1v1Btn" Background="#FFFF8787">1 vs 1</Button>
+        <Button Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,120,0,0" Width="250" Name="StartSolo" Click="StartSoloBtn" Background="#FFFF8787">Solo</Button>
+        <Button Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,150,0,0" Width="250" Name="Settings" Click="SettingsBtn">Instellingen</Button>
+        <Button Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,180,0,0" Width="250" Name="HighScores" Click="HighScoreBtn">High Scores</Button>
+        <Button Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,40" Width="250" Name="Exit" Click="ExitBtn">Spel afsluiten</Button>
+    </Grid>
 </Window>
