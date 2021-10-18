@@ -134,15 +134,15 @@ namespace project_Bomberman
             for (int i = 0; i < 187; i++)
             {
                 // first we increment the images integer we created in the program before
-                
-                // create a new image brush called tile images, this will attach an image to the rectangles for the board
-                
-               // ImageBrush tileImages = new ImageBrush();
+
+                //create a new image brush called tile images, this will attach an image to the rectangles for the board
+                images++;
+               ImageBrush tileImages = new ImageBrush();
                 
                     
                     
 
-               //tileImages.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/test102.jpg"));
+               tileImages.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/" + images + ".jpg"));
                 
                 // below we are creating a new rectangle called box
                 // this rectangle will have 60x60 height and width, fill is the tile images and a black border around it
@@ -150,7 +150,7 @@ namespace project_Bomberman
                 {
                     Height = 80,
                     Width = 80,
-                    //Fill = tileImages,
+                    Fill = tileImages,
                     Stroke = Brushes.Black,
                     StrokeThickness = 1,
 
