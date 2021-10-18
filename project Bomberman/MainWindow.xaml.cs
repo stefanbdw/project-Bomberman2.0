@@ -25,7 +25,7 @@ namespace project_Bomberman
     public partial class MainWindow : Window
     {
         public besturing control = new besturing();
-        
+
         DispatcherTimer gameTimer = new DispatcherTimer();
 
         List<Rectangle> Moves = new List<Rectangle>();
@@ -41,16 +41,19 @@ namespace project_Bomberman
 
         Rectangle nijntje; // player rectangle
         Rectangle nijtje2; // opponent rectangle
+        Rectangle wall;
+        Rectangle wall1;
 
         int speed = 10;
         int speed1 = 10;// this integer is for the speed of the player
         int i = -1;
         int j = -1;
 
-        
+        Rect pacmanHitBox;
+        Rect hitBoxNijntje2;
 
         Rectangle landingRec;
-
+        Rectangle landingRec1;
         // position and current position integer for the player
         int position;
         int currentPosition;
@@ -79,8 +82,8 @@ namespace project_Bomberman
         {
             InitializeComponent();
             GameSetUp();
-            
-           
+
+
 
         }
 
@@ -91,6 +94,10 @@ namespace project_Bomberman
 
         private void GameSetUp()
         {
+
+
+
+
 
             MyCanvas.Focus(); // set my canvas as the main focus for the program
             gameTimer.Tick += GameLoop;
@@ -116,7 +123,7 @@ namespace project_Bomberman
             int leftPos = 180; // left pos will help us position the boxes from right to left 
             int topPos = 900; // top pos will help us position the boxes from bottom to top
             int a = 0; // a integer will help us to lay 10 boxes in a row
-
+            
             // the two lines below are importing the images for the player and the opponent and attaching them to the image brush we created earlier
 
 
@@ -127,30 +134,35 @@ namespace project_Bomberman
             for (int i = 0; i < 187; i++)
             {
                 // first we increment the images integer we created in the program before
-                images++;
+                
                 // create a new image brush called tile images, this will attach an image to the rectangles for the board
-                ImageBrush tileImages = new ImageBrush();
+                
+               // ImageBrush tileImages = new ImageBrush();
+                
+                    
+                    
 
-
-                //tileImages.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/" + images + ".jpg"));
-
+               //tileImages.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/test102.jpg"));
+                
                 // below we are creating a new rectangle called box
                 // this rectangle will have 60x60 height and width, fill is the tile images and a black border around it
                 Rectangle box = new Rectangle
                 {
                     Height = 80,
                     Width = 80,
-                    Fill = tileImages,
+                    //Fill = tileImages,
                     Stroke = Brushes.Black,
-                    StrokeThickness = 1
+                    StrokeThickness = 1,
+
                 };
+               
 
                 // we need to indentify the rectangle created in this loop, so we will give each box a unique name
                 box.Name = "box" + i.ToString(); // name the boxes 
                 this.RegisterName(box.Name, box); // register the name inside of the WPF app
 
                 Moves.Add(box); // add the newly created box to the moves rectangles list
-
+    
                 // below we are making the algorithm we need to lay the boxes 10 in a row
                 // we will make the boxes from left to right then move up and reverse that process
                 // remember "a" integer is controlling how we position the boxes down so we need to keep in mind on it can be controlled inside of this loop
@@ -196,8 +208,19 @@ namespace project_Bomberman
 
                 MyCanvas.Children.Add(box); // finally add the box to the canvas display
 
-               
+
+
+
+
+
+
+
+
+
+
+
             }
+            
             // end the loop
             nijntje = new Rectangle
             {
@@ -206,6 +229,7 @@ namespace project_Bomberman
                 Fill = nijntjeImage,
                 StrokeThickness = 2
             };
+
             // set up the opponent rectangle the same way as the player
             nijtje2 = new Rectangle
             {
@@ -217,8 +241,9 @@ namespace project_Bomberman
             MyCanvas.Children.Add(nijntje);
             MyCanvas.Children.Add(nijtje2);
 
-            MovePiece(nijntje, "box" + 0);
-            MovePiece(nijtje2, "box" + 90);
+            MovePiece(nijntje, "box" + 32);
+            MovePiece1(nijtje2, "box" + 154);
+
 
 
         }
@@ -386,7 +411,119 @@ namespace project_Bomberman
                 Canvas.SetTop(nijtje2, Canvas.GetTop(nijtje2) + speed1);
             }
 
-        }
+
+
+
+
+            foreach (var x in MyCanvas.Children.OfType<Rectangle>())
+            {
+                // loop through all of the rectangles inside of the game and identify them using the x variable
+
+                //Rect hitBox = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height); // create a new rect called hit box for all of the available rectangles inside of the game
+
+                //if (x.Tag != null)
+                if (x is Rectangle && (string)x.Tag == "wall")
+                {
+                    // create a platform id variable and save the tags for the platform in it
+
+
+                    // if the tag is a platform then we can do the following
+
+
+
+
+                    // in order to do the hit test we need to define the elements for this app
+                    // first define who the player is as in what object it is and how to calculate its height and width
+
+                    pacmanHitBox = new Rect(Canvas.GetLeft(nijntje), Canvas.GetTop(nijntje), nijntje.Width, nijntje.Height);
+                    hitBoxNijntje2 = new Rect(Canvas.GetLeft(nijtje2), Canvas.GetTop(nijtje2), nijtje2.Width, nijtje2.Height);
+
+                    // second we will need to do the same for the platforms
+                    // since they are running inside a loop we can use the X keyword to identify them and save their values
+                    Rect platforms = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
+
+                    // now we can check if the player intersets or HITs the platforms if so do we can do the following
+                    if (pacmanHitBox.IntersectsWith(platforms) | hitBoxNijntje2.IntersectsWith(platforms))
+                    {
+                        if (goleft == true && pacmanHitBox.IntersectsWith(platforms))
+                        {
+                            Canvas.SetLeft(nijntje, Canvas.GetLeft(nijntje) + 10);
+
+                            goleft = false;
+                        }
+                        // check if we are colliding with the wall while moving right if true then stop the pac man movement
+                        if (goright == true && pacmanHitBox.IntersectsWith(platforms))
+                        {
+                            Canvas.SetLeft(nijntje, Canvas.GetLeft(nijntje) - 10);
+
+                            goright = false;
+                        }
+                        // check if we are colliding with the wall while moving down if true then stop the pac man movement
+                        if (godown == true && pacmanHitBox.IntersectsWith(platforms))
+                        {
+                            Canvas.SetTop(nijntje, Canvas.GetTop(nijntje) - 10);
+
+                            godown = false;
+                        }
+                        // check if we are colliding with the wall while moving up if true then stop the pac man movement
+                        if (goup == true && pacmanHitBox.IntersectsWith(platforms))
+                        {
+                            Canvas.SetTop(nijntje, Canvas.GetTop(nijntje) + 10);
+
+                            goup = false;
+                        }
+                        
+                        
+                            if (goleft1 == true && hitBoxNijntje2.IntersectsWith(platforms))
+                            {
+                                Canvas.SetLeft(nijtje2, Canvas.GetLeft(nijtje2) + 10);
+
+                                goleft1 = false;
+                            }
+                            // check if we are colliding with the wall while moving right if true then stop the pac man movement
+                            if (goright1 == true && hitBoxNijntje2.IntersectsWith(platforms))
+                            {
+                                Canvas.SetLeft(nijtje2, Canvas.GetLeft(nijtje2) - 10);
+
+                                goright1 = false;
+                            }
+                            // check if we are colliding with the wall while moving down if true then stop the pac man movement
+                            if (godown1 == true && hitBoxNijntje2.IntersectsWith(platforms))
+                            {
+                                Canvas.SetTop(nijtje2, Canvas.GetTop(nijtje2) - 10);
+
+                                godown1 = false;
+                            }
+                            // check if we are colliding with the wall while moving up if true then stop the pac man movement
+                            if (goup1 == true && hitBoxNijntje2.IntersectsWith(platforms))
+                            {
+                                Canvas.SetTop(nijtje2, Canvas.GetTop(nijtje2) + 10);
+
+                                goup1 = false;
+                            }
+
+
+
+
+                        
+
+
+
+                }
+
+
+
+            }
+        
+    
+            
+
+                    
+
+                }
+            }
+        
+
         private void MovePiece(Rectangle nijntje, string posName)
         {
 
@@ -398,21 +535,52 @@ namespace project_Bomberman
 
             //this way we can move the rectangle that is being passed inside of this function and run in the timer event to animate it when it starts
 
+
+
             foreach (Rectangle rectangle in Moves)
             {
                 if (rectangle.Name == posName)
                 {
                     landingRec = rectangle;
                 }
-                //}
-
-                // the two lines here will place the "player" object that is being passed in this function to the landingRec location
-                Canvas.SetLeft(nijntje, Canvas.GetLeft(landingRec) + nijntje.Width / 2);
-                Canvas.SetTop(nijntje, Canvas.GetTop(landingRec) + nijntje.Height / 2);
             }
+
+
+            // the two lines here will place the "player" object that is being passed in this function to the landingRec location
+            Canvas.SetLeft(nijntje, Canvas.GetLeft(landingRec) + nijntje.Width / 2);
+            Canvas.SetTop(nijntje, Canvas.GetTop(landingRec) + nijntje.Height / 2);
+            
+        }
+        private void MovePiece1(Rectangle nijtje2, string posName)
+        {
+
+            //this function will move the player and the opponent across the board
+            //the way it does it is very simply, we have added of the board rectangles to the moves list
+            //from the for each loop below we can loop through all of the rectangles from that list
+
+            //we are also checking if any of the rectangle has the posName, if they do then we will link the landing rect to that rectangle found inside of the for each loop
+
+            //this way we can move the rectangle that is being passed inside of this function and run in the timer event to animate it when it starts
+
+
+
+            foreach (Rectangle rectangle in Moves)
+            {
+                if (rectangle.Name == posName)
+                {
+                    landingRec1 = rectangle;
+                }
+            }
+
+
+            // the two lines here will place the "player" object that is being passed in this function to the landingRec location
+            Canvas.SetLeft(nijtje2, Canvas.GetLeft(landingRec1) + nijtje2.Width / 2);
+            Canvas.SetTop(nijtje2, Canvas.GetTop(landingRec1) + nijtje2.Height / 2);
+
         }
     }
 }
+
          
 
                 
