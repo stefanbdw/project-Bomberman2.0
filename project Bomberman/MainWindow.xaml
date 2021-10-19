@@ -12,6 +12,38 @@
         <Rectangle Tag="wall" Stroke="Black"   Height="720" Width="2" Canvas.Left="340" Canvas.Top="180"/>
         <Rectangle Tag="wall" Stroke="Black"   Height="720" Width="2" Canvas.Left="1540" Canvas.Top="180"/>
         <Rectangle Tag="wall" Stroke="Black"   Height="2" Width="1200" Canvas.Left="340" Canvas.Top="898"/>
+        <!--eerst rij van boven-->
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="420" Canvas.Top="260"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="580" Canvas.Top="260"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="740" Canvas.Top="260"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="900" Canvas.Top="260"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="1060" Canvas.Top="260"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="1220" Canvas.Top="260"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="1380" Canvas.Top="260"/>
+        <!--tweede rij van boven-->
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="420" Canvas.Top="420"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="580" Canvas.Top="420"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="740" Canvas.Top="420"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="900" Canvas.Top="420"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="1060" Canvas.Top="420"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="1220" Canvas.Top="420"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="1380" Canvas.Top="420"/>
+        <!--derder rij van boven-->
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="420" Canvas.Top="580"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="580" Canvas.Top="580"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="740" Canvas.Top="580"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="900" Canvas.Top="580"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="1060" Canvas.Top="580"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="1220" Canvas.Top="580"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="1380" Canvas.Top="580"/>
+        <!--vierder rij van boven-->
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="420" Canvas.Top="740"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="580" Canvas.Top="740"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="740" Canvas.Top="740"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="900" Canvas.Top="740"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="1060" Canvas.Top="740"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="1220" Canvas.Top="740"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="1380" Canvas.Top="740"/>
         <!--<Rectangle    Height="620" Width="1100" Canvas.Left="340" Canvas.Top="180"></Rectangle>-->
         
 

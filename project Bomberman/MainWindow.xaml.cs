@@ -224,8 +224,8 @@ namespace project_Bomberman
             // end the loop
             nijntje = new Rectangle
             {
-                Height = 30,
-                Width = 30,
+                Height = 40,
+                Width = 40,
                 Fill = nijntjeImage,
                 StrokeThickness = 2
             };
@@ -233,8 +233,8 @@ namespace project_Bomberman
             // set up the opponent rectangle the same way as the player
             nijtje2 = new Rectangle
             {
-                Height = 30,
-                Width = 30,
+                Height = 40,
+                Width = 40,
                 Fill = nijntjeImage2,
 
             };
