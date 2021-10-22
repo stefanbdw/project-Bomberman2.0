@@ -61,8 +61,12 @@ namespace project_Bomberman
         // this images integer will be used to show the board images when we create them
         int images = -1;
 
+        double colliderMargin = 10;
+
         // new random class instance called rand will be used to calculate the dice rolls in the game
         Random rand = new Random();
+
+        Collisions collider;
 
         // two Boolean which will detemrine whos turn it is in the game
         bool playerOneRound, playerTwoRound;
@@ -72,6 +76,10 @@ namespace project_Bomberman
 
         //maak een list aan voor alle mogelijke tiles
         List<Tile> tiles = new List<Tile>();
+        List<Bomb> bombs = new List<Bomb>();
+
+        Tile OnTilePl1;
+        Tile OntilePl2;
 
         Bomb bom;
 
@@ -243,6 +251,10 @@ namespace project_Bomberman
 
 
             }
+            collider = new Collisions
+            {
+                Alltiles = tiles
+            };
         }
         private void CanvasKeyDown(object sender, KeyEventArgs e)
         {
@@ -283,13 +295,31 @@ namespace project_Bomberman
             {
                 //placedBomb = true;
                 Bomb bom = new Bomb();
-                if (bom.GetClosestTile(tiles, Canvas.GetLeft(nijntje), Canvas.GetTop(nijntje)))
+                //if (bom.GetClosestTile(tiles, (Canvas.GetLeft(nijntje) + nijntje.Width / 2), (Canvas.GetTop(nijntje)) + nijntje.Height / 2) )
+                //{
+                //    MyCanvas.Children.Add(bom.myRec);
+                //}
+                if(bom.GetClosestTile(tiles,(Canvas.GetLeft(nijntje) + nijntje.Width /2), (Canvas.GetTop(nijntje) + nijntje.Height / 2), OnTilePl1))
                 {
                     MyCanvas.Children.Add(bom.myRec);
                 }
+                bombs.Add(bom);
+                OnTilePl1 = bom.placedOn;
+                OnTilePl1.Hasplayer = true;
 
-                //MyCanvas.Children.Add(bom.myRec);
             }
+            if(e.Key == Key.Enter && !placedBomb)
+            {
+                Bomb bom = new Bomb();
+                if (bom.GetClosestTile(tiles, (Canvas.GetLeft(nijtje2) + nijtje2.Width / 2), (Canvas.GetTop(nijtje2) + nijtje2.Height / 2), OntilePl2))
+                {
+                    MyCanvas.Children.Add(bom.myRec);
+                }
+                bombs.Add(bom);
+                OntilePl2 = bom.placedOn;
+                OntilePl2.Hasplayer = true;
+            }
+
 
 
             // if the left key is pressed then do the following
@@ -376,22 +406,40 @@ namespace project_Bomberman
             if (goright)
             {
                 // if go right boolean is true 
-                Canvas.SetLeft(nijntje, Canvas.GetLeft(nijntje) + speed);
+                //Canvas.SetLeft(nijntje, Canvas.GetLeft(nijntje) + speed);
+                //if(!collider.CollisionCheck(Canvas.SetLeft(nijntje, Canvas.GetLeft(nijntje) + speed))
+
+                //fix later
+                //collider.CollisionCheck(Canvas.GetLeft(nijntje), Canvas.GetLeft(nijntje) + speed);
+                if(collider.CollisionCheck((Canvas.GetLeft(nijntje) + nijntje.Width / 2) + speed + colliderMargin, (Canvas.GetTop(nijntje)) + nijntje.Height / 2))
+                {
+                    Canvas.SetLeft(nijntje, Canvas.GetLeft(nijntje) + speed);
+                }
             }
             if (goleft)
             {
+                if(collider.CollisionCheck((Canvas.GetLeft(nijntje) + nijntje.Width / 2) - speed - colliderMargin, (Canvas.GetTop(nijntje)) + nijntje.Height / 2))
+                {
+                    Canvas.SetLeft(nijntje, Canvas.GetLeft(nijntje) - speed);
+                }
                 // if go left boolean is true
-                Canvas.SetLeft(nijntje, Canvas.GetLeft(nijntje) - speed);
+                //Canvas.SetLeft(nijntje, Canvas.GetLeft(nijntje) - speed);
             }
             if (goup)
             {
+                if(collider.CollisionCheck((Canvas.GetLeft(nijntje) + nijntje.Width / 2), ((Canvas.GetTop(nijntje)) + nijntje.Height / 2) - colliderMargin - speed))
+                {
+                    Canvas.SetTop(nijntje, Canvas.GetTop(nijntje) - speed);
+                }
                 // if go up boolean is true 
-                Canvas.SetTop(nijntje, Canvas.GetTop(nijntje) - speed);
             }
             if (godown)
             {
+                if(collider.CollisionCheck((Canvas.GetLeft(nijntje) + nijntje.Width / 2), ((Canvas.GetTop(nijntje)) + nijntje.Height / 2) + colliderMargin + speed))
+                {
+                    Canvas.SetTop(nijntje, Canvas.GetTop(nijntje) + speed);
+                }
                 // if go down boolean is true
-                Canvas.SetTop(nijntje, Canvas.GetTop(nijntje) + speed);
                 // end pijltjes cijfers 
 
                 // begin w toets
@@ -416,6 +464,14 @@ namespace project_Bomberman
             {
                 // if go down boolean is true
                 Canvas.SetTop(nijtje2, Canvas.GetTop(nijtje2) + speed1);
+            }
+
+            foreach(Bomb bomb in bombs)
+            {
+                if (bomb.destroyed)
+                {
+                    MyCanvas.Children.Remove(bomb.myRec);
+                }
             }
 
         }

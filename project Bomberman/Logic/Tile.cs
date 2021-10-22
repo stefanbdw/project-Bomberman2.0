@@ -22,12 +22,16 @@ namespace project_Bomberman
         public double DebugPosY = 0;                //middenpunt van tile y
 
         public bool HasBomb = false;                //does the tile have a bomb
+        public bool Passable = false;
+        public bool Hasplayer = false;
         public TextBox textBox;                     //een textbox
 
         public float TileSize = 16;                 //hoe groot is de tile
 
         public ImageBrush imageBrush = new ImageBrush();
         public Rectangle myRec = new Rectangle();           //the rectangle in the class
+
+        //public Bomb Bomb;
 
         //create a rectangle in the tileclass
         public void CreateRect(int height, int width, ImageBrush img, double strokethickness)
