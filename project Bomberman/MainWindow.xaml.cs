@@ -41,8 +41,8 @@ namespace project_Bomberman
 
         Rectangle nijntje; // player rectangle
         Rectangle nijtje2; // opponent rectangle
-        Rectangle wall;
-        Rectangle wall1;
+        Rectangle block;
+        
 
         int speed = 10;
         int speed1 = 10;// this integer is for the speed of the player
@@ -244,7 +244,24 @@ namespace project_Bomberman
             MovePiece(nijntje, "box" + 32);
             MovePiece1(nijtje2, "box" + 154);
 
+            // end the loop
+            ImageBrush blockHout = new ImageBrush();
+            blockHout.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/Houtblock.png"));
 
+            block = new Rectangle
+            {
+                Height = 70,
+                Width = 70,
+                Fill = blockHout,
+                StrokeThickness = 2
+            };
+
+            
+            MyCanvas.Children.Add(block);
+
+
+            Moveblock(block, "box" + 55);
+            
 
         }
         private void CanvasKeyDown(object sender, KeyEventArgs e)
@@ -576,6 +593,33 @@ namespace project_Bomberman
             // the two lines here will place the "player" object that is being passed in this function to the landingRec location
             Canvas.SetLeft(nijtje2, Canvas.GetLeft(landingRec1) + nijtje2.Width / 2);
             Canvas.SetTop(nijtje2, Canvas.GetTop(landingRec1) + nijtje2.Height / 2);
+
+        }
+        private void Moveblock(Rectangle nijtje2, string posName)
+        {
+
+            //this function will move the player and the opponent across the board
+            //the way it does it is very simply, we have added of the board rectangles to the moves list
+            //from the for each loop below we can loop through all of the rectangles from that list
+
+            //we are also checking if any of the rectangle has the posName, if they do then we will link the landing rect to that rectangle found inside of the for each loop
+
+            //this way we can move the rectangle that is being passed inside of this function and run in the timer event to animate it when it starts
+
+
+
+            foreach (Rectangle rectangle in Moves)
+            {
+                if (rectangle.Name == posName)
+                {
+                    landingRec1 = rectangle;
+                }
+            }
+
+
+            // the two lines here will place the "player" object that is being passed in this function to the landingRec location
+            Canvas.SetLeft(block, Canvas.GetLeft(landingRec1));
+            Canvas.SetTop(block, Canvas.GetTop(landingRec1));
 
         }
     }
