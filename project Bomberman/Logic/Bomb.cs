@@ -124,8 +124,8 @@ namespace project_Bomberman
                 {
                     placedOn.Hasplayer = true;
                 }
-                brush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/oke1.png"));
-                myRec = CreateRect(60, 60, brush, 1);
+                brush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/simpels.png"));
+                myRec = CreateRect(80, 80,brush, 1);
                 Canvas.SetLeft(myRec, placedOn.posX);
                 Canvas.SetTop(myRec, placedOn.posY);
                 placedOn.HasBomb = true;

@@ -29,6 +29,8 @@ namespace project_Bomberman
         DispatcherTimer gameTimer = new DispatcherTimer();
 
         List<Rectangle> Moves = new List<Rectangle>();
+
+        int colliderMargin = 7;
         bool goup; // this boolean will be used for the player to go up the screen halloooo
         bool godown; // this boolean will be used for the player to go down the screen
         bool goleft; // this boolean will be used for the player to go left to the screen
@@ -243,7 +245,10 @@ namespace project_Bomberman
 
 
             }
-            
+            collider = new Collisions
+            {
+                Alltiles = tiles
+            };
             // end the loop
             nijntje = new Rectangle
             {
@@ -406,25 +411,62 @@ namespace project_Bomberman
         private void GameLoop(object sender, EventArgs e)
         {
 
+            //if (goright)
+            //{
+            //    // if go right boolean is true 
+            //    Canvas.SetLeft(nijntje, Canvas.GetLeft(nijntje) + speed);
+            //}
+            //if (goleft)
+            //{
+            //    // if go left boolean is true
+            //    Canvas.SetLeft(nijntje, Canvas.GetLeft(nijntje) - speed);
+            //}
+            //if (goup)
+            //{
+            //    // if go up boolean is true 
+            //    Canvas.SetTop(nijntje, Canvas.GetTop(nijntje) - speed);
+            //}
+            //if (godown)
+            //{
+            //    // if go down boolean is true
+            //    Canvas.SetTop(nijntje, Canvas.GetTop(nijntje) + speed);
+            //    // end pijltjes cijfers 
+
+            //    // begin w toets
+            //}
+
             if (goright)
             {
-                // if go right boolean is true 
-                Canvas.SetLeft(nijntje, Canvas.GetLeft(nijntje) + speed);
+
+                if (collider.CollisionCheck((Canvas.GetLeft(nijntje) + nijntje.Width / 2) + speed + colliderMargin, (Canvas.GetTop(nijntje)) + nijntje.Height / 2))
+                {
+                    Canvas.SetLeft(nijntje, Canvas.GetLeft(nijntje) + speed);
+                }
             }
             if (goleft)
             {
+                if (collider.CollisionCheck((Canvas.GetLeft(nijntje) + nijntje.Width / 2) - speed - colliderMargin, (Canvas.GetTop(nijntje)) + nijntje.Height / 2))
+                {
+                    Canvas.SetLeft(nijntje, Canvas.GetLeft(nijntje) - speed);
+                }
                 // if go left boolean is true
-                Canvas.SetLeft(nijntje, Canvas.GetLeft(nijntje) - speed);
+                //Canvas.SetLeft(nijntje, Canvas.GetLeft(nijntje) - speed);
             }
             if (goup)
             {
+                if (collider.CollisionCheck((Canvas.GetLeft(nijntje) + nijntje.Width / 2), ((Canvas.GetTop(nijntje)) + nijntje.Height / 2) - colliderMargin - speed))
+                {
+                    Canvas.SetTop(nijntje, Canvas.GetTop(nijntje) - speed);
+                }
                 // if go up boolean is true 
-                Canvas.SetTop(nijntje, Canvas.GetTop(nijntje) - speed);
             }
             if (godown)
             {
+                if (collider.CollisionCheck((Canvas.GetLeft(nijntje) + nijntje.Width / 2), ((Canvas.GetTop(nijntje)) + nijntje.Height / 2) + colliderMargin + speed))
+                {
+                    Canvas.SetTop(nijntje, Canvas.GetTop(nijntje) + speed);
+                }
                 // if go down boolean is true
-                Canvas.SetTop(nijntje, Canvas.GetTop(nijntje) + speed);
                 // end pijltjes cijfers 
 
                 // begin w toets
@@ -450,7 +492,13 @@ namespace project_Bomberman
                 // if go down boolean is true
                 Canvas.SetTop(nijtje2, Canvas.GetTop(nijtje2) + speed1);
             }
-
+            foreach (Bomb bomb in bombs)
+            {
+                if (bomb.destroyed)
+                {
+                    MyCanvas.Children.Remove(bomb.myRec);
+                }
+            }
 
 
 
