@@ -39,6 +39,10 @@ namespace project_Bomberman
         bool goleft1; // this boolean will be used for the player to go left to the screen
         bool goright1; // this boolean will be used for the player to right to the screen
 
+        bool placedBombPl1 = false;
+        bool placedBombPl2 = false;
+
+
         Rectangle nijntje; // player rectangle
         Rectangle nijtje2; // opponent rectangle
         Rectangle wall;
@@ -73,6 +77,13 @@ namespace project_Bomberman
 
         // this integer will show the current position of the player and the opponent to the GUI
         int tempPos;
+
+        Collisions collider;
+        List<Tile> tiles = new List<Tile>();
+        List<Bomb> bombs = new List<Bomb>();
+
+        Tile OnTilePl1;
+        Tile OntilePl2;
 
 
         Random rnd = new Random();
@@ -155,7 +166,14 @@ namespace project_Bomberman
                     StrokeThickness = 1,
 
                 };
-               
+                Tile tile = new Tile
+                {
+                    myRec = box
+                };
+                //create a tile with the class
+
+                tiles.Add(tile);
+
 
                 // we need to indentify the rectangle created in this loop, so we will give each box a unique name
                 box.Name = "box" + i.ToString(); // name the boxes 
@@ -189,7 +207,9 @@ namespace project_Bomberman
                     // if the value of a is greater than 20 then we can
                     // this if statement will help us position the boxes from right to left
                     a--; // reduce 1 from a each loop
-                    Canvas.SetLeft(box, leftPos); // set the box inside the canvas by the value of the left pos integer
+                    //Canvas.SetLeft(box, leftPos); // set the box inside the canvas by the value of the left pos integer
+                    Canvas.SetLeft(tile.myRec, leftPos);
+                    tile.posX = leftPos;            //set the tile x pos to the left value
                     leftPos -= 80; // reduce 60 from the left pos each loop
                 }
 
@@ -199,14 +219,17 @@ namespace project_Bomberman
                     // this will happen when we want to position the boxes from left to right
                     //if the value of a is less than 10 
                     a++; // add 1 to a integer each loop
-                    Canvas.SetLeft(box, leftPos); // set the box left position to the value of left pos
+
                     leftPos += 80; // add 60 to the left pos integer 
-                    Canvas.SetLeft(box, leftPos); // set the box left position to the value of the left pos integer
+                    Canvas.SetLeft(tile.myRec, leftPos);            //sets the tile
+                    tile.posX = leftPos;            //set the tile x pos to the left value
                 }
+                tile.posY = topPos;
+                //Canvas.SetTop(box, topPos); //set the box top position to the value of top pos integer each loop
+                tile.setVars();                 //calculate middlepoints
+                Canvas.SetTop(tile.myRec, topPos);              //sets the box top position to the given value
+                MyCanvas.Children.Add(tile.myRec);              //add the new rec to my scanvas
 
-                Canvas.SetTop(box, topPos); //set the box top position to the value of top pos integer each loop
-
-                MyCanvas.Children.Add(box); // finally add the box to the canvas display
 
 
 
@@ -282,6 +305,23 @@ namespace project_Bomberman
                 nijntje.RenderTransform = new RotateTransform(90, nijntje.Width / 2, nijntje.Height / 2);
             }
             // end of the down key selection
+            if (e.Key == Key.Space)
+            {
+                //placedBomb = true;
+                Bomb bom = new Bomb();
+                //if (bom.GetClosestTile(tiles, (Canvas.GetLeft(nijntje) + nijntje.Width / 2), (Canvas.GetTop(nijntje)) + nijntje.Height / 2) )
+                //{
+                //    MyCanvas.Children.Add(bom.myRec);
+                //}
+                if (bom.GetClosestTile(tiles, (Canvas.GetLeft(nijntje) + nijntje.Width / 2), (Canvas.GetTop(nijntje) + nijntje.Height / 2), OnTilePl1))
+                {
+                    MyCanvas.Children.Add(bom.myRec);
+                }
+                bombs.Add(bom);
+                OnTilePl1 = bom.placedOn;
+                OnTilePl1.Hasplayer = true;
+
+            }
 
 
 
