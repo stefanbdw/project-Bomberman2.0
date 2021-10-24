@@ -16,7 +16,6 @@
     <None Remove="images\1.jpg" />
     <None Remove="images\10.jpg" />
     <None Remove="images\100.jpg" />
-    <None Remove="images\100.jpg" />
     <None Remove="images\101.jpg" />
     <None Remove="images\102.jpg" />
     <None Remove="images\103.jpg" />
@@ -212,7 +211,8 @@
     <None Remove="images\97.jpg" />
     <None Remove="images\98.jpg" />
     <None Remove="images\99.jpg" />
-    <None Remove="images\Houtblock.png" />
+    <None Remove="images\oke.png" />
+    <None Remove="images\oke1.png" />
     <None Remove="images\stefanbdw.jpg" />
     <None Remove="images\test102.jpg" />
   </ItemGroup>
@@ -418,7 +418,8 @@
     <Resource Include="images\97.jpg" />
     <Resource Include="images\98.jpg" />
     <Resource Include="images\99.jpg" />
-    <Resource Include="images\Houtblock.png" />
+    <Resource Include="images\oke.png" />
+    <Resource Include="images\oke1.png" />
     <Resource Include="images\simpels.png" />
   </ItemGroup>
 
