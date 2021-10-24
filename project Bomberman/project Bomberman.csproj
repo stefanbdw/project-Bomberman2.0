@@ -16,6 +16,7 @@
     <None Remove="images\1.jpg" />
     <None Remove="images\10.jpg" />
     <None Remove="images\100.jpg" />
+    <None Remove="images\100.jpg" />
     <None Remove="images\101.jpg" />
     <None Remove="images\102.jpg" />
     <None Remove="images\103.jpg" />
