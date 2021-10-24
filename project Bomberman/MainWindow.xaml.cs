@@ -475,22 +475,34 @@ namespace project_Bomberman
             if (goright1)
             {
                 // if go right boolean is true 
-                Canvas.SetLeft(nijtje2, Canvas.GetLeft(nijtje2) + speed1);
+                if (collider.CollisionCheck((Canvas.GetLeft(nijtje2) + nijtje2.Width / 2) + speed1 + colliderMargin, (Canvas.GetTop(nijtje2)) + nijtje2.Height / 2))
+                {
+                    Canvas.SetLeft(nijtje2, Canvas.GetLeft(nijtje2) + speed1);
+                }
             }
             if (goleft1)
             {
                 // if go left boolean is true
-                Canvas.SetLeft(nijtje2, Canvas.GetLeft(nijtje2) - speed1);
+                if (collider.CollisionCheck((Canvas.GetLeft(nijtje2) + nijtje2.Width / 2) - speed1 - colliderMargin, (Canvas.GetTop(nijtje2)) + nijtje2.Height / 2))
+                {
+                    Canvas.SetLeft(nijtje2, Canvas.GetLeft(nijtje2) - speed1);
+                }
             }
             if (goup1)
             {
                 // if go up boolean is true 
-                Canvas.SetTop(nijtje2, Canvas.GetTop(nijtje2) - speed1);
+                if (collider.CollisionCheck((Canvas.GetLeft(nijtje2) + nijtje2.Width / 2), ((Canvas.GetTop(nijtje2)) + nijtje2.Height / 2) - colliderMargin - speed1))
+                {
+                    Canvas.SetTop(nijtje2, Canvas.GetTop(nijtje2) - speed1);
+                }
             }
             if (godown1)
             {
                 // if go down boolean is true
-                Canvas.SetTop(nijtje2, Canvas.GetTop(nijtje2) + speed1);
+                if (collider.CollisionCheck((Canvas.GetLeft(nijtje2) + nijtje2.Width / 2), ((Canvas.GetTop(nijtje2)) + nijtje2.Height / 2) + colliderMargin + speed1))
+                {
+                    Canvas.SetTop(nijtje2, Canvas.GetTop(nijtje2) + speed1);
+                }
             }
             foreach (Bomb bomb in bombs)
             {
