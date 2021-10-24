@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.Timers;
 using System.Windows.Threading;
 
 
@@ -44,6 +44,9 @@ namespace project_Bomberman
         bool placedBombPl1 = false;
         bool placedBombPl2 = false;
 
+        bool placingBombPl1 = false;
+        bool placingBombpl2 = false;
+
 
         Rectangle nijntje; // player rectangle
         Rectangle nijtje2; // opponent rectangle
@@ -71,6 +74,8 @@ namespace project_Bomberman
         // this images integer will be used to show the board images when we create them
         int images = -1;
 
+        int bombRefreshPl1 = 5000;          //in milliseconds
+        int bombRefreshPl2 = 5000;         //in milliseconds
         // new random class instance called rand will be used to calculate the dice rolls in the game
         Random rand = new Random();
 
@@ -86,6 +91,9 @@ namespace project_Bomberman
 
         Tile OnTilePl1;
         Tile OntilePl2;
+
+        Timer cooldownP1 = new Timer(5000);
+        Timer cooldownP2 = new Timer(5000);
 
 
         Random rnd = new Random();
@@ -232,18 +240,6 @@ namespace project_Bomberman
                 Canvas.SetTop(tile.myRec, topPos);              //sets the box top position to the given value
                 MyCanvas.Children.Add(tile.myRec);              //add the new rec to my scanvas
 
-
-
-
-
-
-
-
-
-
-
-
-
             }
             collider = new Collisions
             {
@@ -271,9 +267,22 @@ namespace project_Bomberman
 
             MovePiece(nijntje, "box" + 32);
             MovePiece1(nijtje2, "box" + 154);
+            foreach(var x in MyCanvas.Children.OfType<Rectangle>())
+            {
 
-
-
+                if (x is Rectangle && (string)x.Tag == "wall")
+                {
+                    Rect staticWall = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
+                    foreach (Tile tile in tiles)
+                    {
+                        Rect checkTile = new Rect(tile.DebugPosX, tile.DebugPosY, tile.myRec.Width /3, tile.myRec.Height / 3);
+                        if (staticWall.IntersectsWith(checkTile))
+                        {
+                            tile.Type = "wall";
+                        }
+                    }
+                }
+            }
         }
         private void CanvasKeyDown(object sender, KeyEventArgs e)
         {
@@ -310,22 +319,14 @@ namespace project_Bomberman
                 nijntje.RenderTransform = new RotateTransform(90, nijntje.Width / 2, nijntje.Height / 2);
             }
             // end of the down key selection
-            if (e.Key == Key.Space)
+            if (placedBombPl1 == false && e.Key == Key.Space && !placingBombPl1)
             {
-                //placedBomb = true;
-                Bomb bom = new Bomb();
-                //if (bom.GetClosestTile(tiles, (Canvas.GetLeft(nijntje) + nijntje.Width / 2), (Canvas.GetTop(nijntje)) + nijntje.Height / 2) )
-                //{
-                //    MyCanvas.Children.Add(bom.myRec);
-                //}
-                if (bom.GetClosestTile(tiles, (Canvas.GetLeft(nijntje) + nijntje.Width / 2), (Canvas.GetTop(nijntje) + nijntje.Height / 2), OnTilePl1))
-                {
-                    MyCanvas.Children.Add(bom.myRec);
-                }
-                bombs.Add(bom);
-                OnTilePl1 = bom.placedOn;
-                OnTilePl1.Hasplayer = true;
+                placingBombPl1 = true;
 
+            }
+            if(e.Key == Key.Enter && !placedBombPl2)
+            {
+                placingBombpl2 = true;
             }
 
 
@@ -371,6 +372,16 @@ namespace project_Bomberman
             }
             // end of the down key selection
         }
+
+        private void Timer_ElapsedP1(object sender, ElapsedEventArgs e)
+        {
+            placedBombPl1 = false;
+        }
+        private void Timer_ElapsedP2(object sender, ElapsedEventArgs e)
+        {
+            placedBombPl2 = false;
+        }
+
         private void Canvas_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Down)
@@ -406,34 +417,55 @@ namespace project_Bomberman
             {
                 goright1 = false; // right key is released go right will be false
             }
+            if(e.Key == Key.Space)
+            {
+                placingBombPl1 = false;
+            }
+            if(e.Key == Key.Enter)
+            {
+                placingBombpl2 = false;
+            }
         }
 
         private void GameLoop(object sender, EventArgs e)
         {
 
-            //if (goright)
-            //{
-            //    // if go right boolean is true 
-            //    Canvas.SetLeft(nijntje, Canvas.GetLeft(nijntje) + speed);
-            //}
-            //if (goleft)
-            //{
-            //    // if go left boolean is true
-            //    Canvas.SetLeft(nijntje, Canvas.GetLeft(nijntje) - speed);
-            //}
-            //if (goup)
-            //{
-            //    // if go up boolean is true 
-            //    Canvas.SetTop(nijntje, Canvas.GetTop(nijntje) - speed);
-            //}
-            //if (godown)
-            //{
-            //    // if go down boolean is true
-            //    Canvas.SetTop(nijntje, Canvas.GetTop(nijntje) + speed);
-            //    // end pijltjes cijfers 
+            if (placingBombPl1 && !placedBombPl1)
+            {
+                placedBombPl1 = true;
+                placingBombPl1 = false;
+                cooldownP1.Elapsed += Timer_ElapsedP1;
+                Bomb bom = new Bomb
+                {
+                    canvas = MyCanvas
+                };
+                if (bom.GetClosestTile(tiles, (Canvas.GetLeft(nijntje) + nijntje.Width / 2), (Canvas.GetTop(nijntje) + nijntje.Height / 2), OnTilePl1))
+                {
+                    MyCanvas.Children.Add(bom.myRec);
+                }
+                bombs.Add(bom);
+                OnTilePl1 = bom.placedOn;
+                OnTilePl1.Hasplayer = true;
+                cooldownP1.Start();
+            }
+            if (placingBombpl2 && !placedBombPl2)
+            {
+                placedBombPl2 = true;
+                cooldownP2.Elapsed += Timer_ElapsedP2;
+                Bomb bom = new Bomb
+                {
+                    canvas = MyCanvas
+                };
+                if (bom.GetClosestTile(tiles, (Canvas.GetLeft(nijtje2) + nijtje2.Width / 2), (Canvas.GetTop(nijtje2) + nijtje2.Height / 2), OntilePl2))
+                {
+                    MyCanvas.Children.Add(bom.myRec);
+                }
+                bombs.Add(bom);
+                OntilePl2 = bom.placedOn;
+                OntilePl2.Hasplayer = true;
+                cooldownP2.Start();
+            }
 
-            //    // begin w toets
-            //}
 
             if (goright)
             {
@@ -509,8 +541,29 @@ namespace project_Bomberman
                 if (bomb.destroyed)
                 {
                     MyCanvas.Children.Remove(bomb.myRec);
+                    bombs.Remove(bomb);
+                    
+                    break;
+                    
                 }
             }
+            foreach(Tile tile in tiles)
+            {
+                if (tile.Exploding && tile.ResetDone == false && tile.ResetStarted == false)
+                {
+                    ImageBrush Explodingpic = new ImageBrush();
+                    Explodingpic.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/oke.png"));
+                    tile.myRec.Fill = Explodingpic;
+                    tile.ResetStarted = true;
+                }
+                else if (tile.ResetDone)
+                {
+                    tile.myRec.Fill = tile.OgPic;
+                    tile.ResetDone = false;
+                }
+            }
+
+
 
 
 
