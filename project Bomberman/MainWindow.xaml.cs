@@ -244,6 +244,8 @@ namespace project_Bomberman
 
 
 
+
+
             }
             collider = new Collisions
             {
@@ -275,7 +277,7 @@ namespace project_Bomberman
             // end the loop
             ImageBrush blockHout = new ImageBrush();
             blockHout.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/Houtblock.png"));
-
+            
             block = new Rectangle
             {
                 Height = 70,
@@ -284,12 +286,18 @@ namespace project_Bomberman
                 StrokeThickness = 2
             };
 
+            for (int i = 0; i < 10; i++)
+            {
+
+                Moveblock(block, "box" + i);
+                MyCanvas.Children.Add(block);
+            }
+
             
-            MyCanvas.Children.Add(block);
 
 
-            Moveblock(block, "box" + 55);
-            
+
+
 
         }
         private void CanvasKeyDown(object sender, KeyEventArgs e)
