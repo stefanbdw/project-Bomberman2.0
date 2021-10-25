@@ -267,7 +267,7 @@ namespace project_Bomberman
             MyCanvas.Children.Add(nijntje);
             MyCanvas.Children.Add(nijtje2);
 
-            MovePiece(nijntje, "box" + 34);             //was 34
+            MovePiece(nijntje, "box" + 32);             //was 34
             MovePiece1(nijtje2, "box" + 154);
 
 
