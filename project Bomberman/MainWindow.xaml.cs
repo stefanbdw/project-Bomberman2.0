@@ -295,12 +295,14 @@ namespace project_Bomberman
             MovePiece(nijntje, "box" + 32);             //was 34
             MovePiece1(nijtje2, "box" + 154);
             // end the loop
-
+            ImageBrush blockHout = new ImageBrush();
+            blockHout.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/Houtblock.png"));
             for (int i = 0; i < 187; i++)
             {
 
-                ImageBrush blockHout = new ImageBrush();
-                blockHout.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/Houtblock.png"));
+
+
+
 
 
                 Rectangle block = new Rectangle
@@ -309,11 +311,9 @@ namespace project_Bomberman
                     Width = 70,
                     Fill = blockHout,
                     StrokeThickness = 2,
-                    Tag = "wall"
+                    Stroke = Brushes.Black,
+
                 };
-
-
-
 
 
 
@@ -339,13 +339,14 @@ namespace project_Bomberman
                 Moveblock(block, "box" + numbers[i]);
 
 
-
+                
                 MyCanvas.Children.Add(block);
             }
 
 
 
 
+            
 
 
 
@@ -354,10 +355,9 @@ namespace project_Bomberman
 
 
 
-        
-            foreach(var x in MyCanvas.Children.OfType<Rectangle>())
+            foreach (var x in MyCanvas.Children.OfType<Rectangle>())
             {
-                if(x is Rectangle && (string)x.Tag == "Breakable" || x == hout)
+                if(x is Rectangle && (string)x.Tag == "Breakable" || x == block)
                 {
                     Rect check = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
                     foreach(Tile tile in tiles)
@@ -365,7 +365,7 @@ namespace project_Bomberman
                         Rect checkTile = new Rect(tile.DebugPosX, tile.DebugPosY, tile.myRec.Width / 2, tile.myRec.Height / 2);
                         if (checkTile.IntersectsWith(check))
                         {
-                            tile.BreakablePic = houtBlock;
+                            tile.BreakablePic = blockHout;
                             tile.Type = "Breakable";
                             tile.myRec.Fill = tile.BreakablePic;
                         }
@@ -374,7 +374,7 @@ namespace project_Bomberman
    
                 }
             }
-            MyCanvas.Children.Remove(hout);
+            MyCanvas.Children.Remove(block);
 
 
             foreach (var x in MyCanvas.Children.OfType<Rectangle>())
