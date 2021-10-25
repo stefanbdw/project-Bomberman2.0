@@ -53,8 +53,8 @@ namespace project_Bomberman
 
         Rectangle nijntje; // player rectangle
         Rectangle nijtje2; // opponent rectangle
-        Rectangle wall;
-        Rectangle wall1;
+        Rectangle block;
+        
 
         int speed = 10;
         int speed1 = 10;// this integer is for the speed of the player
@@ -91,6 +91,8 @@ namespace project_Bomberman
         Collisions collider;
         List<Tile> tiles = new List<Tile>();
         List<Bomb> bombs = new List<Bomb>();
+
+        
 
         Tile OnTilePl1;
         Tile OntilePl2;
@@ -226,6 +228,7 @@ namespace project_Bomberman
                     Canvas.SetLeft(tile.myRec, leftPos);
                     tile.posX = leftPos;            //set the tile x pos to the left value
                     leftPos -= 80; // reduce 60 from the left pos each loop
+                    
                 }
 
                 // if a is less than 10
@@ -243,7 +246,26 @@ namespace project_Bomberman
                 //Canvas.SetTop(box, topPos); //set the box top position to the value of top pos integer each loop
                 tile.setVars();                 //calculate middlepoints
                 Canvas.SetTop(tile.myRec, topPos);              //sets the box top position to the given value
-                MyCanvas.Children.Add(tile.myRec);              //add the new rec to my scanvas
+                MyCanvas.Children.Add(tile.myRec);
+
+
+                //add the new rec to my scanvas
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             }
             collider = new Collisions
@@ -272,47 +294,70 @@ namespace project_Bomberman
 
             MovePiece(nijntje, "box" + 32);             //was 34
             MovePiece1(nijtje2, "box" + 154);
-
-
-            ImageBrush houtBlock = new ImageBrush();
-
-            houtBlock.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/oke1.png"));
-            Rectangle hout = new Rectangle
-            {
-                Height = 80,
-                Width = 80,
-                Fill = houtBlock,
-                Stroke = Brushes.Black,
-                StrokeThickness = 1
-
-            };
-
+            // end the loop
+            ImageBrush blockHout = new ImageBrush();
+            blockHout.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/Houtblock.png"));
             for (int i = 0; i < 187; i++)
             {
 
-                // below we are creating a new rectangle called box
-                // this rectangle will have 60x60 height and width, fill is the tile images and a black border around it
 
-                int[] blocksnames = 
-                { 19, 20, 21,22, 0,0,0,0,0,0,0,0,0,0,58,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,30};
-                //Houtmove(hout, "box" + blocksnames[i]);
-                if (i > blocksnames.Length - 1)
+
+
+
+
+                Rectangle block = new Rectangle
                 {
+                    Height = 70,
+                    Width = 70,
+                    Fill = blockHout,
+                    StrokeThickness = 2,
+                    Stroke = Brushes.Black,
 
-                    break;
-                }
-                else
-                {
-                    Houtmove(hout, "box" + blocksnames[2]);
-                }
-                //Houtmove(hout, "box" + blocksnames[2]);
+                };
 
-                //Houtmove.Add(hout, "box" + blocksnames[i] );
+
+
+                int[] numbers = {
+   18,  19,
+20,  21,  22,  23 ,   25,  26,  27,  28,  29,
+30,          37,    39,
+  41,    43,    45,    47,    49,
+ 52,  53,  54,  55,  56,  57,  58,  59,
+60,  61,  62,  63,  64,  65,  66,   69,
+  71,    73,    75,    77,    79,
+  81,    83,      86,  87,  88,  89,
+90,  91,  92,  93,  94,  95,  96,  97,  98,  99,
+100,   103,  105,  107,  109,
+ 111,  113,  115,  117,
+120, 121, 122, 123, 124, 125, 126, 127, 128, 129,
+130, 131, 132, 133, 134,  137,  139,
+ 141,  143,  145,  147,  149,
+     156, 157, 158, 159,
+160, 161, 162, 163, 164, 165, 166, 167, 168,
+     1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,          };
+
+                Moveblock(block, "box" + numbers[i]);
+
+
+                
+                MyCanvas.Children.Add(block);
             }
-            MyCanvas.Children.Add(hout);
-            foreach(var x in MyCanvas.Children.OfType<Rectangle>())
+
+
+
+
+            
+
+
+
+
+
+
+
+
+            foreach (var x in MyCanvas.Children.OfType<Rectangle>())
             {
-                if(x is Rectangle && (string)x.Tag == "Breakable" || x == hout)
+                if(x is Rectangle && (string)x.Tag == "Breakable" || x == block)
                 {
                     Rect check = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
                     foreach(Tile tile in tiles)
@@ -320,7 +365,7 @@ namespace project_Bomberman
                         Rect checkTile = new Rect(tile.DebugPosX, tile.DebugPosY, tile.myRec.Width / 2, tile.myRec.Height / 2);
                         if (checkTile.IntersectsWith(check))
                         {
-                            tile.BreakablePic = houtBlock;
+                            tile.BreakablePic = blockHout;
                             tile.Type = "Breakable";
                             tile.myRec.Fill = tile.BreakablePic;
                         }
@@ -329,7 +374,7 @@ namespace project_Bomberman
    
                 }
             }
-            MyCanvas.Children.Remove(hout);
+            MyCanvas.Children.Remove(block);
 
 
             foreach (var x in MyCanvas.Children.OfType<Rectangle>())
@@ -808,8 +853,7 @@ namespace project_Bomberman
             Canvas.SetTop(nijtje2, Canvas.GetTop(landingRec1) + nijtje2.Height / 2);
 
         }
-
-        private void Houtmove(Rectangle hout, string posName)
+        private void Moveblock(Rectangle block, string posName)
         {
 
             //this function will move the player and the opponent across the board
@@ -832,8 +876,8 @@ namespace project_Bomberman
 
 
             // the two lines here will place the "player" object that is being passed in this function to the landingRec location
-            Canvas.SetLeft(hout, Canvas.GetLeft(landingRec1) + 5);
-            Canvas.SetTop(hout, Canvas.GetTop(landingRec1) + 5);
+            Canvas.SetLeft(block, Canvas.GetLeft(landingRec1) + 5);
+            Canvas.SetTop(block, Canvas.GetTop(landingRec1) + 5);
 
         }
     }
