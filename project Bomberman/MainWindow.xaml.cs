@@ -384,12 +384,12 @@ namespace project_Bomberman
                 nijntje.RenderTransform = new RotateTransform(90, nijntje.Width / 2, nijntje.Height / 2);
             }
             // end of the down key selection
-            if (placedBombPl1 == false && e.Key == Key.Space && !placingBombPl1)
+            if (placedBombPl1 == false && e.Key == Key.Enter && !placingBombPl1)
             {
                 placingBombPl1 = true;
 
             }
-            if(e.Key == Key.Enter && !placedBombPl2)
+            if(e.Key == Key.Space && !placedBombPl2)
             {
                 placingBombpl2 = true;
             }
