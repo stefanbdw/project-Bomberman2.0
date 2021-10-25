@@ -60,9 +60,21 @@ namespace project_Bomberman
 
             for (int i = 0; i < rangeExplosion; i++)
             {
+                Tile modTile; 
                 if(ReturnClosestTile(GameTiles, placedOn.DebugPosX + (i * 80), placedOn.DebugPosY).Type != "wall" && right)
                 {
-                    ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX + (i * 80), placedOn.DebugPosY));
+                    modTile = ReturnClosestTile(GameTiles, placedOn.DebugPosX + (i * 80), placedOn.DebugPosY);
+                    //ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX + (i * 80), placedOn.DebugPosY));
+                    if(modTile.Type != "Breakable")
+                    {
+                        ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX + (i * 80), placedOn.DebugPosY));
+                    }
+                    else
+                    {
+
+                        ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX + (i * 80), placedOn.DebugPosY));
+                        right = false;
+                    }
                 }
                 else
                 {
@@ -71,7 +83,16 @@ namespace project_Bomberman
                 //ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX + (i * 80), placedOn.DebugPosY));
                 if(ReturnClosestTile(GameTiles, placedOn.DebugPosX - (i * 80), placedOn.DebugPosY).Type != "wall" && left)
                 {
-                    ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX - (i * 80), placedOn.DebugPosY));
+                    modTile = ReturnClosestTile(GameTiles, placedOn.DebugPosX - (i * 80), placedOn.DebugPosY);
+                    if (modTile.Type != "Breakable")
+                    {
+                        ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX - (i * 80), placedOn.DebugPosY));
+                    }
+                    else
+                    {
+                        ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX - (i * 80), placedOn.DebugPosY));
+                        left = false;
+                    }
                 }
                 else
                 {
@@ -80,7 +101,16 @@ namespace project_Bomberman
                 //ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX - (i * 80), placedOn.DebugPosY));
                 if(ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY + (i * 80)).Type != "wall" && up)
                 {
-                    ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY + (i * 80)));
+                    modTile = ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY + (i * 80));
+                    if (modTile.Type != "Breakable")
+                    {
+                        ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY + (i * 80)));
+                    }
+                    else
+                    {
+                        up = false;
+                        ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY + (i * 80)));
+                    }
                 }
                 else
                 {
@@ -88,7 +118,16 @@ namespace project_Bomberman
                 }
                 if(ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY - (i * 80)).Type != "wall" && down)
                 {
-                    ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY - (i * 80)));
+                    modTile = ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY - (i * 80));
+                    if(modTile.Type != "wall")
+                    {
+                        ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY - (i * 80)));
+                    }
+                    else
+                    {
+                        down = false;
+                        ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY - (i * 80)));
+                    }
                 }
                 else
                 {

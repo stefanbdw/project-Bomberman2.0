@@ -20,7 +20,7 @@ namespace project_Bomberman
         public double DebugPosX = 0;                //middenpunt van tile x
         public double DebugPosY = 0;                //middenpunt van tile y
         public Brush OgPic = new ImageBrush();
-
+        public Brush BreakablePic = new ImageBrush();
         public Timer ResetTimer = new Timer(500);
         public string Type = "";
 
@@ -42,6 +42,7 @@ namespace project_Bomberman
                 exploding = value;
             }
         }
+        public bool TileSetup = false;
         public bool HasBomb = false;                //does the tile have a bomb
         public bool Passable = false;
         public bool Hasplayer = false;
