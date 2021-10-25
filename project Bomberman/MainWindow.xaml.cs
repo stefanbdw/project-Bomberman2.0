@@ -47,6 +47,9 @@ namespace project_Bomberman
         bool placingBombPl1 = false;
         bool placingBombpl2 = false;
 
+        double ScorePlayer1;
+        double ScorePlayer2;
+
 
         Rectangle nijntje; // player rectangle
         Rectangle nijtje2; // opponent rectangle

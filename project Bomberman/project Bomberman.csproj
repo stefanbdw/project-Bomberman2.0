@@ -423,4 +423,8 @@
     <Resource Include="images\simpels.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
+
 </Project>
