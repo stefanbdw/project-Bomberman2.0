@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace project_Bomberman
 {
@@ -17,13 +14,13 @@ namespace project_Bomberman
         {
             double distance = Math.Sqrt(Math.Pow((nijntjeX - Alltiles[0].DebugPosX), 2) + Math.Pow((nijntjeY - Alltiles[0].DebugPosY), 2));
             Tile tileToCheck = Alltiles[0];
-            foreach(Tile tile in Alltiles)
+            foreach (Tile tile in Alltiles)
             {
-                if(Math.Sqrt(Math.Pow((nijntjeX - tile.DebugPosX), 2) + Math.Pow((nijntjeY - tile.DebugPosY), 2)) < distance)
+                if (Math.Sqrt(Math.Pow((nijntjeX - tile.DebugPosX), 2) + Math.Pow((nijntjeY - tile.DebugPosY), 2)) < distance)
                 {
                     distance = Math.Sqrt(Math.Pow((nijntjeX - tile.DebugPosX), 2) + Math.Pow((nijntjeY - tile.DebugPosY), 2));
                     tileToCheck = tile;
-                    
+
 
                 }
             }

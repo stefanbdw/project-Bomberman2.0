@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Timers;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Windows.Controls;
-using System.Timers;
 
 namespace project_Bomberman
 {
@@ -23,7 +20,7 @@ namespace project_Bomberman
         private Timer bombTime = new Timer(1000);
         private List<Tile> GameTiles = new List<Tile>();
         public Canvas canvas;
-        
+
         //create a bomb
         public void CreateBomb()
         {
@@ -60,12 +57,12 @@ namespace project_Bomberman
 
             for (int i = 0; i < rangeExplosion; i++)
             {
-                Tile modTile; 
-                if(ReturnClosestTile(GameTiles, placedOn.DebugPosX + (i * 80), placedOn.DebugPosY).Type != "wall" && right)
+                Tile modTile;
+                if (ReturnClosestTile(GameTiles, placedOn.DebugPosX + (i * 80), placedOn.DebugPosY).Type != "wall" && right)
                 {
                     modTile = ReturnClosestTile(GameTiles, placedOn.DebugPosX + (i * 80), placedOn.DebugPosY);
                     //ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX + (i * 80), placedOn.DebugPosY));
-                    if(modTile.Type != "Breakable")
+                    if (modTile.Type != "Breakable")
                     {
                         ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX + (i * 80), placedOn.DebugPosY));
                     }
@@ -81,7 +78,7 @@ namespace project_Bomberman
                     right = false;
                 }
                 //ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX + (i * 80), placedOn.DebugPosY));
-                if(ReturnClosestTile(GameTiles, placedOn.DebugPosX - (i * 80), placedOn.DebugPosY).Type != "wall" && left)
+                if (ReturnClosestTile(GameTiles, placedOn.DebugPosX - (i * 80), placedOn.DebugPosY).Type != "wall" && left)
                 {
                     modTile = ReturnClosestTile(GameTiles, placedOn.DebugPosX - (i * 80), placedOn.DebugPosY);
                     if (modTile.Type != "Breakable")
@@ -99,7 +96,7 @@ namespace project_Bomberman
                     left = false;
                 }
                 //ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX - (i * 80), placedOn.DebugPosY));
-                if(ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY + (i * 80)).Type != "wall" && up)
+                if (ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY + (i * 80)).Type != "wall" && up)
                 {
                     modTile = ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY + (i * 80));
                     if (modTile.Type != "Breakable")
@@ -116,10 +113,10 @@ namespace project_Bomberman
                 {
                     up = false;
                 }
-                if(ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY - (i * 80)).Type != "wall" && down)
+                if (ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY - (i * 80)).Type != "wall" && down)
                 {
                     modTile = ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY - (i * 80));
-                    if(modTile.Type != "wall")
+                    if (modTile.Type != "Breakable")
                     {
                         ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY - (i * 80)));
                     }
@@ -137,12 +134,12 @@ namespace project_Bomberman
                 //ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY - (i * 80)));
 
             }
-            foreach(Tile tile in ExplodingTiles)
+            foreach (Tile tile in ExplodingTiles)
             {
                 tile.Exploding = true;
                 //tile.myRec.Fill = Explodingpic;
             }
-            
+
         }
 
         //create the object in rectangle form
@@ -156,7 +153,7 @@ namespace project_Bomberman
                 Stroke = Brushes.Black,
                 StrokeThickness = strokethickness
             };
-            
+
             return myRec;
         }
 
@@ -173,12 +170,12 @@ namespace project_Bomberman
             foreach (Tile tile in tiles)
             {
                 //check if the distance between points is smaller then the already set distance
-                if(Math.Sqrt(Math.Pow((x - tile.DebugPosX), 2) + Math.Pow((y - tile.DebugPosY), 2)) < distance)
+                if (Math.Sqrt(Math.Pow((x - tile.DebugPosX), 2) + Math.Pow((y - tile.DebugPosY), 2)) < distance)
                 {
                     distance = Math.Sqrt(Math.Pow((x - tile.DebugPosX), 2) + Math.Pow((y - tile.DebugPosY), 2));
                     placedOn = tile;
                 }
-  
+
             }
             if (placedOn != null && !placedOn.HasBomb)
             {
@@ -214,7 +211,7 @@ namespace project_Bomberman
                 }
 
             }
-            
+
             if (placedOn != null && !placedOn.HasBomb)
             {
                 if (playerTile != null && placedOn != playerTile)
@@ -227,7 +224,7 @@ namespace project_Bomberman
                     placedOn.Hasplayer = true;
                 }
                 brush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/simpels.png"));
-                myRec = CreateRect(80, 80,brush, 1);
+                myRec = CreateRect(80, 80, brush, 1);
                 Canvas.SetLeft(myRec, placedOn.posX);
                 Canvas.SetTop(myRec, placedOn.posY);
                 placedOn.HasBomb = true;

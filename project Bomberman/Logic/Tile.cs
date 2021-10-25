@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Timers;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Windows.Controls;
-using System.Windows.Threading;
-using System.Timers;
 namespace project_Bomberman
 {
     //this class contains everything tile related
@@ -37,7 +32,7 @@ namespace project_Bomberman
                 {
                     //Explode();
                     exploding = value;
-                    
+
                 }
                 exploding = value;
             }
@@ -93,11 +88,11 @@ namespace project_Bomberman
             myRec.Fill = img;
             myRec.Stroke = Brushes.Black;
             myRec.StrokeThickness = strokethickness;
-            
-            
+
+
             //myRec.
         }
-        
+
         //calculate the middlepoint of the tile
         public void setVars()
         {
@@ -138,7 +133,7 @@ namespace project_Bomberman
         }
 
 
-        
+
         public void SetMyImage(BitmapImage img)
         {
             imageBrush.ImageSource = img;

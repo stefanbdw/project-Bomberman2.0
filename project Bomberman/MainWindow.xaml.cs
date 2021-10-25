@@ -1,18 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Timers;
 using System.Windows.Threading;
 
 
@@ -54,7 +49,7 @@ namespace project_Bomberman
         Rectangle nijntje; // player rectangle
         Rectangle nijtje2; // opponent rectangle
         Rectangle block;
-        
+
 
         int speed = 10;
         int speed1 = 10;// this integer is for the speed of the player
@@ -92,13 +87,13 @@ namespace project_Bomberman
         List<Tile> tiles = new List<Tile>();
         List<Bomb> bombs = new List<Bomb>();
 
-        
+
 
         Tile OnTilePl1;
         Tile OntilePl2;
 
-        Timer cooldownP1 = new Timer(2000);
-        Timer cooldownP2 = new Timer(2000);
+        Timer cooldownP1 = new Timer(3000);
+        Timer cooldownP2 = new Timer(3000);
 
 
         Random rnd = new Random();
@@ -108,20 +103,13 @@ namespace project_Bomberman
         {
             InitializeComponent();
             GameSetUp();
-
-
-
         }
-
-
-
-
-
 
         private void GameSetUp()
         {
 
-
+            cooldownP1.AutoReset = false;
+            cooldownP2.AutoReset = false;
 
 
 
@@ -144,14 +132,14 @@ namespace project_Bomberman
 
 
 
-
+            List<Rectangle> blocktoRemove = new List<Rectangle>();
             //this is the set up game function.In this function we will set up the game board, the player and the opponent
 
             // in order to create the board we will need to make 3 local variables below
             int leftPos = 180; // left pos will help us position the boxes from right to left 
             int topPos = 900; // top pos will help us position the boxes from bottom to top
             int a = 0; // a integer will help us to lay 10 boxes in a row
-            
+
             // the two lines below are importing the images for the player and the opponent and attaching them to the image brush we created earlier
 
 
@@ -165,13 +153,13 @@ namespace project_Bomberman
 
                 //create a new image brush called tile images, this will attach an image to the rectangles for the board
                 images++;
-               ImageBrush tileImages = new ImageBrush();
-                
-                    
-                    
+                ImageBrush tileImages = new ImageBrush();
 
-               tileImages.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/" + images + ".jpg"));
-                
+
+
+
+                tileImages.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/" + images + ".jpg"));
+
                 // below we are creating a new rectangle called box
                 // this rectangle will have 60x60 height and width, fill is the tile images and a black border around it
                 Rectangle box = new Rectangle
@@ -197,7 +185,7 @@ namespace project_Bomberman
                 this.RegisterName(box.Name, box); // register the name inside of the WPF app
 
                 Moves.Add(box); // add the newly created box to the moves rectangles list
-    
+
                 // below we are making the algorithm we need to lay the boxes 10 in a row
                 // we will make the boxes from left to right then move up and reverse that process
                 // remember "a" integer is controlling how we position the boxes down so we need to keep in mind on it can be controlled inside of this loop
@@ -228,7 +216,7 @@ namespace project_Bomberman
                     Canvas.SetLeft(tile.myRec, leftPos);
                     tile.posX = leftPos;            //set the tile x pos to the left value
                     leftPos -= 80; // reduce 60 from the left pos each loop
-                    
+
                 }
 
                 // if a is less than 10
@@ -250,22 +238,6 @@ namespace project_Bomberman
 
 
                 //add the new rec to my scanvas
-                
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             }
             collider = new Collisions
@@ -300,11 +272,6 @@ namespace project_Bomberman
             for (int i = 0; i < 187; i++)
             {
 
-
-
-
-
-
                 Rectangle block = new Rectangle
                 {
                     Height = 70,
@@ -318,64 +285,48 @@ namespace project_Bomberman
 
 
                 int[] numbers = {
-   18,  19,
-20,  21,  22,  23 ,   25,  26,  27,  28,  29,
-30,          37,    39,
-  41,    43,    45,    47,    49,
- 52,  53,  54,  55,  56,  57,  58,  59,
-60,  61,  62,  63,  64,  65,  66,   69,
-  71,    73,    75,    77,    79,
-  81,    83,      86,  87,  88,  89,
-90,  91,  92,  93,  94,  95,  96,  97,  98,  99,
-100,   103,  105,  107,  109,
- 111,  113,  115,  117,
-120, 121, 122, 123, 124, 125, 126, 127, 128, 129,
-130, 131, 132, 133, 134,  137,  139,
- 141,  143,  145,  147,  149,
-     156, 157, 158, 159,
-160, 161, 162, 163, 164, 165, 166, 167, 168,
-     1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,          };
+                   18,  19,
+                20,  21,  22,  23 ,   25,  26,  27,  28,  29,
+                30,          37,    39,
+                  41,    43,    45,    47,    49,
+                 52,  53,  54,  55,  56,  57,  58,  59,
+                60,  61,  62,  63,  64,  65,  66,   69,
+                  71,    73,    75,    77,    79,
+                  81,    83,      86,  87,  88,  89,
+                90,  91,  92,  93,  94,  95,  96,  97,  98,  99,
+                100,   103,  105,  107,  109,
+                 111,  113,  115,  117,
+                120, 121, 122, 123, 124, 125, 126, 127, 128, 129,
+                130, 131, 132, 133, 134,  137,  139,
+                 141,  143,  145,  147,  149,
+                     156, 157, 158, 159,
+                160, 161, 162, 163, 164, 165, 166, 167, 168,
+                     1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,          };
 
                 Moveblock(block, "box" + numbers[i]);
-
-
-                
+                blocktoRemove.Add(block);
                 MyCanvas.Children.Add(block);
-            }
-
-
-
-
-            
-
-
-
-
-
-
-
-
-            foreach (var x in MyCanvas.Children.OfType<Rectangle>())
-            {
-                if(x is Rectangle && (string)x.Tag == "Breakable" || x == block)
+                Rect check = new Rect(Canvas.GetLeft(block), Canvas.GetTop(block), block.Width / 2, block.Height / 2);
+                foreach (Tile tile in tiles)
                 {
-                    Rect check = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
-                    foreach(Tile tile in tiles)
+                    Rect checkTile = new Rect(tile.DebugPosX, tile.DebugPosY, tile.myRec.Width / 2, tile.myRec.Height / 2);
+                    if (checkTile.IntersectsWith(check))
                     {
-                        Rect checkTile = new Rect(tile.DebugPosX, tile.DebugPosY, tile.myRec.Width / 2, tile.myRec.Height / 2);
-                        if (checkTile.IntersectsWith(check))
-                        {
-                            tile.BreakablePic = blockHout;
-                            tile.Type = "Breakable";
-                            tile.myRec.Fill = tile.BreakablePic;
-                        }
-
+                        tile.BreakablePic = blockHout;
+                        tile.Type = "Breakable";
+                        tile.myRec.Fill = tile.BreakablePic;
+                        tile.Passable = true;
                     }
-   
-                }
-            }
-            MyCanvas.Children.Remove(block);
 
+                }
+
+                //MyCanvas.Children.Add(block);
+                MyCanvas.Children.Remove(block);
+            }
+            
+            MyCanvas.Children.Remove(block);
+            //for(int i < tile)
+            
 
             foreach (var x in MyCanvas.Children.OfType<Rectangle>())
             {
@@ -385,7 +336,7 @@ namespace project_Bomberman
                     Rect staticWall = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
                     foreach (Tile tile in tiles)
                     {
-                        Rect checkTile = new Rect(tile.DebugPosX, tile.DebugPosY, tile.myRec.Width /3, tile.myRec.Height / 3);
+                        Rect checkTile = new Rect(tile.DebugPosX, tile.DebugPosY, tile.myRec.Width / 3, tile.myRec.Height / 3);
                         if (staticWall.IntersectsWith(checkTile))
                         {
                             tile.Type = "wall";
@@ -434,7 +385,7 @@ namespace project_Bomberman
                 placingBombPl1 = true;
 
             }
-            if(e.Key == Key.Space && !placedBombPl2)
+            if (e.Key == Key.Space && !placedBombPl2 && !placingBombpl2)
             {
                 placingBombpl2 = true;
             }
@@ -527,13 +478,13 @@ namespace project_Bomberman
             {
                 goright1 = false; // right key is released go right will be false
             }
-            if(e.Key == Key.Space)
-            {
-                placingBombPl1 = false;
-            }
-            if(e.Key == Key.Enter)
+            if (e.Key == Key.Space)
             {
                 placingBombpl2 = false;
+            }
+            if (e.Key == Key.Enter)
+            {
+                placingBombPl1 = false;
             }
         }
 
@@ -652,12 +603,12 @@ namespace project_Bomberman
                 {
                     MyCanvas.Children.Remove(bomb.myRec);
                     bombs.Remove(bomb);
-                    
+
                     break;
-                    
+
                 }
             }
-            foreach(Tile tile in tiles)
+            foreach (Tile tile in tiles)
             {
                 if (tile.Exploding && tile.ResetDone == false && tile.ResetStarted == false)
                 {
@@ -670,8 +621,10 @@ namespace project_Bomberman
                 {
                     tile.myRec.Fill = tile.OgPic;
                     tile.ResetDone = false;
+                    tile.Type = "normal";
+                    tile.Passable = false;
                 }
-                if(tile.Type == "Breakable" && !tile.TileSetup)
+                if (tile.Type == "Breakable" && !tile.TileSetup)
                 {
                     tile.TileSetup = true;
                     tile.myRec.Fill = tile.BreakablePic;
@@ -739,35 +692,35 @@ namespace project_Bomberman
 
                             goup = false;
                         }
-                        
-                        
-                            if (goleft1 == true && hitBoxNijntje2.IntersectsWith(platforms))
-                            {
-                                Canvas.SetLeft(nijtje2, Canvas.GetLeft(nijtje2) + 10);
 
-                                goleft1 = false;
-                            }
-                            // check if we are colliding with the wall while moving right if true then stop the pac man movement
-                            if (goright1 == true && hitBoxNijntje2.IntersectsWith(platforms))
-                            {
-                                Canvas.SetLeft(nijtje2, Canvas.GetLeft(nijtje2) - 10);
 
-                                goright1 = false;
-                            }
-                            // check if we are colliding with the wall while moving down if true then stop the pac man movement
-                            if (godown1 == true && hitBoxNijntje2.IntersectsWith(platforms))
-                            {
-                                Canvas.SetTop(nijtje2, Canvas.GetTop(nijtje2) - 10);
+                        if (goleft1 == true && hitBoxNijntje2.IntersectsWith(platforms))
+                        {
+                            Canvas.SetLeft(nijtje2, Canvas.GetLeft(nijtje2) + 10);
 
-                                godown1 = false;
-                            }
-                            // check if we are colliding with the wall while moving up if true then stop the pac man movement
-                            if (goup1 == true && hitBoxNijntje2.IntersectsWith(platforms))
-                            {
-                                Canvas.SetTop(nijtje2, Canvas.GetTop(nijtje2) + 10);
+                            goleft1 = false;
+                        }
+                        // check if we are colliding with the wall while moving right if true then stop the pac man movement
+                        if (goright1 == true && hitBoxNijntje2.IntersectsWith(platforms))
+                        {
+                            Canvas.SetLeft(nijtje2, Canvas.GetLeft(nijtje2) - 10);
 
-                                goup1 = false;
-                            }
+                            goright1 = false;
+                        }
+                        // check if we are colliding with the wall while moving down if true then stop the pac man movement
+                        if (godown1 == true && hitBoxNijntje2.IntersectsWith(platforms))
+                        {
+                            Canvas.SetTop(nijtje2, Canvas.GetTop(nijtje2) - 10);
+
+                            godown1 = false;
+                        }
+                        // check if we are colliding with the wall while moving up if true then stop the pac man movement
+                        if (goup1 == true && hitBoxNijntje2.IntersectsWith(platforms))
+                        {
+                            Canvas.SetTop(nijtje2, Canvas.GetTop(nijtje2) + 10);
+
+                            goup1 = false;
+                        }
 
                     }
 
@@ -775,27 +728,27 @@ namespace project_Bomberman
 
                 }
 
-                foreach(Tile tile in tiles)
+                foreach (Tile tile in tiles)
                 {
                     Rect tileHitbox = new Rect(tile.posX, tile.posY, tile.myRec.Width, tile.myRec.Height);
                     if (pacmanHitBox.IntersectsWith(tileHitbox) && tile.Exploding)
                     {
                         nijntje.Fill = null;
                     }
-                    if(hitBoxNijntje2.IntersectsWith(tileHitbox) && tile.Exploding)
+                    if (hitBoxNijntje2.IntersectsWith(tileHitbox) && tile.Exploding)
                     {
                         nijtje2.Fill = null;
                     }
                 }
-        
-    
-            
 
-                    
+
+
+
+
 
             }
         }
-        
+
 
         private void MovePiece(Rectangle nijntje, string posName)
         {
@@ -821,10 +774,10 @@ namespace project_Bomberman
 
             // the two lines here will place the "player" object that is being passed in this function to the landingRec location
             Canvas.SetLeft(nijntje, Canvas.GetLeft(landingRec) + nijntje.Width / 2);
-    
+
             Canvas.SetTop(nijntje, Canvas.GetTop(landingRec) + nijntje.Height / 2);
 
-            
+
         }
         private void MovePiece1(Rectangle nijtje2, string posName)
         {
@@ -883,15 +836,15 @@ namespace project_Bomberman
     }
 }
 
-         
-
-                
 
 
 
-     
-    
-            
 
-    
-    
+
+
+
+
+
+
+
+
