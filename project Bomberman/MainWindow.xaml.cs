@@ -95,8 +95,8 @@ namespace project_Bomberman
         Tile OnTilePl1;
         Tile OntilePl2;
 
-        Timer cooldownP1 = new Timer(5000);
-        Timer cooldownP2 = new Timer(5000);
+        Timer cooldownP1 = new Timer(2000);
+        Timer cooldownP2 = new Timer(2000);
 
 
         Random rnd = new Random();
