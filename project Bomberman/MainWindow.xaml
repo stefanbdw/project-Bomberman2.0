@@ -7,14 +7,68 @@
         mc:Ignorable="d"
         Title="Bomberman" Height="1080" Width="1920">
     
-    <Canvas Name="MyCanvas" KeyDown="CanvasKeyDown" KeyUp="Canvas_KeyUp"  Focusable="True" Background="White">
+    <Canvas Name="MyCanvas" KeyDown="CanvasKeyDown" KeyUp="Canvas_KeyUp"  Focusable="True" >
+        <Canvas.Background>
+            <ImageBrush ImageSource="/Images/background.jpg" Stretch="UniformToFill"/>
+        </Canvas.Background>
+        <Rectangle Tag="wall" Stroke="Black"   Height="37" Width="1200" Canvas.Left="340" Canvas.Top="143" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Tag="wall" Stroke="Black"   Height="720" Width="38" Canvas.Left="302" Canvas.Top="180" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Tag="wall" Stroke="Black"   Height="720" Width="56" Canvas.Left="1540" Canvas.Top="180"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="42" Width="1200" Canvas.Left="340" Canvas.Top="898"/>
+        <!--eerst rij van boven-->
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="421" Canvas.Top="261"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="581" Canvas.Top="261"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="741" Canvas.Top="261"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="901" Canvas.Top="261"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="1061" Canvas.Top="261"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="1221" Canvas.Top="261"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="1381" Canvas.Top="261"/>
+        <!--tweede rij van boven-->
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="421" Canvas.Top="421"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="581" Canvas.Top="421"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="741" Canvas.Top="421"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="901" Canvas.Top="421"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="1061" Canvas.Top="421"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="1221" Canvas.Top="421"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="1381" Canvas.Top="421"/>
+        <!--derder rij van boven-->
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="421" Canvas.Top="581"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="581" Canvas.Top="581"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="741" Canvas.Top="581"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="901" Canvas.Top="581"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="1061" Canvas.Top="581"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="1221" Canvas.Top="581"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="1381" Canvas.Top="581"/>
+        <!--vierder rij van boven-->
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="421" Canvas.Top="741"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="581" Canvas.Top="741"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="741" Canvas.Top="741"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="901" Canvas.Top="741"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="1061" Canvas.Top="741"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="1221" Canvas.Top="741"/>
+        <Rectangle Tag="wall" Stroke="Black"   Height="78" Width="78" Canvas.Left="1381" Canvas.Top="741"/>
+        <!--<Rectangle    Height="620" Width="1100" Canvas.Left="340" Canvas.Top="180"></Rectangle>-->
 
-        <Label FontSize="20" Name="txtScore" Foreground="White" Content="Score: 0"></Label>
 
-        <!--<Rectangle Name="nijntje" Width="50" Height="50" Fill="Yellow" Canvas.Left="313" Canvas.Top="169" StrokeThickness="2"></Rectangle>
-        <Rectangle Name="nijtje2" Width="50" Height="50" Fill="red" Canvas.Left="720" Canvas.Top="499" StrokeThickness="2" ></Rectangle>-->
-        
-            
+
 
     </Canvas>
     

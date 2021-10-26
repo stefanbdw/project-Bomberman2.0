@@ -1,0 +1,28 @@
+﻿<Window x:Class="project_Bomberman.Hoofdmenu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:project_Bomberman"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Hoofdmenu">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/background.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,0" FontSize="20">Nijntje op het strand</Label>
+        <Label Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,60,0,0" Width="250" Background="#FFC5C5C5" HorizontalContentAlignment="Center">Gamemodes</Label>
+        <Button Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,95,0,0" Width="250" Name="Start1v1" Click="Start1v1Btn" Background="#FFFF8787">1 vs 1</Button>
+        <Button Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,120,0,0" Width="250" Name="StartSolo" Click="StartSoloBtn" Background="#FFFF8787">Solo</Button>
+        <Button Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,150,0,0" Width="250" Name="Settings" Click="SettingsBtn">Instellingen</Button>
+        <Button Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,180,0,0" Width="250" Name="HighScores" Click="HighScoreBtn">High Scores</Button>
+        <Button Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,40" Width="250" Name="Exit" Click="ExitBtn">Spel afsluiten</Button>
+    </Grid>
+</Window>
