@@ -87,7 +87,7 @@ namespace project_Bomberman
         List<Tile> tiles = new List<Tile>();
         List<Bomb> bombs = new List<Bomb>();
 
-
+        Score score = new Score();
 
         Tile OnTilePl1;
         Tile OntilePl2;
@@ -110,6 +110,10 @@ namespace project_Bomberman
 
             cooldownP1.AutoReset = false;
             cooldownP2.AutoReset = false;
+
+            Score.Scores.Add("playerName", 10);
+            Score.Scores.Add("Playername2", 10);
+
 
 
 
@@ -500,7 +504,7 @@ namespace project_Bomberman
                 {
                     canvas = MyCanvas
                 };
-                if (bom.GetClosestTile(tiles, (Canvas.GetLeft(nijntje) + nijntje.Width / 2), (Canvas.GetTop(nijntje) + nijntje.Height / 2), OnTilePl1))
+                if (bom.GetClosestTile(tiles, (Canvas.GetLeft(nijntje) + nijntje.Width / 2), (Canvas.GetTop(nijntje) + nijntje.Height / 2), OnTilePl1, Score.NamePlayer1))
                 {
                     MyCanvas.Children.Add(bom.myRec);
                 }
@@ -517,7 +521,7 @@ namespace project_Bomberman
                 {
                     canvas = MyCanvas
                 };
-                if (bom.GetClosestTile(tiles, (Canvas.GetLeft(nijtje2) + nijtje2.Width / 2), (Canvas.GetTop(nijtje2) + nijtje2.Height / 2), OntilePl2))
+                if (bom.GetClosestTile(tiles, (Canvas.GetLeft(nijtje2) + nijtje2.Width / 2), (Canvas.GetTop(nijtje2) + nijtje2.Height / 2), OntilePl2, Score.NamePlayer2))
                 {
                     MyCanvas.Children.Add(bom.myRec);
                 }

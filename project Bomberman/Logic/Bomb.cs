@@ -20,6 +20,7 @@ namespace project_Bomberman
         private Timer bombTime = new Timer(1000);
         private List<Tile> GameTiles = new List<Tile>();
         public Canvas canvas;
+        public string bombOwner;
 
         //create a bomb
         public void CreateBomb()
@@ -68,9 +69,10 @@ namespace project_Bomberman
                     }
                     else
                     {
-
                         ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX + (i * 80), placedOn.DebugPosY));
                         right = false;
+                        Score.SetScore(bombOwner, 100);
+                        
                     }
                 }
                 else
@@ -89,6 +91,7 @@ namespace project_Bomberman
                     {
                         ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX - (i * 80), placedOn.DebugPosY));
                         left = false;
+                        Score.SetScore(bombOwner, 100);
                     }
                 }
                 else
@@ -107,6 +110,7 @@ namespace project_Bomberman
                     {
                         up = false;
                         ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY + (i * 80)));
+                        Score.SetScore(bombOwner, 100);
                     }
                 }
                 else
@@ -124,6 +128,7 @@ namespace project_Bomberman
                     {
                         down = false;
                         ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY - (i * 80)));
+                        Score.SetScore(bombOwner, 100);
                     }
                 }
                 else
@@ -191,9 +196,10 @@ namespace project_Bomberman
             }
             return false;
         }
-        public bool GetClosestTile(List<Tile> tiles, double x, double y, Tile playerTile)
+        public bool GetClosestTile(List<Tile> tiles, double x, double y, Tile playerTile, string playerName)
         {
             GameTiles = tiles;
+            bombOwner = playerName;
             double closetsx = 1000;
             double closesty = 1000;
             Tile closestTile;
