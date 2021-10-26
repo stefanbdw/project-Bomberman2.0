@@ -264,8 +264,8 @@ namespace project_Bomberman
             MyCanvas.Children.Add(nijntje);
             MyCanvas.Children.Add(nijtje2);
 
-            MovePiece(nijntje, "box" + 32);             //was 34
-            MovePiece1(nijtje2, "box" + 154);
+            MovePiece(nijntje, "box" + 154);             //was 34
+            MovePiece1(nijtje2, "box" + 32);
             // end the loop
             ImageBrush blockHout = new ImageBrush();
             blockHout.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/Houtblock.png"));
@@ -625,7 +625,7 @@ namespace project_Bomberman
                 if (tile.Exploding && tile.ResetDone == false && tile.ResetStarted == false)
                 {
                     ImageBrush Explodingpic = new ImageBrush();
-                    Explodingpic.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/bieb.jpg"));
+                    Explodingpic.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/bieb.png"));
                     tile.myRec.Fill = Explodingpic;
                     tile.ResetStarted = true;
                 }
