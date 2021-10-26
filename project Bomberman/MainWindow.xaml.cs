@@ -613,7 +613,7 @@ namespace project_Bomberman
                 if (tile.Exploding && tile.ResetDone == false && tile.ResetStarted == false)
                 {
                     ImageBrush Explodingpic = new ImageBrush();
-                    Explodingpic.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/oke.png"));
+                    Explodingpic.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/bieb.png"));
                     tile.myRec.Fill = Explodingpic;
                     tile.ResetStarted = true;
                 }

@@ -24,7 +24,7 @@ namespace project_Bomberman
         //create a bomb
         public void CreateBomb()
         {
-            brush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/oke1.png"));
+            //brush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/bieb.png"));
             //nijntjeImage2.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/simpels.png"));
             StartBombCounter();
         }
@@ -47,8 +47,8 @@ namespace project_Bomberman
         {
             placedOn.HasBomb = false;
             destroyed = true;
-            ImageBrush Explodingpic = new ImageBrush();
-            Explodingpic.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/oke.png"));
+            //ImageBrush Explodingpic = new ImageBrush();
+            //Explodingpic.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/bieb.png"));
             bool up = true;
             bool down = true;
             bool left = true;
@@ -180,7 +180,7 @@ namespace project_Bomberman
             if (placedOn != null && !placedOn.HasBomb)
             {
                 //CreateBomb();
-                brush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/oke1.png"));
+                //brush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/bieb.png"));
                 myRec = CreateRect(60, 60, brush, 1);
                 Canvas.SetLeft(myRec, placedOn.posX);
                 Canvas.SetTop(myRec, placedOn.posY);
@@ -223,7 +223,7 @@ namespace project_Bomberman
                 {
                     placedOn.Hasplayer = true;
                 }
-                brush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/simpels.png"));
+                brush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/BOM.png"));
                 myRec = CreateRect(80, 80, brush, 1);
                 Canvas.SetLeft(myRec, placedOn.posX);
                 Canvas.SetTop(myRec, placedOn.posY);
