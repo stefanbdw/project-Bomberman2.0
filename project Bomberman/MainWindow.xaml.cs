@@ -512,6 +512,7 @@ namespace project_Bomberman
 
                     gameTimer.Start();
                 
+                
             }
             if (e.Key == Key.M)
             {
