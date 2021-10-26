@@ -111,8 +111,6 @@ namespace project_Bomberman
             cooldownP1.AutoReset = false;
             cooldownP2.AutoReset = false;
 
-            Score.Scores.Add("playerName", 10);
-            Score.Scores.Add("Playername2", 10);
 
 
 
