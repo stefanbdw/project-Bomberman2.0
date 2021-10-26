@@ -97,7 +97,7 @@ namespace project_Bomberman
 
 
         Random rnd = new Random();
-
+        
 
         public MainWindow()
         {
@@ -499,6 +499,26 @@ namespace project_Bomberman
             if (e.Key == Key.Enter)
             {
                 placingBombPl1 = false;
+            }
+            if (e.Key == Key.P)
+            {
+                gameTimer.Stop();
+                
+            }
+
+            else
+            {
+                if (e.Key == Key.Enter)
+
+                    gameTimer.Start();
+                
+            }
+            if (e.Key == Key.M)
+            {
+                Hoofdmenu g = new Hoofdmenu();
+                g.Visibility = Visibility.Visible;
+                this.Close();
+
             }
         }
 

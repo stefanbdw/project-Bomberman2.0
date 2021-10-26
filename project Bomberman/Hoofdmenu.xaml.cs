@@ -23,13 +23,24 @@ namespace project_Bomberman
         public Hoofdmenu()
         {
             InitializeComponent();
+
+            ImageBrush b = new ImageBrush();
+            b.ImageSource = new BitmapImage(new Uri("pack://application:,,,/1.jpg"));
+            
+
         }
         private void Start1v1Btn(object sender, RoutedEventArgs e)
         {
             MainWindow g = new MainWindow();
-            g.Show();
+            g.Visibility = Visibility.Visible;
+            this.Hide();
+
+
+
+
 
         }
+        
 
         private void SettingsBtn(object sender, RoutedEventArgs e)
         {

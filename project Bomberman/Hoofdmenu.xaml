@@ -9,6 +9,9 @@
       Title="Hoofdmenu">
 
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/1.jpg"></ImageBrush>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
