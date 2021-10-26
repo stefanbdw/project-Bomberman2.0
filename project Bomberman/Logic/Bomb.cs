@@ -17,7 +17,7 @@ namespace project_Bomberman
         public Tile placedOn;
         public bool destroyed = false;
         public List<Tile> ExplodingTiles = new List<Tile>();
-        private Timer bombTime = new Timer(1000);
+        private Timer bombTime = new Timer(3000);
         private List<Tile> GameTiles = new List<Tile>();
         public Canvas canvas;
 

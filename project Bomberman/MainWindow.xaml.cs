@@ -51,8 +51,8 @@ namespace project_Bomberman
         Rectangle block;
 
 
-        int speed = 10;
-        int speed1 = 10;// this integer is for the speed of the player
+        int speed = 4;
+        int speed1 = 4;// this integer is for the speed of the player
         int i = -1;
         int j = -1;
 
@@ -92,8 +92,8 @@ namespace project_Bomberman
         Tile OnTilePl1;
         Tile OntilePl2;
 
-        Timer cooldownP1 = new Timer(3000);
-        Timer cooldownP2 = new Timer(3000);
+        Timer cooldownP1 = new Timer(1000);
+        Timer cooldownP2 = new Timer(1000);
 
 
         Random rnd = new Random();
@@ -115,7 +115,7 @@ namespace project_Bomberman
 
             MyCanvas.Focus(); // set my canvas as the main focus for the program
             gameTimer.Tick += GameLoop;
-            gameTimer.Interval = TimeSpan.FromMilliseconds(20); // set time to tick every 20 milliseconds
+            gameTimer.Interval = TimeSpan.FromMilliseconds(10); // set time to tick every 20 milliseconds
             gameTimer.Start(); // start the time
 
 
@@ -286,7 +286,7 @@ namespace project_Bomberman
 
                 int[] numbers = {
                    18,  19,
-                20,  21,  22,  23 ,   25,  26,  27,  28,  29,
+                20,  21,  22,  23 , 24,   25,  26,  27,  28,  29,
                 30,          37,    39,
                   41,    43,    45,    47,    49,
                  52,  53,  54,  55,  56,  57,  58,  59,
@@ -300,10 +300,22 @@ namespace project_Bomberman
                 130, 131, 132, 133, 134,  137,  139,
                  141,  143,  145,  147,  149,
                      156, 157, 158, 159,
-                160, 161, 162, 163, 164, 165, 166, 167, 168,
-                     1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1,          };
-
-                Moveblock(block, "box" + numbers[i]);
+                160, 161, 162, 163, 164, 165, 166, 167, 168 };
+                
+                if (i > numbers.Length - 1)
+                {
+                    
+                    break;
+                }
+                else
+                {
+                    Moveblock(block, "box" + numbers[i]);
+                }
+                
+                
+                    
+                
+                
                 blocktoRemove.Add(block);
                 MyCanvas.Children.Add(block);
                 Rect check = new Rect(Canvas.GetLeft(block), Canvas.GetTop(block), block.Width / 2, block.Height / 2);
@@ -613,7 +625,7 @@ namespace project_Bomberman
                 if (tile.Exploding && tile.ResetDone == false && tile.ResetStarted == false)
                 {
                     ImageBrush Explodingpic = new ImageBrush();
-                    Explodingpic.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/bieb.png"));
+                    Explodingpic.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/bieb.jpg"));
                     tile.myRec.Fill = Explodingpic;
                     tile.ResetStarted = true;
                 }
