@@ -37,7 +37,7 @@ namespace project_Bomberman
             //todo get highscores
             highscores.Clear();
 
-            string query = "SELECT Player1Name,Player1Score FROM [Table];";
+            string query = "SELECT Name,Score FROM [Table];";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -58,25 +58,23 @@ namespace project_Bomberman
             }
         }
 
-        private void SetHighScores()
+        public void SetHighScores(string SQL_Text)
         {
-            //todo insert into database
 
-            string query1 = "INSERT INTO [Highscores] ([Player],[Score],[Date]) VALUES ('Jos','42','" + DateTime.Today.ToString("yyyy-MM-dd") + ")";
-            string query2 = "INSERT INTO [Highscores] ([Player],[Score],[Date]) VALUES ('Allard','43','" + DateTime.Today.ToString("yyyy-MM-dd") + "')";
+            //string query1 = "INSERT INTO [Table] ([Player],[Score]) VALUES ('Jos','500')";
 
             SqlConnection connection = new SqlConnection(connectionString);
 
             SqlCommand command = new SqlCommand();
             try
             {
-                command.CommandText = query2;
+                command.CommandText = SQL_Text;
                 command.CommandType = CommandType.Text;
                 command.Connection = connection;
                 connection.Open();
                 command.ExecuteNonQuery();
                 connection.Close();
-                MessageBox.Show("Gelukt!");
+                //MessageBox.Show("Gelukt!");
             }
             catch (Exception e)
             {
