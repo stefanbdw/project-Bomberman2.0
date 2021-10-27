@@ -33,12 +33,7 @@ namespace project_Bomberman
         private void Start1v1Btn(object sender, RoutedEventArgs e)
         {
             MainWindow g = new MainWindow();
-            g.Visibility = Visibility.Visible;
-            this.Hide();
-
-
-
-
+            g.Show();
 
         }
         
@@ -50,9 +45,7 @@ namespace project_Bomberman
 
         private void HighScoreBtn(object sender, RoutedEventArgs e)
         {
-            HighScoreWindow h = new HighScoreWindow();
-            h.Visibility = Visibility.Visible;
-            this.Hide();
+
         }
 
         private void ExitBtn(object sender, RoutedEventArgs e)
