@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Fonts\04B_30__.TTF" />
     <None Remove="images\0.jpg" />
     <None Remove="images\1.jpg" />
     <None Remove="images\10.jpg" />
@@ -224,6 +225,9 @@
 
   <ItemGroup>
     <None Include="AssemblyInfo.cs" />
+    <Resource Include="Fonts\04B_30__.TTF">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="images\0.jpg" />
     <Resource Include="images\1.jpg" />
     <Resource Include="images\10.jpg" />
@@ -434,6 +438,10 @@
 
   <ItemGroup>
     <Folder Include="Data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
 
 </Project>
