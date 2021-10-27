@@ -12,6 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="HighScore.mdf" />
+    <None Remove="HighScore_log.ldf" />
     <None Remove="images\0.jpg" />
     <None Remove="images\1.jpg" />
     <None Remove="images\10.jpg" />
@@ -223,6 +225,8 @@
 
   <ItemGroup>
     <None Include="AssemblyInfo.cs" />
+    <Resource Include="HighScore.mdf" />
+    <Resource Include="HighScore_log.ldf" />
     <Resource Include="images\0.jpg" />
     <Resource Include="images\1.jpg" />
     <Resource Include="images\10.jpg" />
