@@ -36,15 +36,10 @@ namespace project_Bomberman
         {
             //start de timer
             bombTime.Start();
-            //na aantal seconden als er een interval 
+            //na aantal seconden als er een interval is geweest roep aangegeven funtie aan
             bombTime.Elapsed += BombTime_Elapsed;
+            //zet de auto reset uit zodat de code niet gaat loopen
             bombTime.AutoReset = false;
-        }
-        public void CreateExplosion()
-        {
-            placedOn.Exploding = true;
-
-
         }
 
         private void BombTime_Elapsed(object sender, ElapsedEventArgs e)

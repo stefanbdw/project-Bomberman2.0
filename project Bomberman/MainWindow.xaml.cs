@@ -533,7 +533,6 @@ namespace project_Bomberman
                 cooldownP1.Elapsed += Timer_ElapsedP1;
                 Bomb bom = new Bomb
                 {
-                    canvas = MyCanvas
                 };
                 if (bom.GetClosestTile(tiles, (Canvas.GetLeft(nijntje) + nijntje.Width / 2), (Canvas.GetTop(nijntje) + nijntje.Height / 2), OnTilePl1, Score.NamePlayer1))
                 {
@@ -550,7 +549,6 @@ namespace project_Bomberman
                 cooldownP2.Elapsed += Timer_ElapsedP2;
                 Bomb bom = new Bomb
                 {
-                    canvas = MyCanvas
                 };
                 if (bom.GetClosestTile(tiles, (Canvas.GetLeft(nijtje2) + nijtje2.Width / 2), (Canvas.GetTop(nijtje2) + nijtje2.Height / 2), OntilePl2, Score.NamePlayer2))
                 {
