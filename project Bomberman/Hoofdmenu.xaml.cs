@@ -50,7 +50,9 @@ namespace project_Bomberman
 
         private void HighScoreBtn(object sender, RoutedEventArgs e)
         {
-
+            HighScoreWindow h = new HighScoreWindow();
+            h.Visibility = Visibility.Visible;
+            this.Hide();
         }
 
         private void ExitBtn(object sender, RoutedEventArgs e)

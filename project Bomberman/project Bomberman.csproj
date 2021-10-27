@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <None Remove="Fonts\04B_30__.TTF" />
+    <None Remove="highscores.mdf" />
     <None Remove="images\0.jpg" />
     <None Remove="images\1.jpg" />
     <None Remove="images\10.jpg" />
@@ -228,6 +229,7 @@
     <Resource Include="Fonts\04B_30__.TTF">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Data\highscores.mdf" />
     <Resource Include="images\0.jpg" />
     <Resource Include="images\1.jpg" />
     <Resource Include="images\10.jpg" />
@@ -434,10 +436,6 @@
     <Resource Include="images\oke.png" />
     <Resource Include="images\oke1.png" />
     <Resource Include="images\simpels.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\" />
   </ItemGroup>
 
   <ItemGroup>

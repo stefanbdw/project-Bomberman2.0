@@ -1,10 +1,7 @@
-﻿CREATE TABLE [dbo].[HighScores]
+﻿CREATE TABLE [dbo].[Table]
 (
-	[ID] INT NOT NULL PRIMARY KEY IDENTITY,
-	[HighScore] INT NOT NULL,
-	[Player] NCHAR(10) NOT NULL,
-	[Date] DATE NOT NULL, 
-    [Player2] NCHAR(10) NOT NULL, 
-    [Score] INT NULL
-
+	[Player1Name] NCHAR(10) NOT NULL PRIMARY KEY, 
+    [Player1Score] INT NOT NULL, 
+    [Player2Name] NCHAR(10) NOT NULL, 
+    [Player2Score] INT NOT NULL
 )

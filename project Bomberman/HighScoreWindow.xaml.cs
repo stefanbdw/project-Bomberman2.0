@@ -37,7 +37,9 @@ namespace project_Bomberman
 
         private void backBtn(object sender, RoutedEventArgs e)
         {
-
+            Hoofdmenu h = new Hoofdmenu();
+            h.Visibility = Visibility.Visible;
+            this.Hide();
         }
     }
 }
