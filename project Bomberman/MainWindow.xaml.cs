@@ -115,10 +115,10 @@ namespace project_Bomberman
 
 
 
-            MyCanvas.Focus(); // set my canvas as the main focus for the program
+            MyCanvas.Focus(); // Set een Canvas als belangrijkste in hetProject.
             gameTimer.Tick += GameLoop;
-            gameTimer.Interval = TimeSpan.FromMilliseconds(10); // set time to tick every 20 milliseconds
-            gameTimer.Start(); // start the time
+            gameTimer.Interval = TimeSpan.FromMilliseconds(10); // Hier staat de Gametick op 10 Milliseconds.
+            gameTimer.Start(); // start Game
 
 
             ImageBrush nijntjeImage = new ImageBrush();

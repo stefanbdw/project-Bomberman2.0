@@ -22,12 +22,12 @@ namespace project_Bomberman
     /// 
     public partial class HighScoreWindow : Window
     {
-        static String connectionString = @"Data Source=vibes\sqlexpress;Initial Catalog=ParallelCodes;User ID=sa;Password=789;";
-        SqlConnection con;
-        SqlCommand cmd;
-        SqlDataAdapter adapter;
-        DataSet ds;
-        SqlDataReader reader;
+        //static String connectionString = @"Data Source=vibes\sqlexpress;Initial Catalog=ParallelCodes;User ID=sa;Password=789;";
+        //SqlConnection con;
+        //SqlCommand cmd;
+        //SqlDataAdapter adapter;
+        //DataSet ds;
+        //SqlDataReader reader;
 
 
         public HighScoreWindow()
