@@ -53,11 +53,6 @@ namespace project_Bomberman
 
         }
 
-        private void StartSoloBtn(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void ExitBtn(object sender, RoutedEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();

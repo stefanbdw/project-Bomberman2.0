@@ -29,9 +29,15 @@ namespace project_Bomberman
         //DataSet ds;
         //SqlDataReader reader;
 
+
         public HighScoreWindow()
         {
             InitializeComponent();
+        }
+
+        private void backBtn(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
