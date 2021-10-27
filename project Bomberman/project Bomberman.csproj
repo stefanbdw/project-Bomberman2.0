@@ -229,7 +229,6 @@
     <Resource Include="Fonts\04B_30__.TTF">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Data\highscores.mdf" />
     <Resource Include="images\0.jpg" />
     <Resource Include="images\1.jpg" />
     <Resource Include="images\10.jpg" />
