@@ -6,6 +6,14 @@
         xmlns:local="clr-namespace:project_Bomberman"
         mc:Ignorable="d"
         Title="HighScoreWindow" Height="1080" Width="1920" WindowState="Maximized" WindowStyle="None">
+    <Window.Resources>
+        <!--A Style that affects all TextBlocks-->
+        <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="04b 30"/>
+            <Setter Property="FontSize" Value="30"/>
+        </Style>
+    </Window.Resources>
+
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Images/background.jpg" Stretch="UniformToFill"/>
@@ -15,12 +23,12 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="1" x:Name="HighScoresPanel" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <Label Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="36" Margin="0,60,0,0" HorizontalContentAlignment="Center" FontFamily="04b 30">
             <Label.Background>
                 <ImageBrush/>
             </Label.Background> High scores
         </Label>
-        <StackPanel Grid.Column="1" x:Name="HighScoresPanel" HorizontalAlignment="Center"/>
         <Label Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="30" Margin="0,100,0,0" Name="highscoreLabel"></Label>
         <Button Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="26" Margin="0,0,0,40"  Name="Exit" Click="backBtn" FontFamily="04b 30">
             <Button.BorderBrush>
