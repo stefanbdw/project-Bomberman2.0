@@ -5,9 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:project_Bomberman"
         mc:Ignorable="d"
-        Title="Bomberman" Height="1080" Width="1920">
-    <Canvas Name="MyCanvas" KeyDown="CanvasKeyDown" KeyUp="Canvas_KeyUp"  Focusable="True" Background="White">
-
+        Title="Bomberman" Height="1080" Width="1920" WindowState="Maximized" WindowStyle="None">
+    
+    <Canvas Name="MyCanvas" KeyDown="CanvasKeyDown" KeyUp="Canvas_KeyUp"  Focusable="True" >
+        <Canvas.Background>
+            <ImageBrush ImageSource="/Images/background.jpg" Stretch="UniformToFill"/>
+        </Canvas.Background>
         <Rectangle Tag="wall" Stroke="Black"   Height="37" Width="1200" Canvas.Left="340" Canvas.Top="143" RenderTransformOrigin="0.5,0.5">
             <Rectangle.RenderTransform>
                 <TransformGroup>
@@ -68,7 +71,7 @@
 
 
     </Canvas>
-
+    
 
 
 </Window>

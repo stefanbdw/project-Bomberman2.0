@@ -23,14 +23,25 @@ namespace project_Bomberman
         public Hoofdmenu()
         {
             InitializeComponent();
-        }
-        private void Start1v1Btn(object sender, RoutedEventArgs e)
-        {
-            MainWindow g = new MainWindow();
-            g.Show();
+            
+            
             
 
         }
+        
+
+        private void Start1v1Btn(object sender, RoutedEventArgs e)
+        {
+            MainWindow g = new MainWindow();
+            g.Visibility = Visibility.Visible;
+            this.Hide();
+
+
+
+
+
+        }
+        
 
         private void SettingsBtn(object sender, RoutedEventArgs e)
         {
@@ -38,11 +49,6 @@ namespace project_Bomberman
         }
 
         private void HighScoreBtn(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void StartSoloBtn(object sender, RoutedEventArgs e)
         {
 
         }

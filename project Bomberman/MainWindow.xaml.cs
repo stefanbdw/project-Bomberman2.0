@@ -97,7 +97,7 @@ namespace project_Bomberman
 
 
         Random rnd = new Random();
-
+        
 
         public MainWindow()
         {
@@ -115,10 +115,10 @@ namespace project_Bomberman
 
 
 
-            MyCanvas.Focus(); // set my canvas as the main focus for the program
+            MyCanvas.Focus(); // Set een Canvas als belangrijkste in hetProject.
             gameTimer.Tick += GameLoop;
-            gameTimer.Interval = TimeSpan.FromMilliseconds(10); // set time to tick every 20 milliseconds
-            gameTimer.Start(); // start the time
+            gameTimer.Interval = TimeSpan.FromMilliseconds(10); // Hier staat de Gametick op 10 Milliseconds.
+            gameTimer.Start(); // start Game
 
 
             ImageBrush nijntjeImage = new ImageBrush();
@@ -499,6 +499,27 @@ namespace project_Bomberman
             if (e.Key == Key.Enter)
             {
                 placingBombPl1 = false;
+            }
+            if (e.Key == Key.P)
+            {
+                gameTimer.Stop();
+                
+            }
+
+            else
+            {
+                if (e.Key == Key.Enter)
+
+                    gameTimer.Start();
+                
+                
+            }
+            if (e.Key == Key.M)
+            {
+                Hoofdmenu g = new Hoofdmenu();
+                g.Visibility = Visibility.Visible;
+                this.Close();
+
             }
         }
 
