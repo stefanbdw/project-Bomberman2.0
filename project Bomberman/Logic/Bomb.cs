@@ -10,30 +10,33 @@ namespace project_Bomberman
 {
     class Bomb
     {
-        int rangeExplosion = 5;
 
+        //zet de afstand en berijk van de explosie
+        int rangeExplosion = 5;
+        //De rectangle van de tile class hiermee wordt her plaatje weergeveb
         public Rectangle myRec;
+        //Maakt een image brush aan zodat we met gemak plaatjes kunnen vastzetten
         public ImageBrush brush = new ImageBrush();
+        //De tile class waar de bom op geplaatst wordt
         public Tile placedOn;
+        // als de tile vernietigd moet worden word deze bool naar true gezet
         public bool destroyed = false;
+        //een lijst waar alle tiles in komen die door een explosie berijkt worden
         public List<Tile> ExplodingTiles = new List<Tile>();
+        //een timer class die regelt dat de bom na (milliseconden) ontploft
         private Timer bombTime = new Timer(3000);
+        //een lijst van alle tiles die aanwezig zijn ingame
         private List<Tile> GameTiles = new List<Tile>();
-        public Canvas canvas;
+        //de naam van de eigenaar die de bom heeft geplaatst
         public string bombOwner;
 
-        //create a bomb
-        public void CreateBomb()
-        {
-            //brush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/bieb.png"));
-            //nijntjeImage2.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/simpels.png"));
-            StartBombCounter();
-        }
-
+        
+        //activeer de timer van de bom 
         public void StartBombCounter()
         {
-            //Timer bombTime = new Timer(5000);
+            //start de timer
             bombTime.Start();
+            //na aantal seconden als er een interval 
             bombTime.Elapsed += BombTime_Elapsed;
             bombTime.AutoReset = false;
         }
@@ -162,40 +165,6 @@ namespace project_Bomberman
             return myRec;
         }
 
-        public bool GetClosestTile(List<Tile> tiles, double x, double y)
-        {
-
-            double closetsx = 1000;
-            double closesty = 1000;
-            Tile closestTile;
-            double testVar = (x + y);
-            //calutale the distance between these two points
-            double distance = Math.Sqrt(Math.Pow((x - tiles[0].DebugPosX), 2) + Math.Pow((y - tiles[0].DebugPosY), 2));
-
-            foreach (Tile tile in tiles)
-            {
-                //check if the distance between points is smaller then the already set distance
-                if (Math.Sqrt(Math.Pow((x - tile.DebugPosX), 2) + Math.Pow((y - tile.DebugPosY), 2)) < distance)
-                {
-                    distance = Math.Sqrt(Math.Pow((x - tile.DebugPosX), 2) + Math.Pow((y - tile.DebugPosY), 2));
-                    placedOn = tile;
-                }
-
-            }
-            if (placedOn != null && !placedOn.HasBomb)
-            {
-                //CreateBomb();
-                //brush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/bieb.png"));
-                myRec = CreateRect(60, 60, brush, 1);
-                Canvas.SetLeft(myRec, placedOn.posX);
-                Canvas.SetTop(myRec, placedOn.posY);
-                placedOn.HasBomb = true;
-                placedOn.Hasplayer = true;
-                StartBombCounter();
-                return true;
-            }
-            return false;
-        }
         public bool GetClosestTile(List<Tile> tiles, double x, double y, Tile playerTile, string playerName)
         {
             GameTiles = tiles;
