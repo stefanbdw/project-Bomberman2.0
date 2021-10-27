@@ -45,7 +45,8 @@ namespace project_Bomberman
 
         private void HighScoreBtn(object sender, RoutedEventArgs e)
         {
-
+            HighScoreWindow h = new HighScoreWindow();
+            h.Show();
         }
 
         private void ExitBtn(object sender, RoutedEventArgs e)
