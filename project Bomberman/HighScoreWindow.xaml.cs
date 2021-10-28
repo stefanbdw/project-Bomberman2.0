@@ -28,6 +28,7 @@ namespace project_Bomberman
         public HighScoreWindow()
         {
             InitializeComponent();
+            MessageBox.Show(System.AppDomain.CurrentDomain.BaseDirectory);
             GetHighScores();
             CreateLabels();
         }
