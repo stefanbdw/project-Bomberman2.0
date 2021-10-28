@@ -61,8 +61,9 @@ namespace project_Bomberman
         int i = -1;
         int j = -1;
 
-        
-            
+        string localPLayer1Name = "";
+        string localPLayer2Name = "";
+
 
         Rect nijntjeHitBox;
         Rect hitBoxNijntje2;
@@ -101,7 +102,8 @@ namespace project_Bomberman
             cooldownP1.AutoReset = false;
             cooldownP2.AutoReset = false;
 
-            
+            localPLayer1Name = Score.NamePlayer1;
+            localPLayer2Name = Score.NamePlayer2;
 
             MyCanvas.Focus(); // Set een Canvas als belangrijkste in hetProject.
             gameTimer.Tick += GameLoop;
