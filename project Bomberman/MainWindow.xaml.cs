@@ -285,7 +285,7 @@ namespace project_Bomberman
                 foreach (var number in possiblenumbers)
                 {
                     Random r = new Random();
-                    if (r.Next(100) < 40)
+                    if (r.Next(100) < 80)
                     {
                         numbers.Add(number);
                         // will be true 40% of the time
@@ -517,8 +517,8 @@ namespace project_Bomberman
                     
 
             }
-            // met de key M word het menu geopent in het spel
-            if (e.Key == Key.M)
+            // met de key escape word het menu geopent in het spel
+            if (e.Key == Key.Escape)
             {
                 Hoofdmenu g = new Hoofdmenu();
                 g.Visibility = Visibility.Visible;
@@ -564,7 +564,8 @@ namespace project_Bomberman
                 cooldownP2.Start();
             }
 
-
+            // Wat hier gebeurd is wanneer nijntje een wall raakt de snellheid naar 0 gaat.
+            // nijntje 1
             if (goright)
             {
 
@@ -604,7 +605,7 @@ namespace project_Bomberman
             }
             if (goleft1)
             {
-                // if go left boolean is true
+
                 if (collider.CollisionCheck((Canvas.GetLeft(nijtje2) + nijtje2.Width / 2) - speed1 - colliderMargin, (Canvas.GetTop(nijtje2)) + nijtje2.Height / 2))
                 {
                     Canvas.SetLeft(nijtje2, Canvas.GetLeft(nijtje2) - speed1);
@@ -612,7 +613,7 @@ namespace project_Bomberman
             }
             if (goup1)
             {
-                // if go up boolean is true 
+
                 if (collider.CollisionCheck((Canvas.GetLeft(nijtje2) + nijtje2.Width / 2), ((Canvas.GetTop(nijtje2)) + nijtje2.Height / 2) - colliderMargin - speed1))
                 {
                     Canvas.SetTop(nijtje2, Canvas.GetTop(nijtje2) - speed1);
@@ -620,12 +621,12 @@ namespace project_Bomberman
             }
             if (godown1)
             {
-                // if go down boolean is true
                 if (collider.CollisionCheck((Canvas.GetLeft(nijtje2) + nijtje2.Width / 2), ((Canvas.GetTop(nijtje2)) + nijtje2.Height / 2) + colliderMargin + speed1))
                 {
                     Canvas.SetTop(nijtje2, Canvas.GetTop(nijtje2) + speed1);
                 }
             }
+            //einde movement
 
 
             foreach (Bomb bomb in bombs)
@@ -668,84 +669,62 @@ namespace project_Bomberman
 
 
             foreach (var x in MyCanvas.Children.OfType<Rectangle>())
-            {
-                // loop through all of the rectangles inside of the game and identify them using the x variable
-
-                //Rect hitBox = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height); // create a new rect called hit box for all of the available rectangles inside of the game
+            {            
+                // Hier wordt een rect aangemaakt voor de hitbox van Nijntje.
 
 
-                nijntjeHitBox = new Rect(Canvas.GetLeft(nijntje), Canvas.GetTop(nijntje), nijntje.Width, nijntje.Height);
-                hitBoxNijntje2 = new Rect(Canvas.GetLeft(nijtje2), Canvas.GetTop(nijtje2), nijtje2.Width, nijtje2.Height);
-                //if (x.Tag != null)
+                nijntjeHitBox = new Rect(Canvas.GetLeft(nijntje), Canvas.GetTop(nijntje), nijntje.Width, nijntje.Height); // Hier wordt de hitbox van nijntje 1 aangemaakt
+                hitBoxNijntje2 = new Rect(Canvas.GetLeft(nijtje2), Canvas.GetTop(nijtje2), nijtje2.Width, nijtje2.Height);// Hier wordt de hitbox van nijntje 2 aangemaakt
+
                 if (x is Rectangle && (string)x.Tag == "wall")
                 {
-                    // create a platform id variable and save the tags for the platform in it
 
-                    // if the tag is a platform then we can do the following
-
-                    // in order to do the hit test we need to define the elements for this app
-                    // first define who the player is as in what object it is and how to calculate its height and width
-
-                    //pacmanHitBox = new Rect(Canvas.GetLeft(nijntje), Canvas.GetTop(nijntje), nijntje.Width, nijntje.Height);
-                    //hitBoxNijntje2 = new Rect(Canvas.GetLeft(nijtje2), Canvas.GetTop(nijtje2), nijtje2.Width, nijtje2.Height);
-
-                    // second we will need to do the same for the platforms
-                    // since they are running inside a loop we can use the X keyword to identify them and save their values
                     Rect platforms = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
-
-                    // now we can check if the player intersets or HITs the platforms if so do we can do the following
+                    // Wat hier gebeurd is dat die elke movement controleerd wat die geen wall raakt.
                     if (nijntjeHitBox.IntersectsWith(platforms) | hitBoxNijntje2.IntersectsWith(platforms))
                     {
+                        // nijntje 1 hitbox
                         if (goleft == true && nijntjeHitBox.IntersectsWith(platforms))
                         {
                             Canvas.SetLeft(nijntje, Canvas.GetLeft(nijntje) + 10);
-
                             goleft = false;
                         }
-                        // check if we are colliding with the wall while moving right if true then stop the pac man movement
                         if (goright == true && nijntjeHitBox.IntersectsWith(platforms))
                         {
                             Canvas.SetLeft(nijntje, Canvas.GetLeft(nijntje) - 10);
-
                             goright = false;
                         }
-                        // check if we are colliding with the wall while moving down if true then stop the pac man movement
                         if (godown == true && nijntjeHitBox.IntersectsWith(platforms))
                         {
                             Canvas.SetTop(nijntje, Canvas.GetTop(nijntje) - 10);
-
                             godown = false;
                         }
-                        // check if we are colliding with the wall while moving up if true then stop the pac man movement
                         if (goup == true && nijntjeHitBox.IntersectsWith(platforms))
                         {
                             Canvas.SetTop(nijntje, Canvas.GetTop(nijntje) + 10);
-
                             goup = false;
                         }
-
-
+                        // einde hitbox 
+                        // begin hitbox nijntje 2
                         if (goleft1 == true && hitBoxNijntje2.IntersectsWith(platforms))
                         {
                             Canvas.SetLeft(nijtje2, Canvas.GetLeft(nijtje2) + 10);
 
                             goleft1 = false;
                         }
-                        // check if we are colliding with the wall while moving right if true then stop the pac man movement
                         if (goright1 == true && hitBoxNijntje2.IntersectsWith(platforms))
                         {
                             Canvas.SetLeft(nijtje2, Canvas.GetLeft(nijtje2) - 10);
 
                             goright1 = false;
                         }
-                        // check if we are colliding with the wall while moving down if true then stop the pac man movement
                         if (godown1 == true && hitBoxNijntje2.IntersectsWith(platforms))
                         {
                             Canvas.SetTop(nijtje2, Canvas.GetTop(nijtje2) - 10);
 
                             godown1 = false;
                         }
-                        // check if we are colliding with the wall while moving up if true then stop the pac man movement
+
                         if (goup1 == true && hitBoxNijntje2.IntersectsWith(platforms))
                         {
                             Canvas.SetTop(nijtje2, Canvas.GetTop(nijtje2) + 10);
@@ -780,20 +759,8 @@ namespace project_Bomberman
             }
         }
 
-
         private void MovePiece(Rectangle nijntje, string posName)
         {
-
-            //this function will move the player and the opponent across the board
-            //the way it does it is very simply, we have added of the board rectangles to the moves list
-            //from the for each loop below we can loop through all of the rectangles from that list
-
-            //we are also checking if any of the rectangle has the posName, if they do then we will link the landing rect to that rectangle found inside of the for each loop
-
-            //this way we can move the rectangle that is being passed inside of this function and run in the timer event to animate it when it starts
-
-
-
             foreach (Rectangle rectangle in Moves)
             {
                 if (rectangle.Name == posName)
@@ -801,28 +768,11 @@ namespace project_Bomberman
                     landingRec = rectangle;
                 }
             }
-
-
-            // the two lines here will place the "player" object that is being passed in this function to the landingRec location
             Canvas.SetLeft(nijntje, Canvas.GetLeft(landingRec) + nijntje.Width / 2);
-
             Canvas.SetTop(nijntje, Canvas.GetTop(landingRec) + nijntje.Height / 2);
-
-
         }
         private void MovePiece1(Rectangle nijtje2, string posName)
         {
-
-            //this function will move the player and the opponent across the board
-            //the way it does it is very simply, we have added of the board rectangles to the moves list
-            //from the for each loop below we can loop through all of the rectangles from that list
-
-            //we are also checking if any of the rectangle has the posName, if they do then we will link the landing rect to that rectangle found inside of the for each loop
-
-            //this way we can move the rectangle that is being passed inside of this function and run in the timer event to animate it when it starts
-
-
-
             foreach (Rectangle rectangle in Moves)
             {
                 if (rectangle.Name == posName)
@@ -830,26 +780,12 @@ namespace project_Bomberman
                     landingRec1 = rectangle;
                 }
             }
-
-
-            // the two lines here will place the "player" object that is being passed in this function to the landingRec location
             Canvas.SetLeft(nijtje2, Canvas.GetLeft(landingRec1) + nijtje2.Width / 2);
             Canvas.SetTop(nijtje2, Canvas.GetTop(landingRec1) + nijtje2.Height / 2);
 
         }
         private void Moveblock(Rectangle block, string posName)
         {
-
-            //this function will move the player and the opponent across the board
-            //the way it does it is very simply, we have added of the board rectangles to the moves list
-            //from the for each loop below we can loop through all of the rectangles from that list
-
-            //we are also checking if any of the rectangle has the posName, if they do then we will link the landing rect to that rectangle found inside of the for each loop
-
-            //this way we can move the rectangle that is being passed inside of this function and run in the timer event to animate it when it starts
-
-
-
             foreach (Rectangle rectangle in Moves)
             {
                 if (rectangle.Name == posName)
@@ -858,8 +794,6 @@ namespace project_Bomberman
                 }
             }
 
-
-            // the two lines here will place the "player" object that is being passed in this function to the landingRec location
             Canvas.SetLeft(block, Canvas.GetLeft(landingRec1) + 5);
             Canvas.SetTop(block, Canvas.GetTop(landingRec1) + 5);
 
