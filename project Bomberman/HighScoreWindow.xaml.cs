@@ -48,6 +48,10 @@ namespace project_Bomberman
         {
             //todo get highscores
             highscores.Clear();
+            for(int i = 0; i < highscores.Count - 1; i++)
+            {
+                //if(highscores.ElementAt(i).Value )
+            }
 
             string query = "SELECT Name,Score FROM [Table];";
 
@@ -61,7 +65,7 @@ namespace project_Bomberman
                 // Call Read before accessing data.
                 while (reader.Read())
                 {
-                    //MessageBox.Show("Data: " + reader[0] + " en: " + reader[1]);
+                    MessageBox.Show("Data: " + reader[0] + " en: " + reader[1]);
                     highscores.Add((string)reader[0], (int)reader[1]);
                 }
 
