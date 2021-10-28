@@ -48,6 +48,8 @@ namespace project_Bomberman
         double ScorePlayer1;
         double ScorePlayer2;
 
+        bool pauze1 = false;
+
 
         Rectangle nijntje; // speler rectangle
         Rectangle nijtje2; // tegenstander rectangle
@@ -58,6 +60,9 @@ namespace project_Bomberman
         int speed1 = 4;// speed Nijtnje 2
         int i = -1;
         int j = -1;
+
+        
+            
 
         Rect nijntjeHitBox;
         Rect hitBoxNijntje2;
@@ -96,9 +101,7 @@ namespace project_Bomberman
             cooldownP1.AutoReset = false;
             cooldownP2.AutoReset = false;
 
-
-
-
+            
 
             MyCanvas.Focus(); // Set een Canvas als belangrijkste in hetProject.
             gameTimer.Tick += GameLoop;
@@ -451,33 +454,50 @@ namespace project_Bomberman
                 placingBombPl1 = false;
             }
             // Pauze menu, wanneer er op P word gedrukt gaat het spel op pauze
+            //if (pauze1 == true)
+            //{
+            //    //int top = 450;
+            //    //int left = 20;
+
+            //    //ImageBrush pauze = new ImageBrush();
+            //    //pauze.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/pause-button.png"));
+
+            //    //Rectangle pauzeimage = new Rectangle
+            //    //{
+            //    //    Height = 1000,
+            //    //    Width = 1000,
+            //    //    Fill = pauze,
+
+            //    //};
+            //    //Canvas.SetLeft(pauzeimage, top);
+            //    //Canvas.SetTop(pauzeimage, left);
+            //    //MyCanvas.Children.Add(pauzeimage);
+            //}
             if (e.Key == Key.P)
             {
-                int top = 1000;
-                int left = 100;
-                
                 gameTimer.Stop();
-                ImageBrush pauze = new ImageBrush();
-                pauze.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/pause-button-png-29672.png"));
-                Rectangle pauzeimage = new Rectangle
-                {
-                    Height = 1000,
-                    Width = 1000,
-                    Fill = pauze,
+                //pauze1 = true;
+                //int top = 450;
+                //int left = 20;
+                //Canvas.SetLeft(pauzeimage, top);
+                //Canvas.SetTop(pauzeimage, left);
+                //MyCanvas.Children.Add(pauzeimage);
 
-            };
-                Canvas.SetLeft(pauzeimage, top);
-                Canvas.SetTop(pauzeimage, left);
-                MyCanvas.Children.Add(pauzeimage);
+
+
             }
             // Wanneer een gebruiker op P heeft gedrukt kan de gebruikker het spel verder spellen als die op enter drukt
             else
             {
                 if (e.Key == Key.Enter)
-
+                { 
                     gameTimer.Start();
+
+                //MyCanvas.Children.Remove(pauzeimage);
+            }
                 
-                
+                    
+
             }
             // met de key M word het menu geopent in het spel
             if (e.Key == Key.M)

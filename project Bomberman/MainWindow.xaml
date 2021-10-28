@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:project_Bomberman"
         mc:Ignorable="d"
-        Title="Bomberman" Height="1080" Width="1920" WindowState="Maximized" WindowStyle="None">
+        Title="Bomberman" Height="1080" Width="1920" WindowState="Maximized" WindowStyle="None" >
     
     <Canvas Name="MyCanvas" KeyDown="CanvasKeyDown" KeyUp="Canvas_KeyUp"  Focusable="True" >
         <Canvas.Background>

@@ -34,6 +34,7 @@ namespace project_Bomberman
         {
             MainWindow g = new MainWindow();
             g.Show();
+            this.Close();
 
         }
         

@@ -21,10 +21,10 @@ namespace project_Bomberman
     /// Interaction logic for HighScoreWindow.xaml
     /// </summary>
     /// 
-    public partial class HighScoreWindow : Window
+    public partial class HighScoreWindow : Window 
     {
         Dictionary<string, int> highscores = new Dictionary<string, int>();
-        const string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\tghee\\Source\\Repos\\project-Bomberman2.0\\project Bomberman\\Data\\db_highscores.mdf;Integrated Security=True";
+        const string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Programmeren 1\\project Bomberman\\project Bomberman\\Data\\db_highscores.mdf;Integrated Security=True";
         public HighScoreWindow()
         {
             InitializeComponent();
