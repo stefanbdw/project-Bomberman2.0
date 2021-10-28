@@ -39,7 +39,6 @@ namespace project_Bomberman
         {
             InitializeComponent();
             SetDir();
-            MessageBox.Show(System.AppDomain.CurrentDomain.BaseDirectory);
             GetHighScores();
             CreateLabels();
         }
@@ -65,8 +64,16 @@ namespace project_Bomberman
                 // Call Read before accessing data.
                 while (reader.Read())
                 {
-                    MessageBox.Show("Data: " + reader[0] + " en: " + reader[1]);
-                    highscores.Add((string)reader[0], (int)reader[1]);
+                    //MessageBox.Show("Data: " + reader[0] + " en: " + reader[1]);
+                    //highscores.Add((string)reader[0], (int)reader[1]);
+                    if (highscores.ContainsKey((string)reader[0]) || (int)reader[1] <= 0)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        highscores.Add((string)reader[0], (int)reader[1]);
+                    }
                 }
 
                 // Call Close when done reading.

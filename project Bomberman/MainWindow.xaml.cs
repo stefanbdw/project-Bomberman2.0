@@ -49,6 +49,7 @@ namespace project_Bomberman
         double ScorePlayer2;
 
         bool pauze1 = false;
+        bool playerAlive = true;
 
 
         Rectangle nijntje; // speler rectangle
@@ -105,7 +106,7 @@ namespace project_Bomberman
             localPLayer1Name = Score.NamePlayer1;
             localPLayer2Name = Score.NamePlayer2;
             //maak highscores aan
-            Score.SetHighScores(localPLayer1Name, 0, localPLayer2Name, 0);
+            //Score.SetHighScores(localPLayer1Name, 0, localPLayer2Name, 0);
 
             MyCanvas.Focus(); // Set een Canvas als belangrijkste in hetProject.
             gameTimer.Tick += GameLoop;
@@ -744,10 +745,22 @@ namespace project_Bomberman
                     if (nijntjeHitBox.IntersectsWith(tileHitbox) && tile.Exploding)
                     {
                         nijntje.Fill = null;
+                        playerAlive = false;
+                        Score.SetScore(Score.NamePlayer2, 1000);
+                        Score.SetHighScores(Score.NamePlayer1, Score.ScorePlayer1, Score.NamePlayer2, Score.ScorePlayer2);
+                        HighScoreWindow h = new HighScoreWindow();
+                        h.Show();
+                        this.Close();
                     }
                     if (hitBoxNijntje2.IntersectsWith(tileHitbox) && tile.Exploding)
                     {
                         nijtje2.Fill = null;
+                        playerAlive = false;
+                        Score.SetScore(Score.NamePlayer1, 1000);
+                        Score.SetHighScores(Score.NamePlayer1, Score.ScorePlayer1, Score.NamePlayer2, Score.ScorePlayer2);
+                        HighScoreWindow h = new HighScoreWindow();
+                        h.Show();
+                        this.Close();
                     }
                 }
 

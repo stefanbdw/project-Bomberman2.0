@@ -39,12 +39,12 @@ namespace project_Bomberman
             if(name == NamePlayer1)
             {
                 ScorePlayer1 += score;
-                SetHighScoresPl1(name, ScorePlayer1);
+                //SetHighScoresPl1(name, ScorePlayer1);
             }
             else if(name == NamePlayer2)
             {
                 ScorePlayer2 += score;
-                SetHighScoresPl2(name, ScorePlayer2);
+                //SetHighScoresPl2(name, ScorePlayer2);
             }
         }
 
