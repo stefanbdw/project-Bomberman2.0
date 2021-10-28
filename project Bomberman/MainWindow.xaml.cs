@@ -258,7 +258,7 @@ namespace project_Bomberman
 
 
                 // locaties waar een block geplaatst wordt
-                int[] numbers = {
+                int[] possiblenumbers = {
                    18,  19,
                 20,  21,  22,  23 , 24,   25,  26,  27,  28,  29,
                 30,          37,    39,
@@ -275,8 +275,22 @@ namespace project_Bomberman
                  141,  143,  145,  147,  149,
                      156, 157, 158, 159,
                 160, 161, 162, 163, 164, 165, 166, 167, 168 };
+
+                List<int> numbers = new List<int>();
+
+                foreach (var number in possiblenumbers)
+                {
+                    Random r = new Random();
+                    if (r.Next(100) < 40)
+                    {
+                        numbers.Add(number);
+                        // will be true 40% of the time
+                    }
+
+                }
                 
-                if (i > numbers.Length - 1)
+                
+                if (i > numbers.Count - 1)
                 {
                     
                     break;
