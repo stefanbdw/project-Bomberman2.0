@@ -6,24 +6,36 @@
         xmlns:local="clr-namespace:project_Bomberman"
         mc:Ignorable="d"
         Title="HighScoreWindow" Height="1080" Width="1920" WindowState="Maximized" WindowStyle="None">
+    <Window.Resources>
+        <!--A Style that affects all TextBlocks-->
+        <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="04b 30"/>
+            <Setter Property="FontSize" Value="30"/>
+        </Style>
+    </Window.Resources>
+
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/background.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-
-        <ListBox Name="lstBox" Grid.Column="1" Margin="0,120,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#fff" >
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" >
-                        <TextBlock Text="{Binding name}" Margin="2" FontWeight="Bold"/>
-                        <TextBlock Text="{Binding score}" Margin="2" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <Label Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="36" Margin="0,60,0,0" Width="250" Background="#FFFFFF" HorizontalContentAlignment="Center">High scores</Label>
-        <Button Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="26" Margin="0,0,0,40" Width="500" Name="Exit" Click="backBtn">Terug</Button>
+        <StackPanel Grid.Column="1" x:Name="HighScoresPanel" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Label Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="36" Margin="0,60,0,0" HorizontalContentAlignment="Center" FontFamily="04b 30">
+            <Label.Background>
+                <ImageBrush/>
+            </Label.Background> High scores
+        </Label>
+        <Label Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="30" Margin="0,100,0,0" Name="highscoreLabel"></Label>
+        <Button Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="26" Margin="0,0,0,40"  Name="Exit" Click="backBtn" FontFamily="04b 30">
+            <Button.BorderBrush>
+                <ImageBrush/>
+            </Button.BorderBrush>
+            <Button.Background>
+                <ImageBrush/>
+            </Button.Background> Terug</Button>
     </Grid>
 </Window>

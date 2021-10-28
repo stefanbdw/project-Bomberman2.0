@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Table]
+﻿CREATE TABLE [dbo].[HighScores]
 (
 	[Player1Name] NCHAR(10) NOT NULL PRIMARY KEY, 
     [Player1Score] INT NOT NULL, 

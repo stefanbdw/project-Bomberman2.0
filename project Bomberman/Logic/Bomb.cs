@@ -42,112 +42,147 @@ namespace project_Bomberman
             bombTime.AutoReset = false;
         }
 
+        //functie die bom ontploft nadat hij is aangeroepen door een timer
         private void BombTime_Elapsed(object sender, ElapsedEventArgs e)
         {
+            // registreerd dat de bom weg is van de tile
             placedOn.HasBomb = false;
+            //registreerd dat de bom destroyed is. zodat de engine hem in de volgende update correct weghaald
             destroyed = true;
-            //ImageBrush Explodingpic = new ImageBrush();
-            //Explodingpic.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/bieb.png"));
-            bool up = true;
-            bool down = true;
-            bool left = true;
-            bool right = true;
-            //ga elke richting op
 
+            //onderstaande bools regelen de richting van de explosie
+            bool up = true;         //explosie gaat omhoog = true
+            bool down = true;       //explosie gaat omlaag = true
+            bool left = true;       //explosie gaat links = true
+            bool right = true;      //explosie gaat rechts = true
+
+            //voor elke stap in de range van de de explosie 
             for (int i = 0; i < rangeExplosion; i++)
             {
+                //een locale tile variable om te verkomen dat de <ReturnClosestTile> te vaak gebruikt wordt
                 Tile modTile;
+                //pak de dichtsbijstaande tile en check of die tile een muur type is en dat de richt bool aan staat
                 if (ReturnClosestTile(GameTiles, placedOn.DebugPosX + (i * 80), placedOn.DebugPosY).Type != "wall" && right)
                 {
+                    //modtile wordt de tile van ReturnClosestTile
                     modTile = ReturnClosestTile(GameTiles, placedOn.DebugPosX + (i * 80), placedOn.DebugPosY);
-                    //ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX + (i * 80), placedOn.DebugPosY));
+                    //check of de type van de tile geen breakable is
                     if (modTile.Type != "Breakable")
                     {
-                        ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX + (i * 80), placedOn.DebugPosY));
+                        //voeg de tile toe aan de explosie lijst
+                        ExplodingTiles.Add(modTile);
+
+                        //ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX + (i * 80), placedOn.DebugPosY));
                     }
+                    //als de modtile wel een breakable type is. zorg ervoor dat de explosie ophoud maar de tile nogwel kapot gaat
                     else
                     {
-                        ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX + (i * 80), placedOn.DebugPosY));
+                        //voeg de tile toe aan de explosie lijst
+                        ExplodingTiles.Add(modTile);
+                        //zet de right bool uit zodat de explosie stopt
                         right = false;
+                        //geef de speler punten via de static score class
                         Score.SetScore(bombOwner, 100);
-                        
                     }
                 }
                 else
                 {
+                    //zet de right bool uit zodat de explosie stopt
                     right = false;
                 }
-                //ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX + (i * 80), placedOn.DebugPosY));
+                //pak de dichtsbijstaande tile en check of die tile een muur type is en dat de left bool aan staat
                 if (ReturnClosestTile(GameTiles, placedOn.DebugPosX - (i * 80), placedOn.DebugPosY).Type != "wall" && left)
                 {
+                    //een locale tile variable om te verkomen dat de <ReturnClosestTile> te vaak gebruikt wordt
                     modTile = ReturnClosestTile(GameTiles, placedOn.DebugPosX - (i * 80), placedOn.DebugPosY);
+                    //check of de type van de tile geen breakable is
                     if (modTile.Type != "Breakable")
                     {
-                        ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX - (i * 80), placedOn.DebugPosY));
+                        //voeg de tile toe aan de explosie lijst
+                        ExplodingTiles.Add(modTile);
                     }
+                    //als de modtile wel een breakable type is. zorg ervoor dat de explosie ophoud maar de tile nogwel kapot gaat
                     else
                     {
-                        ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX - (i * 80), placedOn.DebugPosY));
+                        //voeg de tile toe aan de explosie lijst
+                        ExplodingTiles.Add(modTile);
+                        //zet de left bool uit zodat de explosie stopt
                         left = false;
+                        //geef de speler punten via de static score class
                         Score.SetScore(bombOwner, 100);
                     }
                 }
                 else
                 {
+                    //zet de left bool uit zodat de explosie stopt
                     left = false;
                 }
-                //ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX - (i * 80), placedOn.DebugPosY));
+                //pak de dichtsbijstaande tile en check of die tile een muur type is en dat de up bool aan staat
                 if (ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY + (i * 80)).Type != "wall" && up)
                 {
+                    //een locale tile variable om te verkomen dat de <ReturnClosestTile> te vaak gebruikt wordt
                     modTile = ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY + (i * 80));
+                    //check of de type van de tile geen breakable is
                     if (modTile.Type != "Breakable")
                     {
-                        ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY + (i * 80)));
+                        //voeg de tile toe aan de explosie lijst
+                        ExplodingTiles.Add(modTile);
                     }
                     else
                     {
+                        //zet de up bool uit zodat de explosie stopt
                         up = false;
-                        ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY + (i * 80)));
+                        //voeg de tile toe aan de explosie lijst
+                        ExplodingTiles.Add(modTile);
+                        //geef de speler punten via de static score class
                         Score.SetScore(bombOwner, 100);
                     }
                 }
                 else
                 {
+                    //zet de up bool uit zodat de explosie stopt
                     up = false;
                 }
                 if (ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY - (i * 80)).Type != "wall" && down)
                 {
+                    //een locale tile variable om te verkomen dat de <ReturnClosestTile> te vaak gebruikt wordt
                     modTile = ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY - (i * 80));
+                    //check of de type van de tile geen breakable is
                     if (modTile.Type != "Breakable")
                     {
-                        ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY - (i * 80)));
+                        //voeg de tile toe aan de explosie lijst
+                        ExplodingTiles.Add(modTile);
                     }
                     else
                     {
+                        //zet de down bool uit zodat de explosie stopt
                         down = false;
-                        ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY - (i * 80)));
+                        //voeg de tile toe aan de explosie lijst
+                        ExplodingTiles.Add(modTile);
+                        //geef de speler punten via de static score class
                         Score.SetScore(bombOwner, 100);
                     }
                 }
                 else
                 {
+                    //zet de up bool uit zodat de explosie stopt
                     down = false;
                 }
-                //ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY + (i * 80)));
-                //ExplodingTiles.Add(ReturnClosestTile(GameTiles, placedOn.DebugPosX, placedOn.DebugPosY - (i * 80)));
 
             }
+            //loop door de exploding tile lijst en zet de tiles op exploding
             foreach (Tile tile in ExplodingTiles)
             {
+                //zet exploding op true
                 tile.Exploding = true;
-                //tile.myRec.Fill = Explodingpic;
             }
 
         }
 
-        //create the object in rectangle form
+        //maak een rectangle aan met de gegeven variabellen 
         public Rectangle CreateRect(int height, int width, ImageBrush img, double strokethickness)
         {
+            //my rec wordt een nieuwe rectangle
             myRec = new Rectangle
             {
                 Height = height,
@@ -156,89 +191,89 @@ namespace project_Bomberman
                 Stroke = Brushes.Black,
                 StrokeThickness = strokethickness
             };
-
+            //geef de gemaakte rectangle terug
             return myRec;
         }
 
+        //pack de dichtsbezijnde tile 
         public bool GetClosestTile(List<Tile> tiles, double x, double y, Tile playerTile, string playerName)
         {
+            //voeg de tiles toe aan de Gametiles lijst
             GameTiles = tiles;
+            //zet de naam van de speler als de eigenaar
             bombOwner = playerName;
-            double closetsx = 1000;
-            double closesty = 1000;
-            Tile closestTile;
-            double testVar = (x + y);
-            //calutale the distance between these two points
-            double distance = Math.Sqrt(Math.Pow((x - tiles[0].DebugPosX), 2) + Math.Pow((y - tiles[0].DebugPosY), 2));
 
+            //bereken de aftand tussen de 2 locaties
+            double distance = Math.Sqrt(Math.Pow((x - tiles[0].DebugPosX), 2) + Math.Pow((y - tiles[0].DebugPosY), 2));
+            //voor elke tile in de tiles lijst
             foreach (Tile tile in tiles)
             {
-                //check if the distance between points is smaller then the already set distance
+                //check of de aftand tussen de volgende tile in lijst kleiner is
                 if (Math.Sqrt(Math.Pow((x - tile.DebugPosX), 2) + Math.Pow((y - tile.DebugPosY), 2)) < distance)
                 {
+                    //pak de kleinere afstand en zet het als de nieuwe distance variable
                     distance = Math.Sqrt(Math.Pow((x - tile.DebugPosX), 2) + Math.Pow((y - tile.DebugPosY), 2));
+                    //zet de PlacedOm als de kleiner tile
                     placedOn = tile;
                 }
 
             }
-
+            //als placedOn niet leef is en als PlacedOn tile geen bom heeft
             if (placedOn != null && !placedOn.HasBomb)
             {
+                //als de playertile niet leef is en als placedOn niet gelijk is aan de playertile
                 if (playerTile != null && placedOn != playerTile)
                 {
+                    //playerTile heeft geen player
                     playerTile.Hasplayer = false;
+                    //placedOn heeft nu de speler en gaat op true
                     placedOn.Hasplayer = true;
                 }
                 else
                 {
+                    //zet de speler op placedon
                     placedOn.Hasplayer = true;
                 }
+                //maak een bom plaatje aan en zet hem in de brush als een imagesource
                 brush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/BOM.png"));
+                //roep de createRectclass aan en zet de resultaat als myRec
                 myRec = CreateRect(80, 80, brush, 1);
+                //plaat de myRec op de gegeven positie op de x
                 Canvas.SetLeft(myRec, placedOn.posX);
+                //plaat de myRec op de gegeven positie op de y
                 Canvas.SetTop(myRec, placedOn.posY);
+                //placedOn heeft nu de bom
                 placedOn.HasBomb = true;
+                //activeer de timer van de bom
                 StartBombCounter();
+                //geef aan dat de functie gelukt is
                 return true;
             }
+            //geef aan dat de functie niet correct is uitgevoerd
             return false;
         }
+        //geef de dichtbijzijnde tile terug
         public Tile ReturnClosestTile(List<Tile> tiles, double x, double y)
         {
-
-            double closetsx = 1000;
-            double closesty = 1000;
+            //zet de locale tile als de eerste tile uit de meegegeven lijst
             Tile closestTile = tiles[0];
-            double testVar = (x + y);
-            //calutale the distance between these two points
+            //bereken de aftand tussen de 2 locaties
             double distance = Math.Sqrt(Math.Pow((x - tiles[0].DebugPosX), 2) + Math.Pow((y - tiles[0].DebugPosY), 2));
-
+            //voor elke tile in de tiles lijst
             foreach (Tile tile in tiles)
             {
-                //check if the distance between points is smaller then the already set distance
+                //check of de aftand tussen de volgende tile in lijst kleiner is
                 if (Math.Sqrt(Math.Pow((x - tile.DebugPosX), 2) + Math.Pow((y - tile.DebugPosY), 2)) < distance)
                 {
+                    //pak de kleinere afstand en zet het als de nieuwe distance variable
                     distance = Math.Sqrt(Math.Pow((x - tile.DebugPosX), 2) + Math.Pow((y - tile.DebugPosY), 2));
-                    //placedOn = tile;
+                    //zet de dichtsbijzijnde tile als de niewe closest tile
                     closestTile = tile;
                 }
-
             }
-            //if (placedOn != null && !placedOn.HasBomb)
-            //{
-            //    //CreateBomb();
-            //    brush.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/oke1.png"));
-            //    myRec = CreateRect(60, 60, brush, 1);
-            //    Canvas.SetLeft(myRec, placedOn.posX);
-            //    Canvas.SetTop(myRec, placedOn.posY);
-            //    placedOn.HasBomb = true;
-            //    StartBombCounter();
-            //    return placedOn;
-            //}
+            //geef de dichtsbijzijnde tile terug
             return closestTile;
         }
-
-
 
     }
 }
