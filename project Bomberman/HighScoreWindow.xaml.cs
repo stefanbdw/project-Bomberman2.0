@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,7 +13,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.IO;
 
 
 namespace project_Bomberman
@@ -23,29 +21,14 @@ namespace project_Bomberman
     /// Interaction logic for HighScoreWindow.xaml
     /// </summary>
     /// 
-    public partial class HighScoreWindow : Window
+    public partial class HighScoreWindow : Window 
     {
         Dictionary<string, int> highscores = new Dictionary<string, int>();
-        //string path = "Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + System.AppContext.BaseDirectory + "\\Data\\db_highscores.mdf;Integrated Security = True";
-        string path = "Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:" + Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "Data\\db_highscores.mdf;Integrated Security = True";
-        const string connectionString = "";
-        string pad = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-        
-        public void SetDir()
-        {
-            string workingDirectory = Environment.CurrentDirectory;
-
-            string dire = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
-            path = "Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + dire + "\\Data\\db_highscores.mdf;Integrated Security = True";
-
-        }
-        
-        //C:\Users\marco\source\repos\HoofdMap\project Bomberman\Data\db_highscores.mdf
-        //const string connectionString = "Data Source=(LocalDB)\\const string connectionString = "Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\tghee\\Source\\Repos\\project-Bomberman2.0\\project Bomberman\\Data\\db_highscores.mdf;Integrated Security = True";\project-Bomberman2.0\\project Bomberman\\Data\\db_highscores.mdf;Integrated Security=True";
+        const string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Programmeren 1\\project Bomberman\\project Bomberman\\Data\\db_highscores.mdf;Integrated Security=True";
         public HighScoreWindow()
         {
             InitializeComponent();
-            SetDir();
+            MessageBox.Show(System.AppDomain.CurrentDomain.BaseDirectory);
             GetHighScores();
             CreateLabels();
         }
@@ -57,7 +40,7 @@ namespace project_Bomberman
 
             string query = "SELECT Name,Score FROM [Table];";
 
-            using (SqlConnection connection = new SqlConnection(path))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 connection.Open();
@@ -81,7 +64,7 @@ namespace project_Bomberman
 
             //string query1 = "INSERT INTO [Table] ([Player],[Score]) VALUES ('Jos','500')";
 
-            SqlConnection connection = new SqlConnection(path);
+            SqlConnection connection = new SqlConnection(connectionString);
 
             SqlCommand command = new SqlCommand();
             try
