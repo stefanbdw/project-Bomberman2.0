@@ -28,9 +28,9 @@ namespace project_Bomberman
 
         private void Start1v1Btn(object sender, RoutedEventArgs e)
         {
-            MainWindow g = new MainWindow();
-            g.Show();
-
+            NameInput n = new NameInput();
+            n.Show();
+            this.Close();
         }
         
 
