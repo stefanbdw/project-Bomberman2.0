@@ -40,8 +40,7 @@ namespace project_Bomberman
 
         public void SetHighScores(string p1, int score_p1, string p2, int score_p2)
         {
-            string query = $"INSERT INTO [Table] ([Name],[Score]) VALUES ('{p1}','{score_p1}')";
-            string query2 = $"INSERT INTO [Table] ([Name],[Score]) VALUES ('{p2}','{score_p2}')";
+            string[] queryarray = { $"INSERT INTO [Table] ([Name],[Score]) VALUES ('{p1}','{score_p1}')", $"INSERT INTO [Table] ([Name],[Score]) VALUES ('{p2}','{score_p2}')"};
 
             for (int i = 0; i < 2; i++)
             {
@@ -51,7 +50,7 @@ namespace project_Bomberman
 
                 try
                 {
-                    command.CommandText = SQL_Text;
+                    command.CommandText = queryarray[i];
                     command.CommandType = CommandType.Text;
                     command.Connection = connection;
                     connection.Open();
