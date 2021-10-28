@@ -28,9 +28,11 @@ namespace project_Bomberman
 
         private void Start1v1Btn(object sender, RoutedEventArgs e)
         {
+
             NameInput g = new NameInput();
             g.Show();
             this.Close();
+
 
         }
         
