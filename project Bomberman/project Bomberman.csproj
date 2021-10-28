@@ -221,6 +221,7 @@
     <None Remove="images\oke.png" />
     <None Remove="images\oke1.png" />
     <None Remove="images\pause-button-png-29672.png" />
+    <None Remove="images\pause-button.png" />
     <None Remove="images\pauze.png" />
     <None Remove="images\stefanbdw.jpg" />
     <None Remove="images\test102.jpg" />
@@ -437,6 +438,7 @@
     <Resource Include="images\oke.png" />
     <Resource Include="images\oke1.png" />
     <Resource Include="images\pause-button-png-29672.png" />
+    <Resource Include="images\pause-button.png" />
     <Resource Include="images\pauze.png" />
     <Resource Include="images\simpels.png" />
   </ItemGroup>

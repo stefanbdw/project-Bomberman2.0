@@ -458,15 +458,12 @@ namespace project_Bomberman
                 
                 gameTimer.Stop();
                 ImageBrush pauze = new ImageBrush();
-                pauze.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/pauze.png"));
+                pauze.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/pause-button-png-29672.png"));
                 Rectangle pauzeimage = new Rectangle
                 {
-                    Height = 1920,
-                    Width = ,
+                    Height = 1000,
+                    Width = 1000,
                     Fill = pauze,
-                    StrokeThickness = 2,
-                    Stroke = Brushes.Black,
-                    
 
             };
                 Canvas.SetLeft(pauzeimage, top);
