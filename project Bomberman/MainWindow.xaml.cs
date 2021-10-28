@@ -458,16 +458,17 @@ namespace project_Bomberman
                 
                 gameTimer.Stop();
                 ImageBrush pauze = new ImageBrush();
-                pauze.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/Houtblock.png"));
+                pauze.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/pauze.png"));
                 Rectangle pauzeimage = new Rectangle
                 {
-                    Height = 70,
-                    Width = 70,
+                    Height = 1920,
+                    Width = ,
                     Fill = pauze,
                     StrokeThickness = 2,
                     Stroke = Brushes.Black,
+                    
 
-                };
+            };
                 Canvas.SetLeft(pauzeimage, top);
                 Canvas.SetTop(pauzeimage, left);
                 MyCanvas.Children.Add(pauzeimage);
