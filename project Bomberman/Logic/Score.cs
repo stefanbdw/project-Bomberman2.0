@@ -48,7 +48,7 @@ namespace project_Bomberman
             }
         }
 
-
+        //firsttime setup
         public static void SetHighScores(string p1, int score_p1, string p2, int score_p2)
         {
             SetDir();
@@ -82,7 +82,7 @@ namespace project_Bomberman
             SetDir();
             string[] queryarray = { $"INSERT INTO [Table] ([Name],[Score]) VALUES ('{p1}','{score_p1}')" };
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < queryarray.Length - 1; i++)
             {
                 SqlConnection connection = new SqlConnection(path);
 
