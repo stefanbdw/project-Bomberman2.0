@@ -104,6 +104,8 @@ namespace project_Bomberman
 
             localPLayer1Name = Score.NamePlayer1;
             localPLayer2Name = Score.NamePlayer2;
+            //maak highscores aan
+            Score.SetHighScores(localPLayer1Name, 0, localPLayer2Name, 0);
 
             MyCanvas.Focus(); // Set een Canvas als belangrijkste in hetProject.
             gameTimer.Tick += GameLoop;
