@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,9 +26,19 @@ namespace project_Bomberman
     {
         Dictionary<string, int> highscores = new Dictionary<string, int>();
         const string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\Programmeren 1\\project Bomberman\\project Bomberman\\Data\\db_highscores.mdf;Integrated Security=True";
+        string path = "";
+        public void SetDir()
+        {
+            string workingDirectory = Environment.CurrentDirectory;
+
+            string dire = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
+            path = "Data Source = (LocalDB)\\MSSQLLocalDB;AttachDbFilename=" + dire + "\\Data\\db_highscores.mdf;Integrated Security = True";
+
+        }
         public HighScoreWindow()
         {
             InitializeComponent();
+            SetDir();
             MessageBox.Show(System.AppDomain.CurrentDomain.BaseDirectory);
             GetHighScores();
             CreateLabels();
@@ -40,7 +51,7 @@ namespace project_Bomberman
 
             string query = "SELECT Name,Score FROM [Table];";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(path))
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 connection.Open();
@@ -64,7 +75,7 @@ namespace project_Bomberman
 
             //string query1 = "INSERT INTO [Table] ([Player],[Score]) VALUES ('Jos','500')";
 
-            SqlConnection connection = new SqlConnection(connectionString);
+            SqlConnection connection = new SqlConnection(path);
 
             SqlCommand command = new SqlCommand();
             try

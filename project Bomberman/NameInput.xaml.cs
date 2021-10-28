@@ -27,9 +27,9 @@ namespace project_Bomberman
         private void input(object sender, RoutedEventArgs e)
         {
             string userInput1 = NameP1.Text.ToString();
+            Score.NamePlayer1 = NameP1.Text.ToString();
             string userInput2 = NameP2.Text.ToString();
-
-
+            Score.NamePlayer2 = NameP2.Text.ToString();
             MainWindow g = new MainWindow();
             g.Show();
             this.Close();
