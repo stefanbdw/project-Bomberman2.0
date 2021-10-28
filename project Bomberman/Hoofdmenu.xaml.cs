@@ -32,7 +32,7 @@ namespace project_Bomberman
 
         private void Start1v1Btn(object sender, RoutedEventArgs e)
         {
-            MainWindow g = new MainWindow();
+            NameInput g = new NameInput();
             g.Show();
             this.Close();
 

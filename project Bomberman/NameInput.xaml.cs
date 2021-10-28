@@ -23,5 +23,14 @@ namespace project_Bomberman
         {
             InitializeComponent();
         }
+
+        private void input(object sender, RoutedEventArgs e)
+        {
+            string userInput1 = NameP1.Text.ToString();
+            string userInput2 = NameP2.Text.ToString();
+            MainWindow g = new MainWindow();
+            g.Show();
+            this.Close();
+        }
     }
 }
