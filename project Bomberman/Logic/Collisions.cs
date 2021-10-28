@@ -30,6 +30,7 @@ namespace project_Bomberman
 
                 }
             }
+            //als de tile check is niet passable en heeft geen bom of als de speler er op staat
             if (!tileToCheck.Passable && !tileToCheck.HasBomb || tileToCheck.Hasplayer)
             {
                 return true;
