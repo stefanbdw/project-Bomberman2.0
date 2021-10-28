@@ -220,6 +220,7 @@
     <None Remove="images\Houtblock.png" />
     <None Remove="images\oke.png" />
     <None Remove="images\oke1.png" />
+    <None Remove="images\pauze.png" />
     <None Remove="images\stefanbdw.jpg" />
     <None Remove="images\test102.jpg" />
   </ItemGroup>
@@ -229,7 +230,6 @@
     <Resource Include="Fonts\04B_30__.TTF">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Data\highscores.mdf" />
     <Resource Include="images\0.jpg" />
     <Resource Include="images\1.jpg" />
     <Resource Include="images\10.jpg" />
@@ -435,6 +435,7 @@
     <Resource Include="images\Houtblock.png" />
     <Resource Include="images\oke.png" />
     <Resource Include="images\oke1.png" />
+    <Resource Include="images\pauze.png" />
     <Resource Include="images\simpels.png" />
   </ItemGroup>
 

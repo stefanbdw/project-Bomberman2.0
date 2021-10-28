@@ -26,15 +26,18 @@ namespace project_Bomberman
         List<Rectangle> Moves = new List<Rectangle>();
 
         int colliderMargin = 7;
-        bool goup; // this boolean will be used for the player to go up the screen halloooo
-        bool godown; // this boolean will be used for the player to go down the screen
-        bool goleft; // this boolean will be used for the player to go left to the screen
-        bool goright; // this boolean will be used for the player to right to the screen
-
-        bool goup1; // this boolean will be used for the player to go up the screen
-        bool godown1; // this boolean will be used for the player to go down the screen
-        bool goleft1; // this boolean will be used for the player to go left to the screen
-        bool goright1; // this boolean will be used for the player to right to the screen
+        // besturing Nijntje1
+        bool goup; // Omhoog
+        bool godown; // naar beneden
+        bool goleft; // naar links
+        bool goright; // naar rechts
+        // einde besturing nijtnje 1
+        //Besturing Nijntje 2
+        bool goup1; // Omhoog
+        bool godown1;// naar beneden
+        bool goleft1;// naar links
+        bool goright1; // naar rechts
+        // einde besturing Nijntje 2
 
         bool placedBombPl1 = false;
         bool placedBombPl2 = false;
@@ -46,42 +49,24 @@ namespace project_Bomberman
         double ScorePlayer2;
 
 
-        Rectangle nijntje; // player rectangle
-        Rectangle nijtje2; // opponent rectangle
-        Rectangle block;
+        Rectangle nijntje; // speler rectangle
+        Rectangle nijtje2; // tegenstander rectangle
+        Rectangle block; // breakable block van Hout
 
 
-        int speed = 4;
-        int speed1 = 4;// this integer is for the speed of the player
+        int speed = 4; // Speed nijntje1
+        int speed1 = 4;// speed Nijtnje 2
         int i = -1;
         int j = -1;
 
-        Rect pacmanHitBox;
+        Rect nijntjeHitBox;
         Rect hitBoxNijntje2;
 
         Rectangle landingRec;
         Rectangle landingRec1;
-        // position and current position integer for the player
-        int position;
-        int currentPosition;
-
-        // position and current position for the opponent
-        int opponentPosition;
-        int opponentCurrentPosition;
-
-        // this images integer will be used to show the board images when we create them
         int images = -1;
 
-        int bombRefreshPl1 = 5000;          //in milliseconds
-        int bombRefreshPl2 = 5000;         //in milliseconds
-        // new random class instance called rand will be used to calculate the dice rolls in the game
         Random rand = new Random();
-
-        // two Boolean which will detemrine whos turn it is in the game
-        bool playerOneRound, playerTwoRound;
-
-        // this integer will show the current position of the player and the opponent to the GUI
-        int tempPos;
 
         Collisions collider;
         List<Tile> tiles = new List<Tile>();
@@ -120,50 +105,42 @@ namespace project_Bomberman
             gameTimer.Interval = TimeSpan.FromMilliseconds(10); // Hier staat de Gametick op 10 Milliseconds.
             gameTimer.Start(); // start Game
 
-
+            // hier worden de speler image toegevoegd
             ImageBrush nijntjeImage = new ImageBrush();
-
+            //image nijntje 1
             nijntjeImage.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/simpels.png"));
 
-
+            //nijntje image 2
             ImageBrush nijntjeImage2 = new ImageBrush();
             nijntjeImage2.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/simpels.png"));
 
+            // moet dit hier ?
             ImageBrush breakAbleImage = new ImageBrush();
             breakAbleImage.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/oke1.png"));
+            // 
 
 
 
             List<Rectangle> blocktoRemove = new List<Rectangle>();
-            //this is the set up game function.In this function we will set up the game board, the player and the opponent
+            //hier word de grid aangemaakt
 
-            // in order to create the board we will need to make 3 local variables below
-            int leftPos = 180; // left pos will help us position the boxes from right to left 
-            int topPos = 900; // top pos will help us position the boxes from bottom to top
-            int a = 0; // a integer will help us to lay 10 boxes in a row
+            // om het bord te maken, moeten we hieronder 3 lokale variabelen maken
+            int leftPos = 180; // helpt het Grid naar rechts naar links te plaatsen
+            int topPos = 900; // Helpt het Grid naar onder naar boven te plaatsen
+            int a = 0; // hiermee kan je verschillende lagen instellen
 
-            // the two lines below are importing the images for the player and the opponent and attaching them to the image brush we created earlier
-
-
-
-            // this is the main for loop where we will make the game board
-            // this loop will run a 100 times inside of this function
-            // it will run like this because we need 100 tiles for this game to work
+            // hier word het spel bord aangemaakt
+            // Deze lus 187 keer opnieuw afspellen om 188 boxen aan te maken
             for (int i = 0; i < 187; i++)
             {
-                // first we increment the images integer we created in the program before
 
-                //create a new image brush called tile images, this will attach an image to the rectangles for the board
+                //Hier word een image toegevoegd aan een box in het spellers veld
                 images++;
                 ImageBrush tileImages = new ImageBrush();
-
-
-
-
                 tileImages.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/" + images + ".jpg"));
 
-                // below we are creating a new rectangle called box
-                // this rectangle will have 60x60 height and width, fill is the tile images and a black border around it
+
+                // hier word de box aangemaakt waaruit het spellers veld bestaad
                 Rectangle box = new Rectangle
                 {
                     Height = 80,
@@ -177,103 +154,95 @@ namespace project_Bomberman
                 {
                     myRec = box
                 };
-                //create a tile with the class
 
                 tiles.Add(tile);
 
 
-                // we need to indentify the rectangle created in this loop, so we will give each box a unique name
-                box.Name = "box" + i.ToString(); // name the boxes 
-                this.RegisterName(box.Name, box); // register the name inside of the WPF app
+                // hier word er een naam mee gegeven aan de box waardoor die later benader baar is
+                box.Name = "box" + i.ToString(); // naam box
+                this.RegisterName(box.Name, box);
 
-                Moves.Add(box); // add the newly created box to the moves rectangles list
+                Moves.Add(box); // voeg het nieuw gemaakte vak toe aan de lijst met verplaatste Rectangles
 
-                // below we are making the algorithm we need to lay the boxes 10 in a row
-                // we will make the boxes from left to right then move up and reverse that process
-                // remember "a" integer is controlling how we position the boxes down so we need to keep in mind on it can be controlled inside of this loop
-
-                // if a is equals to 10
+                // hieronder word het algoritme dat nodig is om de dozen 17 op een rij te zetten
+                // de boxen worden aangemaakt van links naar rechts
+                // als de waarde 17 is
                 if (a == 17)
                 {
-                    // this will happen when we have positioned 10 boxes from left to right
-                    topPos -= 80; // in that case reduce 60 from the top pos integer 
-                    a = 37; // change the value of a to 30, we are doing this to move the boxes from right to left now
+                    topPos -= 80; // verminder in dat geval 80 van het bovenste pos integer
+                    a = 37; // hier word de int a veranderd in 37 waardoor het spellerbord van rechts naar links word aangemaakt
                 }
-
-                // if a is equals to 20
                 if (a == 20)
                 {
-
-                    topPos -= 80; // again reduce 60 from the top pos integer
-                    a = 0; // set a integer back to 0
+                    topPos -= 80; 
+                    a = 0; 
                 }
-
-                // if a is greater than 20
                 if (a > 20)
                 {
-                    // if the value of a is greater than 20 then we can
-                    // this if statement will help us position the boxes from right to left
-                    a--; // reduce 1 from a each loop
-                    //Canvas.SetLeft(box, leftPos); // set the box inside the canvas by the value of the left pos integer
+                    // als de value a is groter dan 20 worden de boxen aangemaakt van rechts naar links
+                    a--;
                     Canvas.SetLeft(tile.myRec, leftPos);
-                    tile.posX = leftPos;            //set the tile x pos to the left value
-                    leftPos -= 80; // reduce 60 from the left pos each loop
+                    tile.posX = leftPos;
+                    leftPos -= 80; 
 
                 }
 
-                // if a is less than 10
                 if (a < 17)
                 {
-                    // this will happen when we want to position the boxes from left to right
-                    //if the value of a is less than 10 
-                    a++; // add 1 to a integer each loop
+                    // als de value a is onder de 17 wort er boxen aangemaakt van links naar rechts
+                    a++; // als deze code wordt uitgevoerd moet het spelbord wel 1 opschuiven
 
-                    leftPos += 80; // add 60 to the left pos integer 
-                    Canvas.SetLeft(tile.myRec, leftPos);            //sets the tile
-                    tile.posX = leftPos;            //set the tile x pos to the left value
+                    leftPos += 80;
+                    Canvas.SetLeft(tile.myRec, leftPos);
+                    tile.posX = leftPos;
                 }
                 tile.posY = topPos;
-                //Canvas.SetTop(box, topPos); //set the box top position to the value of top pos integer each loop
-                tile.setVars();                 //calculate middlepoints
-                Canvas.SetTop(tile.myRec, topPos);              //sets the box top position to the given value
+                tile.setVars();// hier word het middel punt berekend
+                Canvas.SetTop(tile.myRec, topPos); // hier wordt de box geplaatst op de locatie die wordt toegekent 
                 MyCanvas.Children.Add(tile.myRec);
-
-
-                //add the new rec to my scanvas
-
             }
+
+
             collider = new Collisions
             {
                 Alltiles = tiles
             };
-            // end the loop
+            // einde loop
+
+            // hier worden de spellers aangemaakt
+
+            // hier word speller 1 aamgemaakt
             nijntje = new Rectangle
             {
                 Height = 40,
                 Width = 40,
-                Fill = nijntjeImage,
+                Fill = nijntjeImage,// hier word er een image toegevoegd 
                 StrokeThickness = 2
             };
 
-            // set up the opponent rectangle the same way as the player
+            // hier word speller 2 aangemaakt
             nijtje2 = new Rectangle
             {
                 Height = 40,
                 Width = 40,
-                Fill = nijntjeImage2,
+                Fill = nijntjeImage2, // hier word er een image toegevoegd 
 
             };
-            MyCanvas.Children.Add(nijntje);
-            MyCanvas.Children.Add(nijtje2);
+            MyCanvas.Children.Add(nijntje); // toegevoegd aan het spel
+            MyCanvas.Children.Add(nijtje2); // toegevoegd aan het spel
 
-            MovePiece(nijntje, "box" + 154);             //was 34
-            MovePiece1(nijtje2, "box" + 32);
-            // end the loop
+            MovePiece(nijntje, "box" + 154); // hier word de locatie gezet van player 1
+            MovePiece1(nijtje2, "box" + 32); // hier word de locatie gezet van player 2
+ 
+
+            // hier worden de houten blokken toegevoegd aan het spellers veld
             ImageBrush blockHout = new ImageBrush();
             blockHout.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/Houtblock.png"));
+
+            // deze lus loop door het spellersveld heen en zet op de juiste locaties een hout blok neer
             for (int i = 0; i < 187; i++)
             {
-
+                // hout block rectangle
                 Rectangle block = new Rectangle
                 {
                     Height = 70,
@@ -285,7 +254,7 @@ namespace project_Bomberman
                 };
 
 
-
+                // locaties waar een block geplaatst wordt
                 int[] numbers = {
                    18,  19,
                 20,  21,  22,  23 , 24,   25,  26,  27,  28,  29,
@@ -309,6 +278,7 @@ namespace project_Bomberman
                     
                     break;
                 }
+
                 else
                 {
                     Moveblock(block, "box" + numbers[i]);
@@ -320,6 +290,7 @@ namespace project_Bomberman
                 
                 blocktoRemove.Add(block);
                 MyCanvas.Children.Add(block);
+
                 Rect check = new Rect(Canvas.GetLeft(block), Canvas.GetTop(block), block.Width / 2, block.Height / 2);
                 foreach (Tile tile in tiles)
                 {
@@ -339,7 +310,7 @@ namespace project_Bomberman
             }
             
             MyCanvas.Children.Remove(block);
-            //for(int i < tile)
+ 
             
 
             foreach (var x in MyCanvas.Children.OfType<Rectangle>())
@@ -361,91 +332,63 @@ namespace project_Bomberman
         }
         private void CanvasKeyDown(object sender, KeyEventArgs e)
         {
-            // if the left key is pressed then do the following
+            // key binding player 1 
+            // Wat hier gebeurt is als er een key word ingedrukt veranderd er een value waardoor nijntje bijvoorbeeld naar voren gaat bewegen
             if (e.Key == Key.Left)
             {
-                goleft = true; // change go left to true                
-                nijntje.RenderTransform = new RotateTransform(0, nijntje.Width / 2, nijntje.Height / 2);
+                goleft = true;               
+                nijntje.RenderTransform = new RotateTransform(0, nijntje.Width / 2, nijntje.Height / 2); // 
             }
-            // end of left key selection
-            // if the right key is pressed then do the following
             else if (e.Key == Key.Right)
             {
                 goright = true;
-
                 nijntje.RenderTransform = new RotateTransform(0, nijntje.Width / 2, nijntje.Height / 2);
             }
-            // end of right key selection
-
-            // if the up key is pressed then do the following
             else if (e.Key == Key.Up)
             {
-
-                goup = true; // change go up to true
-
+                goup = true; 
                 nijntje.RenderTransform = new RotateTransform(-90, nijntje.Width / 2, nijntje.Height / 2);
             }
-            // if the down key is pressed then do the following
             else if (e.Key == Key.Down)
             {
-
-                godown = true; // change go down to true
-
+                godown = true; 
                 nijntje.RenderTransform = new RotateTransform(90, nijntje.Width / 2, nijntje.Height / 2);
             }
-            // end of the down key selection
+            // einde movement keys
+            // hier worden de bommen geplaatst van player 1 en 2
             if (placedBombPl1 == false && e.Key == Key.Enter && !placingBombPl1)
             {
                 placingBombPl1 = true;
-
             }
             if (e.Key == Key.Space && !placedBombPl2 && !placingBombpl2)
             {
                 placingBombpl2 = true;
             }
+            // einde bommen key
 
 
-
-            // if the left key is pressed then do the following
+            // begin keys nijntje 2
             if (e.Key == Key.A)
             {
                 goleft1 = true; // change go left to true
-
                 nijtje2.RenderTransform = new RotateTransform(0, nijtje2.Width / 2, nijtje2.Height / 2);
             }
-
-            // end of left key selection
-
-            // if the right key is pressed then do the following
             if (e.Key == Key.D)
             {
-
                 goright1 = true;
-
                 nijtje2.RenderTransform = new RotateTransform(0, nijtje2.Width / 2, nijtje2.Height / 2);
             }
-            // end of right key selection
-
-            // if the up key is pressed then do the following
             if (e.Key == Key.W)
             {
-
                 goup1 = true; // change go up to true
-
                 nijtje2.RenderTransform = new RotateTransform(-90, nijtje2.Width / 2, nijtje2.Height / 2);
             }
-
-            // end of up key selection
-
-            // if the down key is pressed then do the following
             if (e.Key == Key.S)
             {
-
                 godown1 = true; // change go down to true
-
                 nijtje2.RenderTransform = new RotateTransform(90, nijtje2.Width / 2, nijtje2.Height / 2);
             }
-            // end of the down key selection
+            // einde key gedeeldte 
         }
 
         private void Timer_ElapsedP1(object sender, ElapsedEventArgs e)
@@ -459,53 +402,77 @@ namespace project_Bomberman
 
         private void Canvas_KeyUp(object sender, KeyEventArgs e)
         {
+            // hier word aangegeven wanneer de speller de key loslaat stop nijntje met bewegen 
+            // voor Nijntje 1
             if (e.Key == Key.Down)
             {
-                godown = false; // down is released go down will be false
+                godown = false; 
             }
             if (e.Key == Key.Up)
             {
-                goup = false; // up key is released go up will be false
+                goup = false; 
             }
             if (e.Key == Key.Left)
             {
-                goleft = false; // left key is released go left will be false
+                goleft = false; 
             }
             if (e.Key == Key.Right)
             {
-                goright = false; // right key is released go right will be false
+                goright = false; 
             }
+            // einde keys nijntje 1
 
+            // begin keys nijntje 2
             if (e.Key == Key.S)
             {
-                godown1 = false; // down is released go down will be false
+                godown1 = false; 
             }
             if (e.Key == Key.W)
             {
-                goup1 = false; // up key is released go up will be false
+                goup1 = false; 
             }
             if (e.Key == Key.A)
             {
-                goleft1 = false; // left key is released go left will be false
+                goleft1 = false; 
             }
             if (e.Key == Key.D)
             {
-                goright1 = false; // right key is released go right will be false
+                goright1 = false; 
             }
+            // einde keys nijntje 2
+            // Hier wordt er een bom geplaatst al key space word uitgevoerd
             if (e.Key == Key.Space)
             {
                 placingBombpl2 = false;
             }
+                // bom nijntje 2
             if (e.Key == Key.Enter)
             {
                 placingBombPl1 = false;
             }
+            // Pauze menu, wanneer er op P word gedrukt gaat het spel op pauze
             if (e.Key == Key.P)
             {
-                gameTimer.Stop();
+                int top = 1000;
+                int left = 100;
                 
-            }
+                gameTimer.Stop();
+                ImageBrush pauze = new ImageBrush();
+                pauze.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/Houtblock.png"));
+                Rectangle pauzeimage = new Rectangle
+                {
+                    Height = 70,
+                    Width = 70,
+                    Fill = pauze,
+                    StrokeThickness = 2,
+                    Stroke = Brushes.Black,
 
+                };
+                Canvas.SetLeft(pauzeimage, top);
+                Canvas.SetTop(pauzeimage, left);
+                MyCanvas.Children.Add(pauzeimage);
+            }
+            // Wanneer een gebruiker op P heeft gedrukt kan de gebruikker het spel verder spellen als die op enter drukt
             else
             {
                 if (e.Key == Key.Enter)
@@ -514,6 +481,7 @@ namespace project_Bomberman
                 
                 
             }
+            // met de key M word het menu geopent in het spel
             if (e.Key == Key.M)
             {
                 Hoofdmenu g = new Hoofdmenu();
@@ -575,8 +543,6 @@ namespace project_Bomberman
                 {
                     Canvas.SetLeft(nijntje, Canvas.GetLeft(nijntje) - speed);
                 }
-                // if go left boolean is true
-                //Canvas.SetLeft(nijntje, Canvas.GetLeft(nijntje) - speed);
             }
             if (goup)
             {
@@ -584,7 +550,6 @@ namespace project_Bomberman
                 {
                     Canvas.SetTop(nijntje, Canvas.GetTop(nijntje) - speed);
                 }
-                // if go up boolean is true 
             }
             if (godown)
             {
@@ -592,15 +557,10 @@ namespace project_Bomberman
                 {
                     Canvas.SetTop(nijntje, Canvas.GetTop(nijntje) + speed);
                 }
-                // if go down boolean is true
-                // end pijltjes cijfers 
-
-                // begin w toets
             }
 
             if (goright1)
             {
-                // if go right boolean is true 
                 if (collider.CollisionCheck((Canvas.GetLeft(nijtje2) + nijtje2.Width / 2) + speed1 + colliderMargin, (Canvas.GetTop(nijtje2)) + nijtje2.Height / 2))
                 {
                     Canvas.SetLeft(nijtje2, Canvas.GetLeft(nijtje2) + speed1);
@@ -630,6 +590,8 @@ namespace project_Bomberman
                     Canvas.SetTop(nijtje2, Canvas.GetTop(nijtje2) + speed1);
                 }
             }
+
+
             foreach (Bomb bomb in bombs)
             {
                 if (bomb.destroyed)
@@ -676,7 +638,7 @@ namespace project_Bomberman
                 //Rect hitBox = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height); // create a new rect called hit box for all of the available rectangles inside of the game
 
 
-                pacmanHitBox = new Rect(Canvas.GetLeft(nijntje), Canvas.GetTop(nijntje), nijntje.Width, nijntje.Height);
+                nijntjeHitBox = new Rect(Canvas.GetLeft(nijntje), Canvas.GetTop(nijntje), nijntje.Width, nijntje.Height);
                 hitBoxNijntje2 = new Rect(Canvas.GetLeft(nijtje2), Canvas.GetTop(nijtje2), nijtje2.Width, nijtje2.Height);
                 //if (x.Tag != null)
                 if (x is Rectangle && (string)x.Tag == "wall")
@@ -696,30 +658,30 @@ namespace project_Bomberman
                     Rect platforms = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
 
                     // now we can check if the player intersets or HITs the platforms if so do we can do the following
-                    if (pacmanHitBox.IntersectsWith(platforms) | hitBoxNijntje2.IntersectsWith(platforms))
+                    if (nijntjeHitBox.IntersectsWith(platforms) | hitBoxNijntje2.IntersectsWith(platforms))
                     {
-                        if (goleft == true && pacmanHitBox.IntersectsWith(platforms))
+                        if (goleft == true && nijntjeHitBox.IntersectsWith(platforms))
                         {
                             Canvas.SetLeft(nijntje, Canvas.GetLeft(nijntje) + 10);
 
                             goleft = false;
                         }
                         // check if we are colliding with the wall while moving right if true then stop the pac man movement
-                        if (goright == true && pacmanHitBox.IntersectsWith(platforms))
+                        if (goright == true && nijntjeHitBox.IntersectsWith(platforms))
                         {
                             Canvas.SetLeft(nijntje, Canvas.GetLeft(nijntje) - 10);
 
                             goright = false;
                         }
                         // check if we are colliding with the wall while moving down if true then stop the pac man movement
-                        if (godown == true && pacmanHitBox.IntersectsWith(platforms))
+                        if (godown == true && nijntjeHitBox.IntersectsWith(platforms))
                         {
                             Canvas.SetTop(nijntje, Canvas.GetTop(nijntje) - 10);
 
                             godown = false;
                         }
                         // check if we are colliding with the wall while moving up if true then stop the pac man movement
-                        if (goup == true && pacmanHitBox.IntersectsWith(platforms))
+                        if (goup == true && nijntjeHitBox.IntersectsWith(platforms))
                         {
                             Canvas.SetTop(nijntje, Canvas.GetTop(nijntje) + 10);
 
@@ -764,7 +726,7 @@ namespace project_Bomberman
                 foreach (Tile tile in tiles)
                 {
                     Rect tileHitbox = new Rect(tile.posX, tile.posY, tile.myRec.Width, tile.myRec.Height);
-                    if (pacmanHitBox.IntersectsWith(tileHitbox) && tile.Exploding)
+                    if (nijntjeHitBox.IntersectsWith(tileHitbox) && tile.Exploding)
                     {
                         nijntje.Fill = null;
                     }
