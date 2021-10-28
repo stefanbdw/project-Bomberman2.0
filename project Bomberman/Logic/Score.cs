@@ -101,7 +101,7 @@ namespace project_Bomberman
                 catch (Exception e)
                 {
                     connection.Close();
-                    MessageBox.Show(e.Message);
+                    MessageBox.Show(e.Message + "NamePlayer1");
                 }
             }
         }
@@ -110,7 +110,7 @@ namespace project_Bomberman
             SetDir();
             string[] queryarray = { $"INSERT INTO [Table] ([Name],[Score]) VALUES ('{p2}','{score_p2}')" };
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < queryarray.Length - 1; i++)
             {
                 SqlConnection connection = new SqlConnection(path);
 
