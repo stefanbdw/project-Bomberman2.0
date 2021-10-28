@@ -34,7 +34,7 @@
             </TextBox.Background>
         </TextBox>
 
-        <Button x:Name="Start_Game" Margin="687,900,687,0" Grid.ColumnSpan="2" FontFamily="04b 30" FontSize="48">
+        <Button x:Name="Start_Game" Margin="687,900,687,0" Grid.ColumnSpan="2" FontFamily="04b 30" FontSize="48" Click="Start_Game">
             <Button.BorderBrush>
                 <ImageBrush/>
             </Button.BorderBrush> Start Game

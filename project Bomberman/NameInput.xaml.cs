@@ -23,5 +23,10 @@ namespace project_Bomberman
         {
             InitializeComponent();
         }
+
+        private void Start_Game(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

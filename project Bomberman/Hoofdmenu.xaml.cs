@@ -23,10 +23,6 @@ namespace project_Bomberman
         public Hoofdmenu()
         {
             InitializeComponent();
-            
-            
-            
-
         }
         
 
