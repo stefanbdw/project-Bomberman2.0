@@ -514,38 +514,40 @@ namespace project_Bomberman
                 Bomb bom = new Bomb                         //maak een nieuwe bom aan 
                 {
                 };
+                //check of de closest tile beschikbaar is
                 if (bom.GetClosestTile(tiles, (Canvas.GetLeft(nijntje) + nijntje.Width / 2), (Canvas.GetTop(nijntje) + nijntje.Height / 2), OnTilePl1, Score.NamePlayer1))
                 {
-                    MyCanvas.Children.Add(bom.myRec);
+                    MyCanvas.Children.Add(bom.myRec);       //voeg bom toe aan mycanvas
                 }
-                bombs.Add(bom);
-                OnTilePl1 = bom.placedOn;
-                OnTilePl1.Hasplayer = true;
-                cooldownP1.Start();
+                bombs.Add(bom);                             //voeg bom toe aan lijst
+                OnTilePl1 = bom.placedOn;                   //Bom staat op ontilep1
+                OnTilePl1.Hasplayer = true;                 //ontile1 heeft speler
+                cooldownP1.Start();                         //start cooldwown
             }
             //als speler 2 een bom plaatst mar nog niet heeft geplaatst. "voorkomt dubbelle bommen"
             if (placingBombpl2 && !placedBombPl2)
             {
-                placedBombPl2 = true;
-                cooldownP2.Elapsed += Timer_ElapsedP2;
-                Bomb bom = new Bomb
+                placedBombPl2 = true;                       //heeft bom geplaatst
+                cooldownP2.Elapsed += Timer_ElapsedP2;      //voeg de elepsed functie toe 
+                Bomb bom = new Bomb                         //maak een nieuwe bom aan 
                 {
                 };
+                //check of de closest tile beschikbaar is
                 if (bom.GetClosestTile(tiles, (Canvas.GetLeft(nijtje2) + nijtje2.Width / 2), (Canvas.GetTop(nijtje2) + nijtje2.Height / 2), OntilePl2, Score.NamePlayer2))
                 {
-                    MyCanvas.Children.Add(bom.myRec);
+                    MyCanvas.Children.Add(bom.myRec);       //voeg bom toe aan mycanvas
                 }
-                bombs.Add(bom);
-                OntilePl2 = bom.placedOn;
-                OntilePl2.Hasplayer = true;
-                cooldownP2.Start();
+                bombs.Add(bom);                             //voeg bom toe aan lijst
+                OntilePl2 = bom.placedOn;                   //Bom staat op ontilep1
+                OntilePl2.Hasplayer = true;                 //ontile1 heeft speler
+                cooldownP2.Start();                         //start cooldwown
             }
 
             // Wat hier gebeurd is wanneer nijntje een wall raakt de snellheid naar 0 gaat.
             // nijntje 1
             if (goright)
             {
-
+                //check of de speler niet tegen een collider aanloopt 
                 if (collider.CollisionCheck((Canvas.GetLeft(nijntje) + nijntje.Width / 2) + speed + colliderMargin, (Canvas.GetTop(nijntje)) + nijntje.Height / 2))
                 {
                     Canvas.SetLeft(nijntje, Canvas.GetLeft(nijntje) + speed);
@@ -553,6 +555,7 @@ namespace project_Bomberman
             }
             if (goleft)
             {
+                //check of de speler niet tegen een collider aanloopt 
                 if (collider.CollisionCheck((Canvas.GetLeft(nijntje) + nijntje.Width / 2) - speed - colliderMargin, (Canvas.GetTop(nijntje)) + nijntje.Height / 2))
                 {
                     Canvas.SetLeft(nijntje, Canvas.GetLeft(nijntje) - speed);
@@ -560,6 +563,7 @@ namespace project_Bomberman
             }
             if (goup)
             {
+                //check of de speler niet tegen een collider aanloopt 
                 if (collider.CollisionCheck((Canvas.GetLeft(nijntje) + nijntje.Width / 2), ((Canvas.GetTop(nijntje)) + nijntje.Height / 2) - colliderMargin - speed))
                 {
                     Canvas.SetTop(nijntje, Canvas.GetTop(nijntje) - speed);
@@ -567,6 +571,7 @@ namespace project_Bomberman
             }
             if (godown)
             {
+                //check of de speler niet tegen een collider aanloopt 
                 if (collider.CollisionCheck((Canvas.GetLeft(nijntje) + nijntje.Width / 2), ((Canvas.GetTop(nijntje)) + nijntje.Height / 2) + colliderMargin + speed))
                 {
                     Canvas.SetTop(nijntje, Canvas.GetTop(nijntje) + speed);
@@ -575,6 +580,7 @@ namespace project_Bomberman
 
             if (goright1)
             {
+                //check of de speler niet tegen een collider aanloopt 
                 if (collider.CollisionCheck((Canvas.GetLeft(nijtje2) + nijtje2.Width / 2) + speed1 + colliderMargin, (Canvas.GetTop(nijtje2)) + nijtje2.Height / 2))
                 {
                     Canvas.SetLeft(nijtje2, Canvas.GetLeft(nijtje2) + speed1);
@@ -582,7 +588,7 @@ namespace project_Bomberman
             }
             if (goleft1)
             {
-
+                //check of de speler niet tegen een collider aanloopt 
                 if (collider.CollisionCheck((Canvas.GetLeft(nijtje2) + nijtje2.Width / 2) - speed1 - colliderMargin, (Canvas.GetTop(nijtje2)) + nijtje2.Height / 2))
                 {
                     Canvas.SetLeft(nijtje2, Canvas.GetLeft(nijtje2) - speed1);
@@ -590,7 +596,7 @@ namespace project_Bomberman
             }
             if (goup1)
             {
-
+                //check of de speler niet tegen een collider aanloopt 
                 if (collider.CollisionCheck((Canvas.GetLeft(nijtje2) + nijtje2.Width / 2), ((Canvas.GetTop(nijtje2)) + nijtje2.Height / 2) - colliderMargin - speed1))
                 {
                     Canvas.SetTop(nijtje2, Canvas.GetTop(nijtje2) - speed1);
@@ -598,6 +604,7 @@ namespace project_Bomberman
             }
             if (godown1)
             {
+                //check of de speler niet tegen een collider aanloopt 
                 if (collider.CollisionCheck((Canvas.GetLeft(nijtje2) + nijtje2.Width / 2), ((Canvas.GetTop(nijtje2)) + nijtje2.Height / 2) + colliderMargin + speed1))
                 {
                     Canvas.SetTop(nijtje2, Canvas.GetTop(nijtje2) + speed1);
@@ -605,38 +612,40 @@ namespace project_Bomberman
             }
             //einde movement
 
-
+            //voor elke bom in de bombs lijst
             foreach (Bomb bomb in bombs)
             {
-                if (bomb.destroyed)
+                if (bomb.destroyed)                         //als de bom kapot is
                 {
-                    MyCanvas.Children.Remove(bomb.myRec);
-                    bombs.Remove(bomb);
-
-                    break;
-
+                    MyCanvas.Children.Remove(bomb.myRec);   //verwijder de bom van het veld
+                    bombs.Remove(bomb);                     //verwijder de bom van de bombs lijst
+                    break;                                  //breek de loop
                 }
             }
+            //voor elke tile in tiles
             foreach (Tile tile in tiles)
             {
+                //als een tile ontploft en als de reset niet klaar is en de  niet is gestart
                 if (tile.Exploding && tile.ResetDone == false && tile.ResetStarted == false)
                 {
                     ImageBrush Explodingpic = new ImageBrush();
                     Explodingpic.ImageSource = new BitmapImage(new Uri("pack://application:,,,/images/bieb.png"));
-                    tile.myRec.Fill = Explodingpic;
-                    tile.ResetStarted = true;
+                    tile.myRec.Fill = Explodingpic;         //verander het plaatje van de tile met dat van een ontploffing
+                    tile.ResetStarted = true;               //start de reset
                 }
+                //als de reset wel klaar is
                 else if (tile.ResetDone)
                 {
-                    tile.myRec.Fill = tile.OgPic;
-                    tile.ResetDone = false;
-                    tile.Type = "normal";
-                    tile.Passable = false;
+                    tile.myRec.Fill = tile.OgPic;           //pak orginele plaatje tile en set dat als het huidige plaatje
+                    tile.ResetDone = false;                 //reset is niet klaar
+                    tile.Type = "normal";                   //zet type naar normaal
+                    tile.Passable = false;                  //speler kan nu over de tile heenlopen
                 }
+                //als de tile breekbaar is en niet een setup heeft gedaan
                 if (tile.Type == "Breakable" && !tile.TileSetup)
                 {
-                    tile.TileSetup = true;
-                    tile.myRec.Fill = tile.BreakablePic;
+                    tile.TileSetup = true;                  //zet de setup als klaar
+                    tile.myRec.Fill = tile.BreakablePic;    //zer het plaatje van de tile als breekbraar
                 }
             }
 
@@ -644,7 +653,7 @@ namespace project_Bomberman
 
 
 
-
+            //voor elke rectangle in mycanvas
             foreach (var x in MyCanvas.Children.OfType<Rectangle>())
             {            
                 // Hier wordt een rect aangemaakt voor de hitbox van Nijntje.
@@ -714,38 +723,43 @@ namespace project_Bomberman
 
 
                 }
-
+                //voor elke tile in tiles
                 foreach (Tile tile in tiles)
                 {
+                    //maak een niew hitbox aan
                     Rect tileHitbox = new Rect(tile.posX, tile.posY, tile.myRec.Width, tile.myRec.Height);
+                    //check of de hotbox tile nijntje aanraakt en ontploft
                     if (nijntjeHitBox.IntersectsWith(tileHitbox) && tile.Exploding)
                     {
-                        nijntje.Fill = null;
-                        Score.SetScore(Score.NamePlayer2, 1000);
+                        nijntje.Fill = null;                        //zet het nijntje plaatje uit
+                        Score.SetScore(Score.NamePlayer2, 1000);    //geef de andere speler 1000 punten
+                        //zet de highscores in de database 
                         Score.SetHighScores(Score.NamePlayer1, Score.ScorePlayer1, Score.NamePlayer2, Score.ScorePlayer2);
+                        //maak een niew highscore window aan
                         HighScoreWindow h = new HighScoreWindow();
+                        //laat de nieuew window zien
                         h.Show();
+                        //sluit dit
                         this.Close();
                     }
+                    //check of de hotbox tile nijntje aanraakt en ontploft
                     if (hitBoxNijntje2.IntersectsWith(tileHitbox) && tile.Exploding)
                     {
-                        nijtje2.Fill = null;
-                        Score.SetScore(Score.NamePlayer1, 1000);
+                        nijtje2.Fill = null;                        //zet het nijntje plaatje uit
+                        Score.SetScore(Score.NamePlayer1, 1000);    //geef de andere speler 1000 punten
+                        //zet de highscores in de database 
                         Score.SetHighScores(Score.NamePlayer1, Score.ScorePlayer1, Score.NamePlayer2, Score.ScorePlayer2);
+                        //maak een niew highscore window aan
                         HighScoreWindow h = new HighScoreWindow();
+                        //laat de nieuew window zien
                         h.Show();
+                        //sluit dit
                         this.Close();
                     }
                 }
-
-
-
-
-
-
             }
         }
-
+        //zet de postietie van het gegeven plaatje
         private void MovePiece(Rectangle nijntje, string posName)
         {
             foreach (Rectangle rectangle in Moves)
@@ -758,6 +772,7 @@ namespace project_Bomberman
             Canvas.SetLeft(nijntje, Canvas.GetLeft(landingRec) + nijntje.Width / 2);
             Canvas.SetTop(nijntje, Canvas.GetTop(landingRec) + nijntje.Height / 2);
         }
+        //zet de start positie van speler 2
         private void MovePiece1(Rectangle nijtje2, string posName)
         {
             foreach (Rectangle rectangle in Moves)
@@ -771,6 +786,7 @@ namespace project_Bomberman
             Canvas.SetTop(nijtje2, Canvas.GetTop(landingRec1) + nijtje2.Height / 2);
 
         }
+        //zet de blokken goed 
         private void Moveblock(Rectangle block, string posName)
         {
             foreach (Rectangle rectangle in Moves)
