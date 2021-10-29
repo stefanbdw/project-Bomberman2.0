@@ -89,6 +89,7 @@ namespace project_Bomberman
                     connection.Close();
                     //geef een waarschuwing
                     MessageBox.Show(e.Message);
+                    break;
                 }
             }
         }

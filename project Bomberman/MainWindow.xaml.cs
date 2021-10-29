@@ -724,38 +724,42 @@ namespace project_Bomberman
 
                 }
                 //voor elke tile in tiles
-                foreach (Tile tile in tiles)
+            }
+            foreach (Tile tile in tiles)
+            {
+                //maak een niew hitbox aan
+                Rect tileHitbox = new Rect(tile.posX, tile.posY, tile.myRec.Width, tile.myRec.Height);
+                //check of de hotbox tile nijntje aanraakt en ontploft
+                if (nijntjeHitBox.IntersectsWith(tileHitbox) && tile.Exploding)
                 {
-                    //maak een niew hitbox aan
-                    Rect tileHitbox = new Rect(tile.posX, tile.posY, tile.myRec.Width, tile.myRec.Height);
-                    //check of de hotbox tile nijntje aanraakt en ontploft
-                    if (nijntjeHitBox.IntersectsWith(tileHitbox) && tile.Exploding)
-                    {
-                        nijntje.Fill = null;                        //zet het nijntje plaatje uit
-                        Score.SetScore(Score.NamePlayer2, 1000);    //geef de andere speler 1000 punten
-                        //zet de highscores in de database 
-                        Score.SetHighScores(Score.NamePlayer1, Score.ScorePlayer1, Score.NamePlayer2, Score.ScorePlayer2);
-                        //maak een niew highscore window aan
-                        HighScoreWindow h = new HighScoreWindow();
-                        //laat de nieuew window zien
-                        h.Show();
-                        //sluit dit
-                        this.Close();
-                    }
-                    //check of de hotbox tile nijntje aanraakt en ontploft
-                    if (hitBoxNijntje2.IntersectsWith(tileHitbox) && tile.Exploding)
-                    {
-                        nijtje2.Fill = null;                        //zet het nijntje plaatje uit
-                        Score.SetScore(Score.NamePlayer1, 1000);    //geef de andere speler 1000 punten
-                        //zet de highscores in de database 
-                        Score.SetHighScores(Score.NamePlayer1, Score.ScorePlayer1, Score.NamePlayer2, Score.ScorePlayer2);
-                        //maak een niew highscore window aan
-                        HighScoreWindow h = new HighScoreWindow();
-                        //laat de nieuew window zien
-                        h.Show();
-                        //sluit dit
-                        this.Close();
-                    }
+                    nijntje.Fill = null;                        //zet het nijntje plaatje uit
+                    Score.SetScore(Score.NamePlayer2, 1000);    //geef de andere speler 1000 punten
+                                                                //zet de highscores in de database 
+                    Score.SetHighScores(Score.NamePlayer1, Score.ScorePlayer1, Score.NamePlayer2, Score.ScorePlayer2);
+                    //maak een niew highscore window aan
+                    HighScoreWindow h = new HighScoreWindow();
+                    //laat de nieuew window zien
+                    //sluit dit
+                    this.Close();
+                    h.Show();
+                    //sluit dit
+                    this.Close();
+                }
+                //check of de hotbox tile nijntje aanraakt en ontploft
+                if (hitBoxNijntje2.IntersectsWith(tileHitbox) && tile.Exploding)
+                {
+                    nijtje2.Fill = null;                        //zet het nijntje plaatje uit
+                    Score.SetScore(Score.NamePlayer1, 1000);    //geef de andere speler 1000 punten
+                                                                //zet de highscores in de database 
+                    Score.SetHighScores(Score.NamePlayer1, Score.ScorePlayer1, Score.NamePlayer2, Score.ScorePlayer2);
+                    //maak een niew highscore window aan
+                    HighScoreWindow h = new HighScoreWindow();
+                    //laat de nieuew window zien
+                    //sluit dit
+                    this.Close();
+                    h.Show();
+                    //sluit dit
+                    this.Close();
                 }
             }
         }
