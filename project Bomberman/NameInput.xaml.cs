@@ -27,12 +27,12 @@ namespace project_Bomberman
         private void input(object sender, RoutedEventArgs e)
         {
             string userInput1 = NameP1.Text.ToString();
-            Score.NamePlayer1 = NameP1.Text.ToString();
+            Score.NamePlayer1 = NameP1.Text.ToString();     //zet de input naar de naam vans speler 1
             string userInput2 = NameP2.Text.ToString();
-            Score.NamePlayer2 = NameP2.Text.ToString();
-            MainWindow g = new MainWindow();
-            g.Show();
-            this.Close();
+            Score.NamePlayer2 = NameP2.Text.ToString();     //zet de input naar de naam van speler 2
+            MainWindow g = new MainWindow();                //laad nieuwe window
+            g.Show();                                       //laat window zien
+            this.Close();                                   //sluit dit
         }
     }
 }
